@@ -2,4 +2,4 @@
 mashehoo lo
 Project for Mini Project in Windows course
 Eitan Klein!
-Maoz turn
+Maoz turn on the light
