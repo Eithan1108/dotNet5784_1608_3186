@@ -243,4 +243,14 @@ public static class Initialization
         }
     }
 
+    public static void Do( IEngineer? dalEngineer, IDependence? dalDependence, ITask? dalTask )
+    {
+        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("Dal Cannot Be Null!");
+        s_dalDependence = dalDependence ?? throw new NullReferenceException("Dal Cannot Be Null!");
+        s_dalTask = dalTask ?? throw new NullReferenceException("Dal Cannot Be Null!");
+        createDependences();
+        createTasks();
+        createEngineers();
+    }
+
 }
