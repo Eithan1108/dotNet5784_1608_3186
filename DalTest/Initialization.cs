@@ -7,6 +7,9 @@ using System;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
+/// <summary>
+/// Represents initialization data for testing purposes.
+/// </summary>
 public static class Initialization
 {
     private static ITask s_dalTask;
@@ -204,7 +207,6 @@ public static class Initialization
             "Laura Keller"
            };
 
-
         foreach (var engineer in Names)
         {
             int id = s_random.Next(100000000, 400000000);
@@ -243,6 +245,12 @@ public static class Initialization
         }
     }
 
+    /// <summary>
+    /// Performs the initialization of the data for testing purposes.
+    /// </summary>
+    /// <param name="dalEngineer">The engineer data access layer.</param>
+    /// <param name="dalDependence">The dependence data access layer.</param>
+    /// <param name="dalTask">The task data access layer.</param>
     public static void Do( IEngineer? dalEngineer, IDependence? dalDependence, ITask? dalTask )
     {
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("Dal Cannot Be Null!");

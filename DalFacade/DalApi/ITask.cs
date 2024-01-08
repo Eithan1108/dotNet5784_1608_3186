@@ -2,11 +2,14 @@
 namespace DalApi;
 using DO;
 
-public interface ITask
-{
-    int Create(Task item); //Creates new entity object in DAL
-    Task? Read(int id); //Reads entity object by its ID 
-    List<Task> ReadAll(); //stage 1 only, Reads all entity objects
-    void Update(Task item); //Updates entity object
-    void Delete(int id); //Deletes an object by its Id
-}
+
+
+    public interface ITask
+    {
+        int Create(Task item); /// <summary> Creates new entity task in DAL </summary>
+        Task? Read(int id); /// <summary> Reads entity task by its ID </summary>
+        List<Task> ReadAll(); /// <summary> Stage 1 only, Reads all entity task </summary>
+        void Update(Task item); /// <summary> Updates entity task </summary>
+        void Delete(int id); /// <summary> Deletes an task by its Id </summary>
+    }
+
