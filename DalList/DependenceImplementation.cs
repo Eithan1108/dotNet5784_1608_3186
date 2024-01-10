@@ -28,13 +28,18 @@ internal class DependenceImplementation : IDependence
             DataSource.Dependences.Remove(DataSource.Dependences.FirstOrDefault(t => t.Id == id)!);
         }
     }
-
-    /// <inheritdoc/>
     public Dependence? Read(int id)
     {
         if (DataSource.Dependences.Any(t => t.Id == id))
             return DataSource.Dependences.FirstOrDefault(t => t.Id == id);
         return null;
+    }
+
+    /// <inheritdoc/>
+    public Dependence? Read(Func<Dependence, bool> filter)
+    {
+
+        return DataSource.Dependences.FirstOrDefault(item => filter(item));
     }
 
     /// <inheritdoc/>
