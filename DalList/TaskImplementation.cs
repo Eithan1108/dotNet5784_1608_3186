@@ -23,7 +23,7 @@ internal class TaskImplementation : ITask
     public void Delete(int id)
     {
         if (!(DataSource.Tasks.Any(t => t.Id == id)))
-            throw new Exception($"No task with id of {id}");
+            throw new DalDoesNotExistException($"No task with id of {id}");
         else
         {
            DataSource.Tasks.Remove(DataSource.Tasks.FirstOrDefault(t => t.Id == id)!);
@@ -60,7 +60,7 @@ internal class TaskImplementation : ITask
     public void Update(Task item)
     {
         if (!(DataSource.Tasks.Any(t => t.Id == item.Id)))
-            throw new Exception($"No task with id of {item.Id}");
+            throw new DalDoesNotExistException($"No task with id of {item.Id}");
         else
         {
             DataSource.Tasks.Remove(DataSource.Tasks.FirstOrDefault(t => t.Id == item.Id)!);

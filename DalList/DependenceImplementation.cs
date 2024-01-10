@@ -22,7 +22,7 @@ internal class DependenceImplementation : IDependence
     public void Delete(int id)
     {
         if (!(DataSource.Dependences.Any(t => t.Id == id)))
-            throw new Exception($"No dependence with id of {id}");
+            throw new DalDoesNotExistException($"No dependence with id of {id}");
         else
         {
             DataSource.Dependences.Remove(DataSource.Dependences.FirstOrDefault(t => t.Id == id)!);
@@ -58,7 +58,7 @@ internal class DependenceImplementation : IDependence
     public void Update(Dependence item)
     {
         if (!(DataSource.Dependences.Any(t => t.Id == item.Id)))
-            throw new Exception($"No dependence with id of {item.Id}");
+            throw new DalDoesNotExistException($"No dependence with id of {item.Id}");
         else
         {
             DataSource.Dependences.Remove(DataSource.Dependences.FirstOrDefault (t => t.Id == item.Id)!);
