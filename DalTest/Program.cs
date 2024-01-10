@@ -11,10 +11,10 @@ using DO;
     /// Main program class
     /// </summary>
     /// 
-        private static IEngineer? s_dalEngineer = new EngineerImplementation();
-        private static ITask? s_dalTask = new TaskImplementation();
-        private static IDependence? s_dalDependence = new DependenceImplementation()
-        ;
+    //private static IEngineer? s_dalEngineer = new EngineerImplementation();
+    //private static ITask? s_dalTask = new TaskImplementation();
+    //private static IDependence? s_dalDependence = new DependenceImplementation();
+    static readonly IDal s_dal = new DalList();
     /// <summary>
     /// Entry point of the program
     /// </summary>
@@ -24,7 +24,7 @@ using DO;
         {
             try 
             { 
-                Initialization.Do(s_dalEngineer, s_dalDependence, s_dalTask);
+                Initialization.Do(s_dal);
                 int choices = 1;
                 while (choices != 0)
                 {
@@ -112,17 +112,17 @@ using DO;
                         readValuesForCreateEngineer(ref id, ref name!, ref email!, ref level, ref cost); //function below
 
                             engineer = new Engineer(id, name, email, level, cost);
-                            s_dalEngineer?.Create(engineer);
+                            s_dal.Engineer?.Create(engineer);
                             Console.WriteLine(id);
                             break;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printEngineer(s_dalEngineer!.Read(id)!);
+                            printEngineer(s_dal.Engineer!.Read(id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Engineer> engineers =  s_dalEngineer!.ReadAll();
+                            List<Engineer> engineers = s_dal.Engineer!.ReadAll();
                             foreach (var e in engineers)
                             {
                                 printEngineer(e);
@@ -135,7 +135,7 @@ using DO;
                             readValuesForUpdateEngineer(ref id, ref name!, ref email!, ref level, ref cost); //function below
 
                             engineer = new Engineer(id, name, email, level, cost);
-                                s_dalEngineer?.Update(engineer);
+                            s_dal.Engineer?.Update(engineer);
                             }
                             catch (Exception ex)
                             {
@@ -147,7 +147,7 @@ using DO;
                             id = int.Parse(Console.ReadLine()!);
                             try
                             {
-                                s_dalEngineer!.Delete(id);
+                                s_dal.Engineer!.Delete(id);
                             }
                             catch (Exception ex)
                             {
@@ -179,18 +179,18 @@ using DO;
                             level = (DO.EngineerExperience)int.Parse(Console.ReadLine()!);
 
                             task = new Task(id, alias, description, false, createDate, level);
-                            s_dalTask?.Create(task);
+                            s_dal.Task?.Create(task);
                             Console.WriteLine(task.Id);
 
                             break;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printTask(s_dalTask!.Read(id)!);
+                            printTask(s_dal.Task!.Read(id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Task> tesks = s_dalTask!.ReadAll();
+                            List<Task> tesks = s_dal.Task!.ReadAll();
                             foreach (var t in tesks)
                             {
                                     printTask(t);
@@ -202,17 +202,17 @@ using DO;
                             {
                                 Console.WriteLine("Enter id: ");
                                 id = int.Parse(Console.ReadLine()!);
-                                printTask(s_dalTask!.Read(id)!);
+                                printTask(s_dal.Task!.Read(id)!);
 
                                 Console.WriteLine("Enter alias: ");
                                 alias = Console.ReadLine()!;
                                 if (alias == " ")
-                                    alias = s_dalTask!.Read(id)!.Alias;
+                                    alias = s_dal.Task!.Read(id)!.Alias;
 
                                 Console.WriteLine("Enter description: ");
                                 description = Console.ReadLine()!;
                                 if (description == " ")
-                                    description = s_dalTask!.Read(id)!.Description;
+                                    description = s_dal.Task!.Read(id)!.Description;
 
                                 Console.WriteLine("Enter createDate: ");
                                 createDate = DateTime.Parse(Console.ReadLine()!);
@@ -220,7 +220,7 @@ using DO;
                                 level = (DO.EngineerExperience)int.Parse(Console.ReadLine()!);
 
                                 task = new Task(id, alias, description, false, createDate, level);
-                                s_dalTask?.Update(task);
+                                s_dal.Task?.Update(task);
                             } 
                             catch (Exception ex)
                             {
@@ -232,7 +232,7 @@ using DO;
                             id = int.Parse(Console.ReadLine()!);
                             try
                             {
-                                s_dalTask!.Delete(id);
+                            s_dal.Task!.Delete(id);
                             }
                             catch (Exception ex)
                             {
@@ -251,20 +251,20 @@ using DO;
                             Console.WriteLine("Dependence");
                             break;
                         case 2:
-                        readValuesForCreateDependence(ref dependenceId, ref dependeOn); //function below
+                            readValuesForCreateDependence(ref dependenceId, ref dependeOn); //function below
 
-                        dependence = new Dependence(0, dependenceId, dependeOn);
-                            s_dalDependence?.Create(dependence);
+                            dependence = new Dependence(0, dependenceId, dependeOn);
+                            s_dal.Dependence?.Create(dependence);
                             Console.WriteLine(dependence.Id);
                             break;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printDependence(s_dalDependence!.Read(id)!);
+                            printDependence(s_dal.Dependence!.Read(id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Dependence> dependences = s_dalDependence!.ReadAll();
+                            List<Dependence> dependences = s_dal.Dependence!.ReadAll();
                             foreach (var d in dependences)
                             {
                                 printDependence(d);               
@@ -273,9 +273,9 @@ using DO;
                         case 5:
                             try
                             {
-                            readValuesForUpdateDependence(ref id, ref dependenceId, ref dependeOn); //function below
-                            dependence = new Dependence(id, dependenceId, dependeOn);
-                                s_dalDependence?.Update(dependence);
+                                readValuesForUpdateDependence(ref id, ref dependenceId, ref dependeOn); //function below
+                                dependence = new Dependence(id, dependenceId, dependeOn);
+                                s_dal.Dependence?.Update(dependence);
                             }
                             catch (Exception ex)
                             {
@@ -287,7 +287,7 @@ using DO;
                             id = int.Parse(Console.ReadLine()!);
                             try
                             {
-                                s_dalDependence!.Delete(id);
+                                s_dal.Dependence!.Delete(id);
                             }
                             catch (Exception ex)
                             {
@@ -386,19 +386,19 @@ using DO;
         id = int.Parse(Console.ReadLine()!);
 
         // Print existing Engineer details before updating
-        printEngineer(s_dalEngineer!.Read(id));
+        printEngineer(s_dal.Engineer!.Read(id));
 
         Console.WriteLine("Enter name: ");
         name = Console.ReadLine()!;
         // If name is empty, retain the existing name
         if (string.IsNullOrWhiteSpace(name))
-            name = s_dalEngineer!.Read(id)!.Name;
+            name = s_dal.Engineer!.Read(id)!.Name;
 
         Console.WriteLine("Enter email: ");
         email = Console.ReadLine()!;
         // If email is empty, retain the existing email
         if (string.IsNullOrWhiteSpace(email))
-            email = s_dalEngineer!.Read(id)!.Email;
+            email = s_dal.Engineer!.Read(id)!.Email;
 
         Console.WriteLine("Enter level: ");
         level = (DO.EngineerExperience)int.Parse(Console.ReadLine()!);
@@ -432,7 +432,7 @@ using DO;
         id = int.Parse(Console.ReadLine()!);
 
         // Displaying information about the existing Dependence
-        printDependence(s_dalDependence!.Read(id)!);
+        printDependence(s_dal.Dependence!.Read(id)!);
 
         Console.WriteLine("Enter Dependence id: ");
         dependenceId = int.Parse(Console.ReadLine()!);
