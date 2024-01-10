@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Represents the implementation of the ITask interface for interaction with the data source.
 /// </summary>
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     /// <inheritdoc/>
     public int Create(Task item)

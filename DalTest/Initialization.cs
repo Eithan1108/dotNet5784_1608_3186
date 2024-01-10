@@ -12,10 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 /// </summary>
 public static class Initialization
 {
-    private static ITask s_dalTask;
-    private static IDependence s_dalDependence;
-    private static IEngineer s_dalEngineer;
-
+    private static IDal? s_dal;
     private static readonly Random s_random = new();
     private static void createTasks()
     {
@@ -85,7 +82,7 @@ public static class Initialization
                     break;
             }
             Task t = new Task(0, taskNickname, taskName, false, startDate,level);
-            s_dalTask.Create(t); ;
+            s_dal!.Task.Create(t); ;
         }
     }
 
@@ -189,7 +186,7 @@ public static class Initialization
 
         foreach ( Dependence de in dependences )
         {
-            s_dalDependence.Create(de);
+            s_dal!.Dependence.Create(de);
         }
     }
 
@@ -241,7 +238,7 @@ public static class Initialization
             }
 
             Engineer e = new Engineer(id, engineer, email, level, cost);
-            s_dalEngineer.Create(e);
+            s_dal!.Engineer.Create(e);
         }
     }
 
@@ -251,11 +248,9 @@ public static class Initialization
     /// <param name="dalEngineer">The engineer data access layer.</param>
     /// <param name="dalDependence">The dependence data access layer.</param>
     /// <param name="dalTask">The task data access layer.</param>
-    public static void Do( IEngineer? dalEngineer, IDependence? dalDependence, ITask? dalTask )
+    public static void Do(IDal dal)
     {
-        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("Dal Cannot Be Null!");
-        s_dalDependence = dalDependence ?? throw new NullReferenceException("Dal Cannot Be Null!");
-        s_dalTask = dalTask ?? throw new NullReferenceException("Dal Cannot Be Null!");
+        s_dal = dal ?? throw new NullReferenceException("Dal object Cannot Be Null!");
         createDependences();
         createTasks();
         createEngineers();

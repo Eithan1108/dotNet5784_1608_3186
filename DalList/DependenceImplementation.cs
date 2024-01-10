@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Represents the implementation of the IDependence interface for interaction with the data source.
 /// </summary>
-public class DependenceImplementation : IDependence
+internal class DependenceImplementation : IDependence
 {
     /// <inheritdoc/>
     public int Create(Dependence item)

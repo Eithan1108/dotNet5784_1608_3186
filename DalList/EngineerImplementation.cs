@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Represents the implementation of the IEngineer interface for interaction with the data source.
 /// </summary>
-public class EngineerImplementation : IEngineer
+internal class EngineerImplementation : IEngineer
 {
     /// <inheritdoc/>
     public int Create(Engineer item)
