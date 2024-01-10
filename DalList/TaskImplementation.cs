@@ -3,6 +3,7 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Represents the implementation of the ITask interface for interaction with the data source.
@@ -21,36 +22,43 @@ internal class TaskImplementation : ITask
     /// <inheritdoc/>
     public void Delete(int id)
     {
-        if (!(DataSource.Tasks.Exists(t => t.Id == id)))
+        if (!(DataSource.Tasks.Any(t => t.Id == id)))
             throw new Exception($"No task with id of {id}");
         else
         {
-            DataSource.Tasks.Remove(DataSource.Tasks.Find(t => t.Id == id)!);
+           DataSource.Tasks.Remove(DataSource.Tasks.FirstOrDefault(t => t.Id == id)!);
         }
     }
 
     /// <inheritdoc/>
     public Task? Read(int id)
     {
-        if (DataSource.Tasks.Exists(t => t.Id == id))
-            return DataSource.Tasks.Find(t => t.Id == id);
+        if (DataSource.Tasks.Any(t => t.Id == id))
+            return DataSource.Tasks.FirstOrDefault(t => t.Id == id);
         return null;
     }
 
     /// <inheritdoc/>
-    public List<Task> ReadAll()
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null)
     {
-        return new List<Task>(DataSource.Tasks);
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
     }
 
     /// <inheritdoc/>
     public void Update(Task item)
     {
-        if (!(DataSource.Tasks.Exists(t => t.Id == item.Id)))
+        if (!(DataSource.Tasks.Any(t => t.Id == item.Id)))
             throw new Exception($"No task with id of {item.Id}");
         else
         {
-            DataSource.Tasks.Remove(DataSource.Tasks.Find(t => t.Id == item.Id)!);
+            DataSource.Tasks.Remove(DataSource.Tasks.FirstOrDefault(t => t.Id == item.Id)!);
             DataSource.Tasks.Add(item);
         }
     }

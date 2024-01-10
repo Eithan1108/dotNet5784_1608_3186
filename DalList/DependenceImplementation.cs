@@ -21,36 +21,42 @@ internal class DependenceImplementation : IDependence
     /// <inheritdoc/>
     public void Delete(int id)
     {
-        if (!(DataSource.Dependences.Exists(t => t.Id == id)))
+        if (!(DataSource.Dependences.Any(t => t.Id == id)))
             throw new Exception($"No dependence with id of {id}");
         else
         {
-            DataSource.Dependences.Remove(DataSource.Dependences.Find(t => t.Id == id)!);
+            DataSource.Dependences.Remove(DataSource.Dependences.FirstOrDefault(t => t.Id == id)!);
         }
     }
 
     /// <inheritdoc/>
     public Dependence? Read(int id)
     {
-        if (DataSource.Dependences.Exists(t => t.Id == id))
-            return DataSource.Dependences.Find(t => t.Id == id);
+        if (DataSource.Dependences.Any(t => t.Id == id))
+            return DataSource.Dependences.FirstOrDefault(t => t.Id == id);
         return null;
     }
 
     /// <inheritdoc/>
-    public List<Dependence> ReadAll()
+    public IEnumerable<Dependence> ReadAll(Func<Dependence, bool>? filter = null)
     {
-        return new List<Dependence>(DataSource.Dependences);
+        if (filter != null)
+        {
+            return from item in DataSource.Dependences
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Dependences
+               select item;
     }
-
     /// <inheritdoc/>
     public void Update(Dependence item)
     {
-        if (!(DataSource.Dependences.Exists(t => t.Id == item.Id)))
+        if (!(DataSource.Dependences.Any(t => t.Id == item.Id)))
             throw new Exception($"No dependence with id of {item.Id}");
         else
         {
-            DataSource.Dependences.Remove(DataSource.Dependences.Find(t => t.Id == item.Id)!);
+            DataSource.Dependences.Remove(DataSource.Dependences.FirstOrDefault (t => t.Id == item.Id)!);
             DataSource.Dependences.Add(item);
         }
     }

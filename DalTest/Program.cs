@@ -11,9 +11,7 @@ using DO;
     /// Main program class
     /// </summary>
     /// 
-    //private static IEngineer? s_dalEngineer = new EngineerImplementation();
-    //private static ITask? s_dalTask = new TaskImplementation();
-    //private static IDependence? s_dalDependence = new DependenceImplementation();
+
     static readonly IDal s_dal = new DalList();
     /// <summary>
     /// Entry point of the program
@@ -122,7 +120,7 @@ using DO;
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Engineer> engineers = s_dal.Engineer!.ReadAll();
+                            IEnumerable<Engineer?> engineers = s_dal.Engineer!.ReadAll();
                             foreach (var e in engineers)
                             {
                                 printEngineer(e);
@@ -190,7 +188,7 @@ using DO;
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Task> tesks = s_dal.Task!.ReadAll();
+                            IEnumerable<Task?> tesks = s_dal.Task!.ReadAll();
                             foreach (var t in tesks)
                             {
                                     printTask(t);
@@ -264,7 +262,7 @@ using DO;
                             break;
                         case 4:
                             Console.WriteLine("Read All");
-                            List<Dependence> dependences = s_dal.Dependence!.ReadAll();
+                            IEnumerable<Dependence?> dependences = s_dal.Dependence!.ReadAll();
                             foreach (var d in dependences)
                             {
                                 printDependence(d);               
