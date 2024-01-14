@@ -42,5 +42,6 @@ namespace DalApi
         /// </summary>
         /// <param name="id">The identifier of the entity object to be deleted.</param>
         void Delete(int id);
+        
     }
 }
