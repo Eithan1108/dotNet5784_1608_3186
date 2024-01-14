@@ -2,6 +2,10 @@
 using Dal;
 using DalApi;
 using DO;
+using System.Diagnostics.Metrics;
+using System.Reflection.Emit;
+using System.Xml.Linq;
+using System;
 
 
 
@@ -445,3 +449,200 @@ using DO;
 
 
 
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//4
+//Read All
+//Id: 156556419, Name: Maximilian M? ller, Email: mm? ller@gmail.com, Level: Intermediate, Cost: 193
+//Id: 372059449, Name: Sophia Wagner, Email: swagner @gmail.com, Level: Expert, Cost: 478
+//Id: 126344648, Name: Leon Schmidt, Email: lschmidt @gmail.com, Level: Advanced, Cost: 379
+//Id: 388259549, Name: Emma Becker, Email: ebecker @gmail.com, Level: Expert, Cost: 463
+//Id: 357182463, Name: Lukas Hoffmann, Email: lhoffmann @gmail.com, Level: Intermediate, Cost: 284
+//Id: 269896443, Name: Mia Schneider, Email: mschneider @gmail.com, Level: Advanced, Cost: 411
+//Id: 126201646, Name: Paul Fischer, Email: pfischer @gmail.com, Level: Intermediate, Cost: 279
+//Id: 304973576, Name: Emily Weber, Email: eweber @gmail.com, Level: Beginner, Cost: 62
+//Id: 129644555, Name: Jonas Richter, Email: jrichter @gmail.com, Level: Beginner, Cost: 83
+//Id: 216837328, Name: Laura Keller, Email: lkeller @gmail.com, Level: Intermediate, Cost: 257
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//2
+//Enter id:
+//12
+//Enter name:
+//eitan klein
+//Enter email:
+//ewewe343 @gmail.com
+//Enter level:
+//2
+//Enter cost:
+//100
+//12
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//4
+//Read All
+//Id: 156556419, Name: Maximilian M?ller, Email: mm? ller@gmail.com, Level: Intermediate, Cost: 193
+//Id: 372059449, Name: Sophia Wagner, Email: swagner @gmail.com, Level: Expert, Cost: 478
+//Id: 126344648, Name: Leon Schmidt, Email: lschmidt @gmail.com, Level: Advanced, Cost: 379
+//Id: 388259549, Name: Emma Becker, Email: ebecker @gmail.com, Level: Expert, Cost: 463
+//Id: 357182463, Name: Lukas Hoffmann, Email: lhoffmann @gmail.com, Level: Intermediate, Cost: 284
+//Id: 269896443, Name: Mia Schneider, Email: mschneider @gmail.com, Level: Advanced, Cost: 411
+//Id: 126201646, Name: Paul Fischer, Email: pfischer @gmail.com, Level: Intermediate, Cost: 279
+//Id: 304973576, Name: Emily Weber, Email: eweber @gmail.com, Level: Beginner, Cost: 62
+//Id: 129644555, Name: Jonas Richter, Email: jrichter @gmail.com, Level: Beginner, Cost: 83
+//Id: 216837328, Name: Laura Keller, Email: lkeller @gmail.com, Level: Intermediate, Cost: 257
+//Id: 12, Name: eitan klein, Email: ewewe343 @gmail.com, Level: Intermediate, Cost: 100
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//3
+//Enter id:
+//12
+//Id: 12, Name: eitan klein, Email: ewewe343 @gmail.com, Level: Intermediate, Cost: 100
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//5
+//Enter id:
+//12
+//Id: 12, Name: eitan klein, Email: ewewe343 @gmail.com, Level: Intermediate, Cost: 100
+//Enter name:
+//moaz zor
+//Enter email:
+//moaz3 @gmail.com
+//Enter level:
+//3
+//Enter cost:
+//203
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//4
+//Read All
+//Id: 156556419, Name: Maximilian M?ller, Email: mm? ller@gmail.com, Level: Intermediate, Cost: 193
+//Id: 372059449, Name: Sophia Wagner, Email: swagner @gmail.com, Level: Expert, Cost: 478
+//Id: 126344648, Name: Leon Schmidt, Email: lschmidt @gmail.com, Level: Advanced, Cost: 379
+//Id: 388259549, Name: Emma Becker, Email: ebecker @gmail.com, Level: Expert, Cost: 463
+//Id: 357182463, Name: Lukas Hoffmann, Email: lhoffmann @gmail.com, Level: Intermediate, Cost: 284
+//Id: 269896443, Name: Mia Schneider, Email: mschneider @gmail.com, Level: Advanced, Cost: 411
+//Id: 126201646, Name: Paul Fischer, Email: pfischer @gmail.com, Level: Intermediate, Cost: 279
+//Id: 304973576, Name: Emily Weber, Email: eweber @gmail.com, Level: Beginner, Cost: 62
+//Id: 129644555, Name: Jonas Richter, Email: jrichter @gmail.com, Level: Beginner, Cost: 83
+//Id: 216837328, Name: Laura Keller, Email: lkeller @gmail.com, Level: Intermediate, Cost: 257
+//Id: 12, Name: moaz zor, Email: moaz3 @gmail.com, Level: Advanced, Cost: 203
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//6
+//Enter id:
+//12
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//4
+//Read All
+//Id: 156556419, Name: Maximilian M?ller, Email: mm? ller@gmail.com, Level: Intermediate, Cost: 193
+//Id: 372059449, Name: Sophia Wagner, Email: swagner @gmail.com, Level: Expert, Cost: 478
+//Id: 126344648, Name: Leon Schmidt, Email: lschmidt @gmail.com, Level: Advanced, Cost: 379
+//Id: 388259549, Name: Emma Becker, Email: ebecker @gmail.com, Level: Expert, Cost: 463
+//Id: 357182463, Name: Lukas Hoffmann, Email: lhoffmann @gmail.com, Level: Intermediate, Cost: 284
+//Id: 269896443, Name: Mia Schneider, Email: mschneider @gmail.com, Level: Advanced, Cost: 411
+//Id: 126201646, Name: Paul Fischer, Email: pfischer @gmail.com, Level: Intermediate, Cost: 279
+//Id: 304973576, Name: Emily Weber, Email: eweber @gmail.com, Level: Beginner, Cost: 62
+//Id: 129644555, Name: Jonas Richter, Email: jrichter @gmail.com, Level: Beginner, Cost: 83
+//Id: 216837328, Name: Laura Keller, Email: lkeller @gmail.com, Level: Intermediate, Cost: 257
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//1
+//1. Exit
+//2. Create
+//3. Read
+//4. Read All
+//5. Update
+//6. Delete
+//2
+//Enter id:
+//15
+//Enter name:
+//doind
+//Enter email:
+//kjhgjh
+//Enter level:
+//2
+//Enter cost:
+//78
+//15
+//0. Exit
+//1. Engineer
+//2. Task
+//3. Dependence
+//0
