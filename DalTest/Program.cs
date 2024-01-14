@@ -116,7 +116,7 @@ using DO;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printEngineer(s_dal.Engineer!.Read(id)!);
+                            printEngineer(s_dal.Engineer!.Read(engineer => id == engineer.Id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
@@ -184,7 +184,7 @@ using DO;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printTask(s_dal.Task!.Read(id)!);
+                            printTask(s_dal.Task!.Read(task => id == task.Id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
@@ -200,17 +200,17 @@ using DO;
                             {
                                 Console.WriteLine("Enter id: ");
                                 id = int.Parse(Console.ReadLine()!);
-                                printTask(s_dal.Task!.Read(id)!);
+                                printTask(s_dal.Task!.Read(task => id == task.Id)!);
 
                                 Console.WriteLine("Enter alias: ");
                                 alias = Console.ReadLine()!;
                                 if (alias == " ")
-                                    alias = s_dal.Task!.Read(id)!.Alias;
+                                    alias = s_dal.Task!.Read(task => id == task.Id)!.Alias;
 
                                 Console.WriteLine("Enter description: ");
                                 description = Console.ReadLine()!;
                                 if (description == " ")
-                                    description = s_dal.Task!.Read(id)!.Description;
+                                    description = s_dal.Task!.Read(task => id == task.Id)!.Description;
 
                                 Console.WriteLine("Enter createDate: ");
                                 createDate = DateTime.Parse(Console.ReadLine()!);
@@ -258,7 +258,7 @@ using DO;
                         case 3:
                             Console.WriteLine("Enter id: ");
                             id = int.Parse(Console.ReadLine()!);
-                            printDependence(s_dal.Dependence!.Read(id)!);
+                            printDependence(s_dal.Dependence!.Read(dependence => id == dependence.Id)!);
                             break;
                         case 4:
                             Console.WriteLine("Read All");
@@ -382,21 +382,22 @@ using DO;
     {
         Console.WriteLine("Enter id: ");
         id = int.Parse(Console.ReadLine()!);
+        int idVal = id; // Because id is by ref we cant pass in read function so we created temp id by val 
 
         // Print existing Engineer details before updating
-        printEngineer(s_dal.Engineer!.Read(id));
+        printEngineer(s_dal.Engineer!.Read(engineer => idVal == engineer.Id));
 
         Console.WriteLine("Enter name: ");
         name = Console.ReadLine()!;
         // If name is empty, retain the existing name
         if (string.IsNullOrWhiteSpace(name))
-            name = s_dal.Engineer!.Read(id)!.Name;
+            name = s_dal.Engineer!.Read(engineer => idVal == engineer.Id)!.Name;
 
         Console.WriteLine("Enter email: ");
         email = Console.ReadLine()!;
         // If email is empty, retain the existing email
         if (string.IsNullOrWhiteSpace(email))
-            email = s_dal.Engineer!.Read(id)!.Email;
+            email = s_dal.Engineer!.Read(engineer => idVal == engineer.Id)!.Email;
 
         Console.WriteLine("Enter level: ");
         level = (DO.EngineerExperience)int.Parse(Console.ReadLine()!);
@@ -428,9 +429,10 @@ using DO;
     {
         Console.WriteLine("Enter id to update: ");
         id = int.Parse(Console.ReadLine()!);
+        int idVal = id; // Because id is by ref we cant pass in read function so we created temp id by val
 
         // Displaying information about the existing Dependence
-        printDependence(s_dal.Dependence!.Read(id)!);
+        printDependence(s_dal.Dependence!.Read(dependenceId => idVal == dependenceId.Id)!);
 
         Console.WriteLine("Enter Dependence id: ");
         dependenceId = int.Parse(Console.ReadLine()!);
@@ -438,6 +440,4 @@ using DO;
         Console.WriteLine("Enter updated Dependence on: ");
         dependeOn = int.Parse(Console.ReadLine()!);
     }
-
-
 }

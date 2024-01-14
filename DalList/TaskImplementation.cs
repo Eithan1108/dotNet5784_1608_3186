@@ -29,12 +29,6 @@ internal class TaskImplementation : ITask
            DataSource.Tasks.Remove(DataSource.Tasks.FirstOrDefault(t => t.Id == id)!);
         }
     }
-    public Task? Read(int id)
-    {
-        if (DataSource.Tasks.Any(t => t.Id == id))
-            return DataSource.Tasks.FirstOrDefault(t => t.Id == id);
-        return null;
-    }
 
     /// <inheritdoc/>
     public Task? Read(Func<Task, bool> filter)

@@ -31,12 +31,6 @@ internal class EngineerImplementation : IEngineer
             DataSource.Engineers.Remove(DataSource.Engineers.FirstOrDefault(t => t.Id == id)!);
         }
     }
-    public Engineer? Read(int id)
-    {
-        if (DataSource.Engineers.Any(t => t.Id == id))
-            return DataSource.Engineers.FirstOrDefault(t => t.Id == id);
-        return null;
-    }
 
     /// <inheritdoc/>
     public Engineer? Read(Func<Engineer, bool> filter)
