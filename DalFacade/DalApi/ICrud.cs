@@ -29,6 +29,8 @@ namespace DalApi
         /// </summary>
         /// <param name="filter">Optional filter condition to apply while reading all objects.</param>
         /// <returns>An enumerable of matching entity objects, or all objects if no filter is provided.</returns>
+        /// 
+        T? Read(int id); //Reads entity object by its ID 
         IEnumerable<T?> ReadAll(Func<T, bool>? filter = null);
 
         /// <summary>

@@ -39,6 +39,13 @@ internal class EngineerImplementation : IEngineer
         return DataSource.Engineers.FirstOrDefault(item => filter(item));
     }
 
+    public Engineer? Read(int id)
+    {
+        if (DataSource.Engineers.Any(t => t.Id == id))
+            return DataSource.Engineers.FirstOrDefault(t => t.Id == id);
+        return null;
+    }
+
     /// <inheritdoc/>
     public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null)
     {

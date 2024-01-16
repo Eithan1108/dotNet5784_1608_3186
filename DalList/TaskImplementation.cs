@@ -38,6 +38,14 @@ internal class TaskImplementation : ITask
     }
 
     /// <inheritdoc/>
+    /// 
+    public Task? Read(int id)
+    {
+        if (DataSource.Tasks.Any(t => t.Id == id))
+            return DataSource.Tasks.FirstOrDefault(t => t.Id == id);
+        return null;
+    }
+
     public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null)
     {
         if (filter != null)
