@@ -16,7 +16,7 @@ using System;
     /// </summary>
     /// 
 
-    static readonly IDal s_dal = new DalList();
+    static readonly IDal s_dal = new DalXml();
     /// <summary>
     /// Entry point of the program
     /// </summary>
@@ -25,8 +25,11 @@ using System;
     static void Main(string[] args)
         {
             try 
-            { 
-                Initialization.Do(s_dal);
+            {
+                Console.Write("Would you like to create Initial data? (Y/N)");
+                string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+                if (ans == "Y")
+                    Initialization.Do(s_dal);
                 int choices = 1;
                 while (choices != 0)
                 {

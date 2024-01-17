@@ -15,7 +15,7 @@ internal class TaskImplementation : ITask
     {
         int id = Config.NextTaskId;
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
-        Task task = item with { Id = id, CreatedAtDate = DateTime.Now };
+        Task task = item with { Id = id, CreateAtDate = DateTime.Now };
         tasksList.Add(task);
         XMLTools.SaveListToXMLSerializer(tasksList, s_tasks_xml);
         return id;
