@@ -6,6 +6,7 @@ using System.Diagnostics.Metrics;
 using System.Reflection.Emit;
 using System.Xml.Linq;
 using System;
+using System.Linq;
 
 
 
@@ -15,7 +16,10 @@ using System;
     /// Main program class
     /// </summary>
     /// 
-
+    static readonly string s_tasks_xml = "tasks";
+    static readonly string s_engineers_xml = "engineers";
+    static readonly string s_dependence_xml = "dependences";
+    static readonly string s_config_xml = "data-config";
     static readonly IDal s_dal = new DalXml();
     /// <summary>
     /// Entry point of the program
@@ -26,10 +30,6 @@ using System;
         {
             try 
             {
-                Console.Write("Would you like to create Initial data? (Y/N)");
-                string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
-                if (ans == "Y")
-                    Initialization.Do(s_dal);
                 int choices = 1;
                 while (choices != 0)
                 {
@@ -51,12 +51,13 @@ using System;
     private static int menu() 
         {
             int choice;
-            Console.WriteLine("0. Exit");
+            Console.WriteLine("0. Exit"); 
             Console.WriteLine("1. Engineer");
             Console.WriteLine("2. Task");
             Console.WriteLine("3. Dependence");
+            Console.WriteLine("4. Initial data");
             choice = int.Parse(Console.ReadLine()!);
-            return choice;
+            return choice; 
         }
 
     /// <summary>
@@ -259,8 +260,7 @@ using System;
                             readValuesForCreateDependence(ref dependenceId, ref dependeOn); //function below
 
                             dependence = new Dependence(0, dependenceId, dependeOn);
-                            s_dal.Dependence?.Create(dependence);
-                            Console.WriteLine(dependence.Id);
+                            Console.WriteLine(s_dal.Dependence?.Create(dependence));
                             break;
                         case 3:
                             Console.WriteLine("Enter id: ");
@@ -303,13 +303,34 @@ using System;
                             break;
                     }
                     break;
+                case 4: // Initial data
+                    Console.Write("Would you like to create Initial data? (Y/N)");
+                    string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+                    if (ans == "Y")
+                    {
+                        // clear data
+                        List<Engineer> engineersClear = new List<Engineer>();
+                        List<Dependence> dependenceClear = new List<Dependence>();
+                        List<Task> tasksClear = new List<Task>();
+                        XMLTools.SaveListToXMLSerializer<Engineer>(engineersClear, s_engineers_xml);
+                        XMLTools.SaveListToXMLSerializer<Task>(tasksClear, s_tasks_xml);
+                        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
+                        // initialize data conigfile
+                        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
+                        configRestart.Element("NextTaskId")!.Value = "1";
+                        configRestart.Element("NextDependenceId")!.Value = "1";
+                        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
+                        // initialize data
+                        Initialization.Do(s_dal);
+                    }
+                    break;
                 default:
                     break;
             }
             return choice;
         }
 
-
+    
 
     /// <summary>
     /// Prints details of an engineer
@@ -420,10 +441,10 @@ using System;
     /// <param name="dependeOn">Reference to the Dependence on</param>
     public static void readValuesForCreateDependence(ref int dependenceId, ref int dependeOn)
     {
-        Console.WriteLine("Enter Dependence id: ");
+        Console.WriteLine("Enter task id: ");
         dependenceId = int.Parse(Console.ReadLine()!);
 
-        Console.WriteLine("Enter Dependence on: ");
+        Console.WriteLine("Enter task dependence on this task: ");
         dependeOn = int.Parse(Console.ReadLine()!);
     }
 
