@@ -147,8 +147,8 @@
   </dependence>
   <dependence>
     <Id>30</Id>
-    <DependentTask>29</DependentTask>
-    <DependsOnTask>1</DependsOnTask>
+    <DependentTask>35</DependentTask>
+    <DependsOnTask>40</DependsOnTask>
   </dependence>
   <dependence>
     <Id>31</Id>
