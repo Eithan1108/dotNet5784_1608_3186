@@ -81,7 +81,7 @@ public record Task
     /// Initializes a new instance of the Task record with default values.
     /// </summary>
     public Task() : this(0, "", "", false, DateTime.MinValue, DO.EngineerExperience.Beginner) { } // empty constructor
-public bool ShouldSerializeScheduledDate() { return ScheduledDate.HasValue; }
+    public bool ShouldSerializeScheduledDate() { return ScheduledDate.HasValue; }
     public bool ShouldSerializeStartDate() { return StartDate.HasValue; }
     public bool ShouldSerializeRequiredEffortTime() { return RequiredEffortTime.HasValue; }
     public bool ShouldSerializeDeadlineDate() { return DeadlineDate.HasValue; }

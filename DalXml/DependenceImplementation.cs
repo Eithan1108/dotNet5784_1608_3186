@@ -7,11 +7,22 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
+/// <summary>
+/// Represents the implementation of the <see cref="IDependence"/> interface using XML storage.
+/// </summary>
 internal class DependenceImplementation : IDependence
 {
+    /// <summary>
+    /// The XML file name for storing dependences.
+    /// </summary>
     readonly string s_dependences_xml = "dependences";
 
-    public int Create(Dependence item) // create by item
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public int Create(Dependence item)
     {      
         XElement dependencesList = XMLTools.LoadListFromXMLElement(s_dependences_xml); // load the list from the file
         XElement newItem = new XElement("dependence"); // create new element
@@ -26,6 +37,11 @@ internal class DependenceImplementation : IDependence
         return id;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Delete(int id) // delete by id
     {
         XElement dependencesList = XMLTools.LoadListFromXMLElement(s_dependences_xml);
@@ -45,19 +61,30 @@ internal class DependenceImplementation : IDependence
 
     }
 
+    /// <summary>
+    /// Reads the first dependence that matches the specified condition from the data storage.
+    /// </summary>
     public Dependence? Read(Func<Dependence, bool> filter)  // read by filter
     {
         return XMLTools.LoadListFromXMLElement(s_dependences_xml).Elements()
             .Select(castDependenceFromXelement).FirstOrDefault(filter);
     }
 
-    public Dependence? Read(int id) // read by id
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public Dependence? Read(int id) 
     {
         XElement? element =  XMLTools.LoadListFromXMLElement(s_dependences_xml).Elements()
                 .FirstOrDefault(dep => id == (int?)dep.Element("Id"));
         return (element == null ? null : (castDependenceFromXelement(element)));
     }
 
+    /// <summary>
+    /// Reads all dependences from the data storage based on the specified filter.
+    /// </summary>
     public IEnumerable<Dependence?> ReadAll(Func<Dependence, bool>? filter = null) // read all by filter
     {
         var dependencesList = XMLTools.LoadListFromXMLElement(s_dependences_xml).Elements();
@@ -71,6 +98,11 @@ internal class DependenceImplementation : IDependence
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="item"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Update(Dependence item)
     {
         XElement dependencesList = XMLTools.LoadListFromXMLElement(s_dependences_xml);
@@ -87,7 +119,10 @@ internal class DependenceImplementation : IDependence
         XMLTools.SaveListToXMLElement(dependencesList, s_dependences_xml); // save the list to the file
     }
 
-    Dependence castDependenceFromXelement (XElement xElement) // cast from XElement to Dependence
+    /// <summary>
+    /// Reads all dependences from the data storage based on the specified filter.
+    /// </summary>
+    Dependence castDependenceFromXelement (XElement xElement)
     {
         return new
             (

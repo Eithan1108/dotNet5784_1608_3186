@@ -7,12 +7,23 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
+/// <summary>
+/// Represents the implementation of the <see cref="ITask"/> interface using XML storage.
+/// </summary>
 internal class TaskImplementation : ITask
 {
+    /// <summary>
+    /// The XML file name for storing tasks.
+    /// </summary>
     readonly string s_tasks_xml = "tasks";
 
-    public int Create(Task item) // returns the id of the new task
-    {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public int Create(Task item) 
+    { 
         int id = Config.NextTaskId; 
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); // load the list from the file
         Task task = item with { Id = id, CreateAtDate = DateTime.Now }; // create a new task with the new id and the current date
@@ -21,6 +32,9 @@ internal class TaskImplementation : ITask
         return id;
     }
 
+    /// <summary>
+    /// Deletes a task with the specified ID from the data storage.
+    /// </summary>
     public void Delete(int id)
     {
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
@@ -33,12 +47,18 @@ internal class TaskImplementation : ITask
         }
     }
 
+    /// <summary>
+    /// Reads the first task that matches the specified condition from the data storage.
+    /// </summary>
     public Task? Read(Func<Task, bool> filter) // returns the first task that matches the condition
     {
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); // load the list from the file
         return tasksList.FirstOrDefault(item => filter(item));
     }
 
+    /// <summary>
+    /// Reads a task with the specified ID from the data storage.
+    /// </summary>
     public Task? Read(int id)
     {
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); // load the list from the file
@@ -47,7 +67,10 @@ internal class TaskImplementation : ITask
         return null;
     }
 
-    public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null) // returns all the tasks that matches the condition
+    /// <summary>
+    /// Reads all tasks from the data storage based on the specified filter.
+    /// </summary>
+    public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null) 
     {
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
         if (filter != null)
@@ -60,6 +83,9 @@ internal class TaskImplementation : ITask
                select item;
     }
 
+    /// <summary>
+    /// Updates an existing task in the data storage.
+    /// </summary>
     public void Update(Task item)
     {
         List<Task> tasksList = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);

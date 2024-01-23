@@ -7,10 +7,17 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
+/// <summary>
+/// Represents the implementation of the <see cref="IEngineer"/> interface using XML storage.
+/// </summary>
 internal class EngineerImplementation : IEngineer
 {
     readonly string s_engineers_xml = "engineers";
 
+
+    /// <summary>
+    /// Creates a new engineer in the data storage.
+    /// </summary>
     public int Create(Engineer item)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml); // load the list from the file
@@ -20,6 +27,9 @@ internal class EngineerImplementation : IEngineer
         return item.Id;
     }
 
+    /// <summary>
+    /// Deletes an engineer with the specified ID from the data storage.
+    /// </summary>
     public void Delete(int id)
     {
         List<Engineer> engineerList = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml); // load the list from the file
@@ -32,12 +42,18 @@ internal class EngineerImplementation : IEngineer
         }
     }
 
-    public Engineer? Read(Func<Engineer, bool> filter) // returns the first engineer that matches the condition
+    /// <summary>
+    /// Reads the first engineer that matches the specified condition from the data storage.
+    /// </summary>
+    public Engineer? Read(Func<Engineer, bool> filter) 
     {
         List<Engineer> engineerList = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
         return engineerList.FirstOrDefault(item => filter(item));
     }
 
+    /// <summary>
+    /// Reads an engineer with the specified ID from the data storage.
+    /// </summary>
     public Engineer? Read(int id)
     {
         List<Engineer> engineerList = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
@@ -46,6 +62,9 @@ internal class EngineerImplementation : IEngineer
         return null;
     }
 
+    /// <summary>
+    /// Reads all engineers from the data storage based on the specified filter.
+    /// </summary>
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
         List<Engineer> engineerList = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
@@ -59,6 +78,9 @@ internal class EngineerImplementation : IEngineer
                select item;
     }
 
+    /// <summary>
+    /// Updates an existing engineer in the data storage.
+    /// </summary>
     public void Update(Engineer item)
     {
         List<Engineer> engineerList = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml); // load the list from the file

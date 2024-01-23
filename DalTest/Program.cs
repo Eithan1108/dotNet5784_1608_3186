@@ -173,8 +173,6 @@ using System.Linq;
                             Console.WriteLine("Task");
                             break;
                         case 2:
-                            Console.WriteLine("Enter id: ");
-                            id = int.Parse(Console.ReadLine()!);
                             Console.WriteLine("Enter alias: ");
                             alias = Console.ReadLine()!;
                             Console.WriteLine("Enter description: ");
@@ -184,7 +182,7 @@ using System.Linq;
                             Console.WriteLine("Enter level: ");
                             level = (DO.EngineerExperience)int.Parse(Console.ReadLine()!);
 
-                            task = new Task(id, alias, description, false, createDate, level);
+                            task = new Task(0, alias, description, false, createDate, level);
                             s_dal.Task?.Create(task);
                             Console.WriteLine(task.Id);
 
@@ -309,17 +307,7 @@ using System.Linq;
                     if (ans == "Y")
                     {
                         // clear data
-                        List<Engineer> engineersClear = new List<Engineer>();
-                        List<Dependence> dependenceClear = new List<Dependence>();
-                        List<Task> tasksClear = new List<Task>();
-                        XMLTools.SaveListToXMLSerializer<Engineer>(engineersClear, s_engineers_xml);
-                        XMLTools.SaveListToXMLSerializer<Task>(tasksClear, s_tasks_xml);
-                        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
-                        // initialize data conigfile
-                        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
-                        configRestart.Element("NextTaskId")!.Value = "1";
-                        configRestart.Element("NextDependenceId")!.Value = "1";
-                        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
+                        reSetXmlData();
                         // initialize data
                         Initialization.Do(s_dal);
                     }
@@ -467,6 +455,21 @@ using System.Linq;
 
         Console.WriteLine("Enter updated Dependence on: ");
         dependeOn = int.Parse(Console.ReadLine()!);
+    }
+
+    public static void reSetXmlData() // clear data
+    {
+        List<Engineer> engineersClear = new List<Engineer>();
+        List<Dependence> dependenceClear = new List<Dependence>();
+        List<Task> tasksClear = new List<Task>();
+        XMLTools.SaveListToXMLSerializer<Engineer>(engineersClear, s_engineers_xml);
+        XMLTools.SaveListToXMLSerializer<Task>(tasksClear, s_tasks_xml);
+        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
+        // initialize data conigfile
+        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
+        configRestart.Element("NextTaskId")!.Value = "1";
+        configRestart.Element("NextDependenceId")!.Value = "1";
+        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
     }
 }
 
