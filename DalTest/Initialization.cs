@@ -248,9 +248,9 @@ public static class Initialization
     /// <param name="dalEngineer">The engineer data access layer.</param>
     /// <param name="dalDependence">The dependence data access layer.</param>
     /// <param name="dalTask">The task data access layer.</param>
-    public static void Do(IDal dal)
+    public static void Do()
     {
-        s_dal = dal ?? throw new NullReferenceException("Dal object Cannot Be Null!");
+         s_dal = Factory.Get; // ************************************* why not DalApi.Factory.Get
         createDependences();
         createTasks();
         createEngineers();

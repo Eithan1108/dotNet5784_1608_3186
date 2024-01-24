@@ -18,7 +18,8 @@ internal class Program
     static readonly string s_engineers_xml = "engineers";
     static readonly string s_dependence_xml = "dependences";
     static readonly string s_config_xml = "data-config";
-    static readonly IDal s_dal = new DalXml();
+    static readonly IDal s_dal = Factory.Get;
+
     /// <summary>
     /// Entry point of the program
     /// </summary>
@@ -39,7 +40,7 @@ internal class Program
         {
             Console.WriteLine(ex.Message);
         }
-    }
+    } 
 
     /// <summary>
     /// Displays the main menu and reads the user's choice
@@ -309,7 +310,7 @@ internal class Program
                     // clear data
                     reSetXmlData();
                     // initialize data
-                    Initialization.Do(s_dal);
+                    Initialization.Do();
                 }
                 break;
             default:
