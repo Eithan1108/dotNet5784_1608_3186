@@ -6,7 +6,7 @@
         {
             if (engineer.Id is null)
 
-                throw new BadIdException("id must be positive");
+                throw new BO.BlBadIdException("id must be positive");
 
             DO.Engineer doEngineer = new DO.Engineer((int)engineer.Id!, engineer.Name, engineer.Email, (DO.EngineerExperience)engineer.Level, engineer.Cost); // create new DO.Engineer
             return doEngineer;
