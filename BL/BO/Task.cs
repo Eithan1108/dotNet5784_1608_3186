@@ -22,8 +22,4 @@ public class Task // comments and bounos
     public BO.EngineerInTask? Engineer { get; set; }
     public BO.EngineerExperience? Complexity { get; set; }
 
-
-
-
-
 }

@@ -1,5 +1,4 @@
-﻿
-namespace BlImplementation
+﻿namespace BO
 {
     [Serializable]
     public class BadIdException : Exception
@@ -63,6 +62,6 @@ namespace BlImplementation
         public BlNotFoundException(string? message) : base(message) { }
     }
 
-    
- 
+
+
 }
