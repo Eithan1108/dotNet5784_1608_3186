@@ -323,11 +323,11 @@ internal class Program
     /// Prints details of an engineer
     /// </summary>
     /// <param name="engineer">Engineer object</param>
-    public static void printEngineer(Engineer? engineer)
+    public static void printEngineer(Engineer? engineer) 
     {
         if (engineer != null)
         {
-            Console.Write("Id: " + engineer.Id + ", ");
+            Console.Write("Id: " + engineer.Id + ", "); 
             Console.Write("Name: " + engineer.Name + ", ");
             Console.Write("Email: " + engineer.Email + ", ");
             Console.Write("Level: " + engineer.Level + ", ");
@@ -431,7 +431,7 @@ internal class Program
     /// <param name="dependeOn">Reference to the Dependence on</param>
     public static void readValuesForCreateDependence(ref int dependenceId, ref int dependeOn)
     {
-        Console.WriteLine("Enter task id: ");
+        Console.WriteLine("Enter task id: "); 
         dependenceId = int.Parse(Console.ReadLine()!);
 
         Console.WriteLine("Enter the task that its dependent on: ");
