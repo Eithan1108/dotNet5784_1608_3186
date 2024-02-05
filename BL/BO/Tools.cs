@@ -1,22 +1,31 @@
-﻿namespace BO
+﻿using DalApi;
+using System.Reflection;
+
+namespace BO
 {
-    internal static class Tools
-    {
-        public static DO.Engineer BoDoAdapter(this BO.Engineer engineer) // adapter from BO.Engineer to DO.Engineer
+
+
+    public static class Tools
+    {    
+        public static string ToStringProperty<T>(this T obj)
         {
-            if (engineer.Id is null)
-
-                throw new BO.BlBadIdException("id must be positive");
-
-            DO.Engineer doEngineer = new DO.Engineer((int)engineer.Id!, engineer.Name, engineer.Email, (DO.EngineerExperience)engineer.Level, engineer.Cost); // create new DO.Engineer
-            return doEngineer;
+            string str;
+            IEnumerable<T> enumerable= obj as IEnumerable<T>;
+            if (enumerable != null)
+            {
+                str = "";
+                foreach (T item in enumerable)
+                {
+                    str += item.ToStringProperty() + "\n";
+                }
+                return str;
+            }
+            str = "";
+            foreach (PropertyInfo property in obj.GetType().GetProperties())
+            {
+                str += $"{property.Name}: {property.GetValue(obj)}\n";
+            }
+            return str;
         }
-
-        public static BO.Engineer DoBoAdapter(this DO.Engineer engineer, BO.TaskInEngineer taskInEngineer) // adapter from DO.Engineer to BO.Engineer
-        {
-            BO.Engineer boEngineer = new BO.Engineer { Id = engineer.Id, Name = engineer.Name, Email = engineer.Email, Level = (BO.EngineerExperience)engineer.Level, Cost = engineer.Cost, Task = taskInEngineer }; // create new BO.Engineer
-            return boEngineer;
-        }
-
     }
 }

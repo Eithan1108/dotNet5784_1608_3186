@@ -1,6 +1,6 @@
 ﻿
 namespace BlImplementation;
-using BLApi;
+using BlApi;
 
 internal class Bl : IBl
 {

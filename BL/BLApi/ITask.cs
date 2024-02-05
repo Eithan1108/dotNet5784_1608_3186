@@ -1,6 +1,6 @@
 ﻿
 
-namespace BLApi;
+namespace BlApi;
 
 public interface ITask
 {

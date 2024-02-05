@@ -4,7 +4,7 @@ namespace BO;
 
 public class Task // comments and bounos
 {
-    public int? Id { get; init; }
+    public int Id { get; init; }
     public string Description { get; set; }
     public string Alias { get; set; }
     public DateTime CreatedAtDate { get; init; }
@@ -21,5 +21,7 @@ public class Task // comments and bounos
     public string? Remarks { get; set; }
     public BO.EngineerInTask? Engineer { get; set; }
     public BO.EngineerExperience? Complexity { get; set; }
+
+    public override string ToString() => this.ToStringProperty();
 
 }

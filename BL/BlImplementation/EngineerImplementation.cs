@@ -3,10 +3,9 @@ namespace BlImplementation;
 using BO;
 using System.Linq;
 
-internal class EngineerImplementation : BLApi.IEngineer
+internal class EngineerImplementation : BlApi.IEngineer
 {
     private DalApi.IDal _dal = Factory.Get; 
-
     public int AddEngineer(BO.Engineer engineer) // add engineer to the system
     {
         if (engineer.Id < 0)
@@ -20,7 +19,7 @@ internal class EngineerImplementation : BLApi.IEngineer
 
         try
         {
-            int engineerId = _dal.Engineer.Create(engineer.BoDoAdapter()); // create new DO.Engineer
+            int engineerId = _dal.Engineer.Create(BoDoAdapter(engineer)); // create new DO.Engineer in the system
             return engineerId;
         }
         catch (DO.DalAlreadyExistsException ex)
@@ -44,25 +43,25 @@ internal class EngineerImplementation : BLApi.IEngineer
         if (doEngineer is null)
             throw new BO.BlDoesNotExistException($"engineer with ID= {id} does not exsist");
 
-        BO.Engineer boEngineer = doEngineer.DoBoAdapter(checkIfEngineerWorksOnTask(doEngineer.Id)); // create new BO.Engineer
+        BO.Engineer boEngineer = DoBoAdapter(doEngineer, checkIfEngineerWorksOnTask(doEngineer.Id)); // create new BO.Engineer
         return boEngineer;
     }
 
 
-    public IEnumerable<BO.Engineer> GetEngineersList(Func<DO.Engineer, bool>? filter = null) // get all engineers from the system
+    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool>? filter = null) // get all engineers from the system
     {
         IEnumerable<BO.Engineer> engineers = null;
 
         if (filter is null)
         {
             engineers = from item in _dal.Engineer.ReadAll() // get all DO.Engineer from the system
-                        select (item.DoBoAdapter(checkIfEngineerWorksOnTask(item.Id))); // create new BO.Engineer
+                        select (DoBoAdapter(item, checkIfEngineerWorksOnTask(item.Id))); // create new BO.Engineer
         }
         else
         {
             engineers = from item in _dal.Engineer.ReadAll() 
-                        where filter(item) 
-                        select (item.DoBoAdapter(checkIfEngineerWorksOnTask(item.Id))); 
+                        where filter(DoBoAdapter(item, checkIfEngineerWorksOnTask(item.Id)))
+                        select (DoBoAdapter(item, checkIfEngineerWorksOnTask(item.Id))); 
         }
         return engineers;
 
@@ -78,7 +77,7 @@ internal class EngineerImplementation : BLApi.IEngineer
             throw new BO.BlBadEmailException("email must be not null");
         if (engineer.Cost < 0)
             throw new BO.BlBadCostException("cost must be positive");
-        DO.Engineer doEngineer = engineer.BoDoAdapter(); // create new DO.Engineer
+        DO.Engineer doEngineer = BoDoAdapter(engineer); // create new DO.Engineer
 
 
         try
@@ -86,7 +85,7 @@ internal class EngineerImplementation : BLApi.IEngineer
 
             DO.Engineer? oldEngineer = _dal.Engineer.Read(doEngineer.Id); // get DO.Engineer from the system
 
-            if ((DO.EngineerExperience)oldEngineer!.Level < doEngineer.Level)  // check if engineer level can be increased cannot be null
+            if ((DO.EngineerExperience)oldEngineer!.Level > doEngineer.Level)  // check if engineer level can be increased cannot be null
                 throw new BlBadIdException("engineer level can not be decreased");
 
 
@@ -134,6 +133,22 @@ internal class EngineerImplementation : BLApi.IEngineer
     {
         DO.Task newTask = oldTask with { EngineerId = workingEngineerId }; 
         _dal.Task.Update(newTask);
+    }
+
+    private DO.Engineer BoDoAdapter(BO.Engineer engineer) // adapter from BO.Engineer to DO.Engineer
+    {
+        if (engineer.Id is null)
+
+            throw new BO.BlBadIdException("id must be positive");
+
+        DO.Engineer doEngineer = new DO.Engineer((int)engineer.Id!, engineer.Name, engineer.Email, (DO.EngineerExperience)engineer.Level, engineer.Cost); // create new DO.Engineer
+        return doEngineer;
+    }
+
+    private BO.Engineer DoBoAdapter(DO.Engineer engineer, BO.TaskInEngineer taskInEngineer)
+    {
+        BO.Engineer boEngineer = new BO.Engineer { Id = engineer.Id, Name = engineer.Name, Email = engineer.Email, Level = (BO.EngineerExperience)engineer.Level, Cost = engineer.Cost, Task = taskInEngineer }; // create new BO.Engineer
+        return boEngineer;
     }
 
 }

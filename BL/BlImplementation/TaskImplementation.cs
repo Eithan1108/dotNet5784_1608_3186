@@ -4,8 +4,9 @@
 namespace BlImplementation;
 using BO;
 using System.Data;
+using System.Security.Cryptography;
 
-internal class TaskImplementation : BLApi.ITask
+internal class TaskImplementation : BlApi.ITask
 {
     private DalApi.IDal _dal = Factory.Get;
 
@@ -42,7 +43,7 @@ internal class TaskImplementation : BLApi.ITask
         {
             _dal.Task.Update(BoDoAdapter(boTask)); // update task in the system
         }
-        catch (BlDalBadIdException ex)
+        catch (BlBadIdException ex)
         {
             throw new BO.BlBadIdException($"Task with ID= {id} does not exsist");
         }
@@ -50,8 +51,7 @@ internal class TaskImplementation : BLApi.ITask
 
     public int AddTask(BO.Task task) // add task to the system
     {
-        if (task.Id < 0)
-            throw new BO.BlBadIdException("id must be positive");
+
 
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
@@ -59,7 +59,7 @@ internal class TaskImplementation : BLApi.ITask
         try
         {
             int taskId = _dal.Task.Create(BoDoAdapter(task));
-            task.Deoendencies.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
+            task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
             return taskId;
         }
 
@@ -77,10 +77,16 @@ internal class TaskImplementation : BLApi.ITask
             throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
 
         var dependent = from d in _dal.Dependence.ReadAll()
-                        where d.DependsOnTask == id 
+                        where d.DependsOnTask == id
                         select d;
         if (dependent.FirstOrDefault() != null)
             throw new BO.BlAlreadyExistsException($"Task with ID= {id} already has dependent task {dependent.FirstOrDefault()!.DependentTask}");
+
+        foreach (var d in _dal.Dependence.ReadAll())
+        {
+            if (d.DependentTask == id)
+                _dal.Dependence.Delete(d.Id);
+        }
 
         _dal.Task.Delete(id); // delete task from the system
     }
@@ -115,9 +121,6 @@ internal class TaskImplementation : BLApi.ITask
     public void UpdateTask(BO.Task task) // update task in the system
     {
 
-        if (task.Id < 0)
-            throw new BO.BlBadIdException("id must be positive");
-
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
 
@@ -134,18 +137,32 @@ internal class TaskImplementation : BLApi.ITask
 
     private DO.Task BoDoAdapter(BO.Task task) // adapter from BO to DO
     {
-        if (task.Id == null) throw new BO.BlBadIdException("id must be positive");
-        if (task.Engineer == null) throw new BO.BlBadIdException("engineer must be positive");
+
+
         if (task.Complexity == null) throw new BO.BlBadIdException("Complexity must be positive");
-        DO.Task doTask = new DO.Task((int)task.Id!, task.Alias, task.Description, false, task.CreatedAtDate, (DO.EngineerExperience)task.Complexity,
-            task.ScheduledDate, task.RequiredEffortTime, task.StartDate, task.CompleteDate, task.DeadLineDate, task.Deliverables,
-            task.Remarks, task.Engineer != null ? task.Engineer.Id : null);
+        //DO.Task doTask = new DO.Task(0, task.Alias, task.Description, false, task.CreatedAtDate, (DO.EngineerExperience)task.Complexity,
+        //    task.ScheduledDate, task.RequiredEffortTime, task.StartDate, task.CompleteDate, task.DeadLineDate, task.Deliverables,
+        //    task.Remarks, task.Engineer != null ? task.Engineer.Id : null);
+        DO.Task doTask = new DO.Task
+        {
+            Id = task.Id,
+            Alias = task.Alias,
+            Description = task.Description,
+            CreateAtDate = task.CreatedAtDate,
+            Complexity = (DO.EngineerExperience)task.Complexity,
+            ScheduledDate = task.ScheduledDate,
+            RequiredEffortTime = task.RequiredEffortTime,
+            StartDate = task.StartDate,
+            CompleteDate = task.CompleteDate,
+            Deliverables = task.Deliverables,
+            Remarks = task.Remarks,
+            EngineerId = task.Engineer != null ? task.Engineer.Id : null
+        };
         return doTask;
     }
-
     private BO.Task DoBoAdapter(DO.Task task) // adapter from DO to BO
     {
-        BO.Task boTask = new BO.Task 
+        BO.Task boTask = new BO.Task
         {
             Id = task.Id,
             Alias = task.Alias,
