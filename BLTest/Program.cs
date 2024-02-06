@@ -220,6 +220,7 @@ internal class Program
         XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
         configRestart.Element("NextTaskId")!.Value = "1";
         configRestart.Element("NextDependenceId")!.Value = "1";
+        configRestart.Element("ProjectStartDate")!.Value = "";
         XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
     }
 
