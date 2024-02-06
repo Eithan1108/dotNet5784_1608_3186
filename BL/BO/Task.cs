@@ -11,7 +11,7 @@ public class Task // comments and bounos
     public string Alias { get; set; }
     public DateTime CreatedAtDate { get; init; }
     public BO.Status? Status { get; set; }
-    public IEnumerable<BO.TaskInList>? Deoendencies { get; set; }
+    public IEnumerable<BO.TaskInList>? Dependencies { get; set; }
     public BO.MilestoneInTask? Milestone { get; set; }
     public TimeSpan? RequiredEffortTime { get; set; }
     public DateTime? StartDate { get; set; }

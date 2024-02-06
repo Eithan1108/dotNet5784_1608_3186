@@ -254,7 +254,6 @@ internal class Program
     } // engineer menu
 
 
-
     /// <summary>
     /// // create schedule functions
     /// </summary>
@@ -296,13 +295,13 @@ internal class Program
         DateTime? compareDate = startDate;
         foreach (var item in s_bl.Task.GetTasksList(null))
         {
-            if (item.Deoendencies is null) //if the task has no dependencies it will start at the start date
+            if (item.Dependencies is null) //if the task has no dependencies it will start at the start date
             {
                 dateTime = startDate;
             }
             else
             {
-                foreach (var dependnce in item.Deoendencies)
+                foreach (var dependnce in item.Dependencies)
                 {
                     if(s_bl.Task.GetTask(dependnce.Id).ForecastDate > compareDate) //if the task has dependencies it will start after the last dependency
                     {
@@ -352,18 +351,19 @@ internal class Program
         string depenedenciesChoice;
         Console.WriteLine("Does your task depend on other tasks? (y/n): ");
         depenedenciesChoice = Console.ReadLine()!;
-        IEnumerable<TaskInList> depend = new List<TaskInList>();
+        List<TaskInList> depend = new List<TaskInList>();
 
         if (depenedenciesChoice == "y")
         {
-            Console.WriteLine(s_bl.Task.GetTasksList(null));
-            Console.WriteLine("Enter the id's of the taskes wich your new one dependes on (enter -1 to stop inserting id's): ");
+            Console.WriteLine("Enter the id's of the taskes which your new one dependes on (enter -1 to stop inserting id's): ");
             int dependId = int.Parse(Console.ReadLine()!);
+
             while (dependId != -1)
             {
                 BO.Task dependencTask = s_bl.Task.GetTask(dependId);
-                depend.Append(new TaskInList { Id = dependId, Alias = dependencTask.Alias, Description = dependencTask.Description });
+                depend.Add(new TaskInList { Id = dependId, Alias = dependencTask.Alias, Description = dependencTask.Description });
                 dependId = int.Parse(Console.ReadLine()!);
+
             }
         }
 
@@ -375,7 +375,7 @@ internal class Program
             Remarks = remarks,
             Complexity = (BO.EngineerExperience)complexity,
             Deliverables = deliverables,
-            Deoendencies = depend,
+            Dependencies = depend,
             CreatedAtDate = DateTime.Now
         };
 
@@ -444,19 +444,20 @@ internal class Program
         {
             s_bl.Task.GetTasksList(null);
             Console.WriteLine("Enter the id's of the taskes wich your new one dependes on (enter -1 to stop inserting id's): ");
-            int dependId = 0;
+            int dependId = int.Parse(Console.ReadLine()!);
 
             while (dependId != -1)
             {
-                dependId = int.Parse(Console.ReadLine()!);
+                
                 BO.Task dependencTask = s_bl.Task.GetTask(dependId);
                 depend = new List<TaskInList>();
                 depend.Append(new TaskInList { Id = dependId, Alias = dependencTask.Alias, Description = dependencTask.Description });
+                dependId = int.Parse(Console.ReadLine()!);
             }
         }
         else
         {
-            depend = s_bl.Task.GetTask(id)!.Deoendencies;
+            depend = s_bl.Task.GetTask(id)!.Dependencies;
         }
 
 
@@ -470,7 +471,7 @@ internal class Program
             RequiredEffortTime = _RequiredEffortTime,
             Deliverables = deliverables,
             Remarks = remarks,
-            Deoendencies = depend,
+            Dependencies = depend,
         };
 
         s_bl.Task.UpdateTask(newTask);

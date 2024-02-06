@@ -26,5 +26,5 @@ public record Dependence
     /// <summary>
     /// Initializes a new instance of the Dependence record with default values.
     /// </summary>
-    public Dependence() : this(null) { } // empty constructor
+    public Dependence() : this (Id: 0, DependentTask: 0, DependsOnTask: 0) { } // empty constructor
 }

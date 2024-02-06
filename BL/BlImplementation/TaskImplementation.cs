@@ -33,14 +33,14 @@ internal class TaskImplementation : BlApi.ITask
 
         BO.Task boTask = DoBoAdapter(doTask); // create new BO.Task
 
-        if (boTask.Deoendencies == null)
+        if (boTask.Dependencies == null)
         {
             boTask.ScheduledDate = SchedualeProjectDate;
             boTask.ForecastDate = GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate);
         }
         else
         {
-            foreach (var i in boTask.Deoendencies)
+            foreach (var i in boTask.Dependencies)
             {
                 IEnumerable<DO.Dependence?> doDependences = _dal.Dependence.ReadAll(d => d.DependentTask == i.Id); // get all dependencies from the system
                 foreach (var doDependence in doDependences)
@@ -88,7 +88,11 @@ internal class TaskImplementation : BlApi.ITask
         try
         {
             int taskId = _dal.Task.Create(BoDoAdapter(task));
-            task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
+            foreach (var d in task.Dependencies!)
+            {
+                _dal.Dependence.Create(new DO.Dependence { DependentTask = taskId, DependsOnTask = d.Id });
+            }
+          //  task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
             return taskId;
         }
 
@@ -237,6 +241,7 @@ internal class TaskImplementation : BlApi.ITask
             CompleteDate = task.CompleteDate ?? default,
             Deliverables = task.Deliverables ?? "",
             Remarks = task.Remarks ?? "",
+
         };
 
         if (task.EngineerId != null)
@@ -257,29 +262,33 @@ internal class TaskImplementation : BlApi.ITask
             boTask.Status = Status.Unsheduled;
 
 
-        boTask.Deoendencies = _dal.Dependence.ReadAll()
-                               .Where(d => d.DependentTask == task.Id)
-                               .Select(d =>
-                               {
-                                   DO.Task task = _dal.Task.Read(id => id.Id == d.DependsOnTask)!;
-                                   BO.TaskInList taskInList = new BO.TaskInList
-                                   {
-                                       Id = d.DependsOnTask,
-                                       Description = task.Description,
-                                       Alias = task.Alias
-                                   };
-
-                                   if (task.ScheduledDate != null && task.StartDate == null)
-                                       taskInList.Status = Status.Scheduled;
-                                   else if (task.StartDate != null && task.CompleteDate == null)
-                                       taskInList.Status = Status.OnTrack;
-                                   else if (task.CompleteDate != null)
-                                       taskInList.Status = Status.Done;
-                                   else
-                                       taskInList.Status = Status.Unsheduled;
-
-                                   return taskInList;
-                               });
+        List<BO.TaskInList> dependencies = new List<BO.TaskInList>();
+        foreach (var d in _dal.Dependence.ReadAll())
+        {
+            if (d.DependentTask == task.Id)
+            {
+                DO.Task? dependentTask = _dal.Task.Read(id => id.Id == d.DependsOnTask);
+                if (dependentTask != null)
+                {
+                    BO.TaskInList taskInList = new BO.TaskInList
+                    {
+                        Id = dependentTask.Id,
+                        Description = dependentTask.Description,
+                        Alias = dependentTask.Alias
+                    };
+                    if (dependentTask.ScheduledDate != null && dependentTask.StartDate == null)
+                        taskInList.Status = Status.Scheduled;
+                    else if (dependentTask.StartDate != null && dependentTask.CompleteDate == null)
+                        taskInList.Status = Status.OnTrack;
+                    else if (dependentTask.CompleteDate != null)
+                        taskInList.Status = Status.Done;
+                    else
+                        taskInList.Status = Status.Unsheduled;
+                    dependencies.Add(taskInList);
+                }
+            }
+        }
+        boTask.Dependencies = dependencies;
         return boTask;
     }
 
