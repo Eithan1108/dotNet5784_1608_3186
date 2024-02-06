@@ -1,13 +1,15 @@
 ﻿
 
 namespace BlApi;
-
+ /// <summary>
+ /// // interface for the engineer
+ /// </summary>
 public interface IEngineer
 {
-    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool> filter);
-    public BO.Engineer GetEngineer(int id);
-    public int AddEngineer(BO.Engineer engineer);
-    public void DeleteEngineer(int id);
-    public void UpdateEngineer(BO.Engineer engineer);
+    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool> filter); // get list of all engineers
+    public BO.Engineer GetEngineer(int id); // get engineer by id
+    public int AddEngineer(BO.Engineer engineer); // add new engineer to the system
+    public void DeleteEngineer(int id); // delete engineer from the system
+    public void UpdateEngineer(BO.Engineer engineer); // update engineer in the system
 
 }

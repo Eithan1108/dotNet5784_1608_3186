@@ -3,10 +3,24 @@ namespace BlImplementation;
 using BO;
 using System.Linq;
 
+/// <summary>
+/// // engineer implementation
+/// </summary>
 internal class EngineerImplementation : BlApi.IEngineer
 {
-    private DalApi.IDal _dal = Factory.Get; 
-    public int AddEngineer(BO.Engineer engineer) // add engineer to the system
+    private DalApi.IDal _dal = Factory.Get; // get instance of DalApi.IDal
+
+    /// <summary>
+    /// // add engineer to the system
+    /// </summary>
+    /// <param name="engineer"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    /// <exception cref="BO.BlBadNameException"></exception>
+    /// <exception cref="BO.BlBadEmailException"></exception>
+    /// <exception cref="BO.BlBadCostException"></exception>
+    /// <exception cref="BO.BlAlreadyExistsException"></exception>
+    public int AddEngineer(BO.Engineer engineer) 
     {
         if (engineer.Id < 0)
             throw new BO.BlBadIdException("id must be positive");
@@ -29,7 +43,12 @@ internal class EngineerImplementation : BlApi.IEngineer
         }
     }
 
-    public void DeleteEngineer(int id) //delete engineer from the system 
+    /// <summary>
+    /// // delete engineer from the system
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="BO.BlAlreadyExistsException"></exception>
+    public void DeleteEngineer(int id)  
     {
         if (checkIfEngineerWorksOnTask(id) != null)
             throw new BO.BlAlreadyExistsException($"engineer with ID= {id} already works on task {checkIfEngineerWorksOnTask(id).Alias}");
@@ -37,6 +56,12 @@ internal class EngineerImplementation : BlApi.IEngineer
         _dal.Engineer.Delete(id); // delete DO.Engineer from the system
     }
 
+    /// <summary>
+    /// // get engineer from the system
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Engineer GetEngineer(int id) 
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id); // get DO.Engineer from the system
@@ -48,8 +73,12 @@ internal class EngineerImplementation : BlApi.IEngineer
         return boEngineer;
     }
 
-
-    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool>? filter = null) // get all engineers from the system
+    /// <summary>
+    /// // get all engineers from the system
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
+    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool>? filter = null) 
     {
         IEnumerable<BO.Engineer> engineers = null;
 
@@ -68,7 +97,16 @@ internal class EngineerImplementation : BlApi.IEngineer
 
     }
 
-    public void UpdateEngineer(BO.Engineer engineer) // update engineer in the system
+    /// <summary>
+    /// // update engineer in the system
+    /// </summary>
+    /// <param name="engineer"></param>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    /// <exception cref="BO.BlBadNameException"></exception>
+    /// <exception cref="BO.BlBadEmailException"></exception>
+    /// <exception cref="BO.BlBadCostException"></exception>
+    /// <exception cref="BlBadIdException"></exception>
+    public void UpdateEngineer(BO.Engineer engineer) 
     {
         if (engineer.Id < 0)
             throw new BO.BlBadIdException("id must be positive");
@@ -119,7 +157,12 @@ internal class EngineerImplementation : BlApi.IEngineer
 
     }
 
-    private BO.TaskInEngineer? checkIfEngineerWorksOnTask(int id) // check if engineer works on task
+    /// <summary>
+    /// // check if engineer works on task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    private BO.TaskInEngineer? checkIfEngineerWorksOnTask(int id) 
     {
         var task = from item in _dal.Task.ReadAll()
                    where item.EngineerId == id
@@ -129,14 +172,24 @@ internal class EngineerImplementation : BlApi.IEngineer
         return new TaskInEngineer { Id = task.FirstOrDefault()!.Id, Alias = task.FirstOrDefault()!.Alias };
     }
 
-
-    private void updateTasksAfterChangingEngineer(DO.Task oldTask, int? workingEngineerId) // update task after changing engineer
+    /// <summary>
+    /// // update tasks after changing engineer
+    /// </summary>
+    /// <param name="oldTask"></param>
+    /// <param name="workingEngineerId"></param>
+    private void updateTasksAfterChangingEngineer(DO.Task oldTask, int? workingEngineerId) 
     {
         DO.Task newTask = oldTask with { EngineerId = workingEngineerId }; 
         _dal.Task.Update(newTask);
     }
 
-    private DO.Engineer BoDoAdapter(BO.Engineer engineer) // adapter from BO.Engineer to DO.Engineer
+    /// <summary>
+    /// // adapter from BO.Engineer to DO.Engineer
+    /// </summary>
+    /// <param name="engineer"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    private DO.Engineer BoDoAdapter(BO.Engineer engineer) 
     {
         if (engineer.Id is null)
 
@@ -146,6 +199,12 @@ internal class EngineerImplementation : BlApi.IEngineer
         return doEngineer;
     }
 
+    /// <summary>
+    /// // adapter from DO.Engineer to BO.Engineer
+    /// </summary>
+    /// <param name="engineer"></param>
+    /// <param name="taskInEngineer"></param>
+    /// <returns></returns>
     private BO.Engineer DoBoAdapter(DO.Engineer engineer, BO.TaskInEngineer taskInEngineer)
     {
         BO.Engineer boEngineer = new BO.Engineer { Id = engineer.Id, Name = engineer.Name, Email = engineer.Email, Level = (BO.EngineerExperience)engineer.Level, Cost = engineer.Cost, Task = taskInEngineer }; // create new BO.Engineer

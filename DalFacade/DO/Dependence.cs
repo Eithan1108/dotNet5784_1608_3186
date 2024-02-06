@@ -15,16 +15,16 @@ public record Dependence
     /// <summary>
     /// Gets or sets the identifier of the dependent task.
     /// </summary>
-    int? DependentTask = null,
+    int DependentTask,
 
     /// <summary>
     /// Gets or sets the identifier of the task on which the current task depends.
     /// </summary>
-    int? DependsOnTask = null
+    int DependsOnTask
 )
 {
     /// <summary>
     /// Initializes a new instance of the Dependence record with default values.
     /// </summary>
-    public Dependence() : this(0) { } // empty constructor
+    public Dependence() : this(null) { } // empty constructor
 }

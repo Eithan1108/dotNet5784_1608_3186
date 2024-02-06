@@ -1,7 +1,9 @@
 ﻿namespace BO;
 
-
-public enum Status
+/// <summary>
+/// //engineer business object
+/// </summary>
+public enum Status // status of the task
 {
     Unsheduled,
     Scheduled,
@@ -10,7 +12,7 @@ public enum Status
     Done
 }
 
-public enum EngineerExperience
+public enum EngineerExperience // experience of the engineer
 {
     Beginner,
     AdvancedBeginner,

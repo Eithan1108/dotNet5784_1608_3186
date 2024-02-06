@@ -164,9 +164,9 @@ internal class Program
         }
     }
 
-
-
-    // initialization
+    /// <summary>
+    /// //initialization data offer
+    /// </summary>
     private static void initializationDataOffer()
     {
         try
@@ -186,7 +186,11 @@ internal class Program
         {
             Console.WriteLine(ex.Message);
         }
-    } // initialization data offer
+    } 
+
+    /// <summary>
+    /// // reset xml data
+    /// </summary>
     public static void reSetXmlData()
     {
         List<DO.Engineer> engineersClear = new List<DO.Engineer>();
@@ -200,10 +204,13 @@ internal class Program
         configRestart.Element("NextTaskId")!.Value = "1";
         configRestart.Element("NextDependenceId")!.Value = "1";
         XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
-    } // reset xml data
+    } 
 
 
-    // menus
+    /// <summary>
+    /// //menus
+    /// </summary>
+    /// <returns></returns>
     private static int menu()
     {
         int choice;
@@ -248,7 +255,10 @@ internal class Program
 
 
 
-    // create schedule functions
+    /// <summary>
+    /// // create schedule functions
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     private static void createSchedule()
     {
         Console.WriteLine("How would you like to create the schedule? manualy or aoutomatily? (m/a)");
@@ -278,16 +288,15 @@ internal class Program
             s_bl.Task.AddOrUpdateSchedualeDateTine(item.Id, updatedSchedualeDate, startDate);
         }
     } // create schedule manually
-
     private static void createScheduleAutomatically()
     {
         Console.WriteLine("Enter the date you want to start the schedule (dd/mm/yyyy): ");
         DateTime startDate = DateTime.Parse(Console.ReadLine()!);
-        DateTime dateTime = startDate;
-        DateTime compareDate = startDate;
+        DateTime? dateTime = startDate;
+        DateTime? compareDate = startDate;
         foreach (var item in s_bl.Task.GetTasksList(null))
         {
-            if (item.Deoendencies is null)
+            if (item.Deoendencies is null) //if the task has no dependencies it will start at the start date
             {
                 dateTime = startDate;
             }
@@ -295,19 +304,22 @@ internal class Program
             {
                 foreach (var dependnce in item.Deoendencies)
                 {
-                    if(s_bl.Task.GetTask(int.Parse(dependnce.Id).DeadLineDate > compareDate)
+                    if(s_bl.Task.GetTask(dependnce.Id).ForecastDate > compareDate) //if the task has dependencies it will start after the last dependency
                     {
                         compareDate = s_bl.Task.GetTask(dependnce.Id).DeadLineDate;
                     }
                 }
+                dateTime = compareDate;
             }
-
-
+            s_bl.Task.AddOrUpdateSchedualeDateTine(item.Id, dateTime, startDate);
         }
     } // create schedule automatically
 
 
-    // main functions
+    /// <summary>
+    /// //main functions
+    /// </summary>
+    /// <returns></returns>
     private static int addTaskMain() // add task to the system
     {
         string? description;

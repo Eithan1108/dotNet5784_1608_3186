@@ -1,8 +1,10 @@
 ﻿
 namespace BlApi;
-
-    public static class Factory
+ /// <summary>
+ /// //Factory class for the BL layer
+ /// </summary>
+    public static class Factory 
     {
-        public static IBl Get => new BlImplementation.Bl();
+        public static IBl Get => new BlImplementation.Bl(); //return the BlImplementation
     }
 

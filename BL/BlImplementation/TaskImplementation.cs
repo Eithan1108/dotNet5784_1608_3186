@@ -6,15 +6,28 @@ using BO;
 using System.Data;
 using System.Security.Cryptography;
 
+/// <summary>
+/// // task implementation
+/// </summary>
 internal class TaskImplementation : BlApi.ITask
 {
     private DalApi.IDal _dal = Factory.Get;
 
-    public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate) // add or update scheduled date to the system
+    /// <summary>
+    /// // add or update scheduled date to the system
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="SchedualeProjectDate"></param>
+    /// <exception cref="BlBadDateException"></exception>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate)
     {
         if (dateTime == null)
             throw new BlBadDateException("DateTime must be not null");
         DO.Task? doTask = _dal.Task.Read(id); // get task from the system
+
         if (doTask is null)
             throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
 
@@ -58,7 +71,14 @@ internal class TaskImplementation : BlApi.ITask
         }
     }
 
-    public int AddTask(BO.Task task) // add task to the system
+    /// <summary>
+    /// // add task to the system
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlBadAliasException"></exception>
+    /// <exception cref="BO.BlAlreadyExistsException"></exception>
+    public int AddTask(BO.Task task)
     {
 
 
@@ -76,10 +96,14 @@ internal class TaskImplementation : BlApi.ITask
         {
             throw new BO.BlAlreadyExistsException($"student with ID= {task.Id} does not exsist");
         }
-
-
     }
 
+    /// <summary>
+    /// // delete task from the system
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
+    /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public void DeleteTask(int id)
     {
         if (_dal.Task.Read(id) == null)
@@ -100,6 +124,12 @@ internal class TaskImplementation : BlApi.ITask
         _dal.Task.Delete(id); // delete task from the system
     }
 
+    /// <summary>
+    /// // get task from the system
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Task GetTask(int id)
     {
         DO.Task? doTask = _dal.Task.Read(id); // get task from the system
@@ -110,7 +140,12 @@ internal class TaskImplementation : BlApi.ITask
         return boTask;
     }
 
-    public IEnumerable<BO.Task> GetTasksList(Func<BO.Task, bool> filter) //taskinlist type according to Dan haracaz
+    /// <summary>
+    /// // get all tasks from the system
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
+    public IEnumerable<BO.Task> GetTasksList(Func<BO.Task, bool> filter)
     {
         if (filter is null)
         {
@@ -126,7 +161,14 @@ internal class TaskImplementation : BlApi.ITask
 
         }
     }
-    public void UpdateTask(BO.Task task) // update task in the system
+
+    /// <summary>
+    /// // update task in the system
+    /// </summary>
+    /// <param name="task"></param>
+    /// <exception cref="BO.BlBadAliasException"></exception>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    public void UpdateTask(BO.Task task)
     {
 
         if (task.Alias == null)
@@ -143,7 +185,13 @@ internal class TaskImplementation : BlApi.ITask
 
     }
 
-    private DO.Task BoDoAdapter(BO.Task task) // adapter from BO to DO
+    /// <summary>
+    /// // adapter from BO to DO
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlBadIdException"></exception>
+    private DO.Task BoDoAdapter(BO.Task task)
     {
 
 
@@ -168,7 +216,13 @@ internal class TaskImplementation : BlApi.ITask
         };
         return doTask;
     }
-    private BO.Task DoBoAdapter(DO.Task task) // adapter from DO to BO
+
+    /// <summary>
+    /// // adapter from DO to BO
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    private BO.Task DoBoAdapter(DO.Task task)
     {
         BO.Task boTask = new BO.Task
         {
@@ -229,23 +283,30 @@ internal class TaskImplementation : BlApi.ITask
         return boTask;
     }
 
+    /// <summary>
+    /// // get forecast date
+    /// </summary>
+    /// <param name="requiredEffortTime"></param>
+    /// <param name="start"></param>
+    /// <param name="schedule"></param>
+    /// <returns></returns>
     private DateTime? GetForCastDate(TimeSpan? requiredEffortTime, DateTime? start, DateTime? schedule)
     {
-        DateTime forCastDate=DateTime.Now;
-        if(start is null)
+        DateTime forCastDate = DateTime.Now; //default value
+        if (start is null)
         {
-            forCastDate= schedule!.Value.Add(requiredEffortTime!.Value);
+            forCastDate = schedule!.Value.Add(requiredEffortTime!.Value);
         }
 
         else
         {
-            if(start>schedule)
+            if (start > schedule)
             {
-               forCastDate= start!.Value.Add(requiredEffortTime!.Value);
+                forCastDate = start!.Value.Add(requiredEffortTime!.Value);
             }
             else
             {
-                forCastDate= schedule!.Value.Add(requiredEffortTime!.Value);
+                forCastDate = schedule!.Value.Add(requiredEffortTime!.Value);
             }
         }
         return forCastDate;
