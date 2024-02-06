@@ -10,35 +10,44 @@ internal class TaskImplementation : BlApi.ITask
 {
     private DalApi.IDal _dal = Factory.Get;
 
-    public void AddOrUpdateSchedualeDateTine(int id, DateTime dateTime) // add or update scheduled date to the system
+    public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate) // add or update scheduled date to the system
     {
+        if (dateTime == null)
+            throw new BlBadDateException("DateTime must be not null");
         DO.Task? doTask = _dal.Task.Read(id); // get task from the system
         if (doTask is null)
             throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
+
         BO.Task boTask = DoBoAdapter(doTask); // create new BO.Task
 
         if (boTask.Deoendencies == null)
-            return;
-        foreach (var i in boTask.Deoendencies)
         {
-            IEnumerable<DO.Dependence?> doDependences = _dal.Dependence.ReadAll(d => d.DependentTask == i.Id); // get all dependencies from the system
-            foreach (var doDependence in doDependences)
+            boTask.ScheduledDate = SchedualeProjectDate;
+            boTask.ForecastDate = GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate);
+        }
+        else
+        {
+            foreach (var i in boTask.Deoendencies)
             {
-                if (doDependence != null)
+                IEnumerable<DO.Dependence?> doDependences = _dal.Dependence.ReadAll(d => d.DependentTask == i.Id); // get all dependencies from the system
+                foreach (var doDependence in doDependences)
                 {
-                    DO.Task? task = _dal.Task.Read(t => t.Id == doDependence.DependsOnTask);
-                    if (task != null)
+                    if (doDependence != null)
                     {
-                        if (task.ScheduledDate == null)
-                            throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} does not have ScheduledDate");
-                        if (task.ScheduledDate <= dateTime)
-                            throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} has ScheduledDate after the new ScheduledDate");
+                        DO.Task? task = _dal.Task.Read(t => t.Id == doDependence.DependsOnTask);
+                        if (task != null)
+                        {
+                            if (task.ScheduledDate == null)
+                                throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} does not have ScheduledDate");
+                            if (GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate) < dateTime)
+                                throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} has ScheduledDate after the new ScheduledDate");
+                        }
                     }
                 }
             }
+            boTask.ScheduledDate = dateTime;
+            boTask.ForecastDate = GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate);
         }
-
-
         try
         {
             _dal.Task.Update(BoDoAdapter(boTask)); // update task in the system
@@ -117,7 +126,6 @@ internal class TaskImplementation : BlApi.ITask
 
         }
     }
-
     public void UpdateTask(BO.Task task) // update task in the system
     {
 
@@ -219,6 +227,28 @@ internal class TaskImplementation : BlApi.ITask
                                    return taskInList;
                                });
         return boTask;
+    }
+
+    private DateTime? GetForCastDate(TimeSpan? requiredEffortTime, DateTime? start, DateTime? schedule)
+    {
+        DateTime forCastDate=DateTime.Now;
+        if(start is null)
+        {
+            forCastDate= schedule!.Value.Add(requiredEffortTime!.Value);
+        }
+
+        else
+        {
+            if(start>schedule)
+            {
+               forCastDate= start!.Value.Add(requiredEffortTime!.Value);
+            }
+            else
+            {
+                forCastDate= schedule!.Value.Add(requiredEffortTime!.Value);
+            }
+        }
+        return forCastDate;
     }
 }
 

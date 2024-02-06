@@ -9,5 +9,5 @@ public interface ITask
     public int AddTask(BO.Task task);
     public void DeleteTask(int id);
     public void UpdateTask(BO.Task task);
-    public void AddOrUpdateSchedualeDateTine(int id, DateTime dateTime);
+    public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate);
 }

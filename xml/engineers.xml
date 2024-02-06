@@ -70,4 +70,18 @@
     <Level>AdvancedBeginner</Level>
     <Cost>93</Cost>
   </Engineer>
+  <Engineer>
+    <Id>1</Id>
+    <Name>maoz</Name>
+    <Email>mama</Email>
+    <Level>Advanced</Level>
+    <Cost>74</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>2</Id>
+    <Name>eitan</Name>
+    <Email>eiei</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>40</Cost>
+  </Engineer>
 </ArrayOfEngineer>

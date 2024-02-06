@@ -16,6 +16,7 @@ internal class EngineerImplementation : BlApi.IEngineer
             throw new BO.BlBadEmailException("email must be not null");
         if (engineer.Cost <= 0)
             throw new BO.BlBadCostException("cost must be positive");
+        
 
         try
         {

@@ -63,27 +63,27 @@
 
     public class BlBadAliasException : Exception
     { /// <summary>
-    /// /// Initializes a new instance of the <see cref="DalBadAliasException"/> class with a specified error message.
-    /// </summary>
-    /// <param name="message"></param>
+      /// /// Initializes a new instance of the <see cref="DalBadAliasException"/> class with a specified error message.
+      /// </summary>
+      /// <param name="message"></param>
         public BlBadAliasException(string? message) : base(message) { }
     }
 
     [Serializable]
     public class BlBadNameException : Exception
     { /// <summary>
-    /// /// Initializes a new instance of the <see cref="DalBadNameException"/> class with a specified error message.
-    /// </summary>
-    /// <param name="message"></param>
+      /// /// Initializes a new instance of the <see cref="DalBadNameException"/> class with a specified error message.
+      /// </summary>
+      /// <param name="message"></param>
         public BlBadNameException(string? message) : base(message) { }
     }
 
     [Serializable]
     public class BlBadEmailException : Exception
     { /// <summary>
-    /// /// Initializes a new instance of the <see cref="DalBadEmailException"/> class with a specified error message.
-    /// </summary>
-    /// <param name="message"></param>
+      /// /// Initializes a new instance of the <see cref="DalBadEmailException"/> class with a specified error message.
+      /// </summary>
+      /// <param name="message"></param>
         public BlBadEmailException(string? message) : base(message) { }
     }
 
@@ -95,5 +95,25 @@
         /// </summary>
         /// <param name="message"></param>
         public BlBadCostException(string? message) : base(message) { }
+    }
+
+    [Serializable]
+    public class BlBadDateException : Exception
+    {
+        /// <summary>
+        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message"></param>
+        public BlBadDateException(string? message) : base(message) { }
+    }
+
+    [Serializable]
+    public class BlBadLevelException : Exception
+    {
+        /// <summary>
+        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message"></param>
+        public BlBadLevelException(string? message) : base(message) { }
     }
 }

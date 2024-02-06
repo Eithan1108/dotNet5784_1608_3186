@@ -22,23 +22,8 @@ internal class Program
 
     static void Main(string[] args)
     {
-        try
-        {
-            Console.Write("Would you like to create Initial data? (Y/N)");
-            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
-            if (ans == "Y" || ans == "y")
-            {
-                Console.WriteLine("Loading...");
-                // clear data
-                reSetXmlData();
-                // initialize data
-                Initialization.Do();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+
+        initializationDataOffer();
 
         int mainChoices = menu();
         while (mainChoices != 0)
@@ -169,12 +154,56 @@ internal class Program
             }
             mainChoices = menu();
         }
-
+        try
+        {
+            createSchedule();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
 
 
+    // initialization
+    private static void initializationDataOffer()
+    {
+        try
+        {
+            Console.Write("Would you like to create Initial data? (Y/N)");
+            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+            if (ans == "Y" || ans == "y")
+            {
+                Console.WriteLine("Loading...");
+                // clear data
+                reSetXmlData();
+                // initialize data
+                Initialization.Do();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    } // initialization data offer
+    public static void reSetXmlData()
+    {
+        List<DO.Engineer> engineersClear = new List<DO.Engineer>();
+        List<Dependence> dependenceClear = new List<Dependence>();
+        List<DO.Task> tasksClear = new List<DO.Task>();
+        XMLTools.SaveListToXMLSerializer<DO.Engineer>(engineersClear, s_engineers_xml);
+        XMLTools.SaveListToXMLSerializer<DO.Task>(tasksClear, s_tasks_xml);
+        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
+        // initialize data conigfile
+        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
+        configRestart.Element("NextTaskId")!.Value = "1";
+        configRestart.Element("NextDependenceId")!.Value = "1";
+        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
+    } // reset xml data
 
+
+    // menus
     private static int menu()
     {
         int choice;
@@ -184,7 +213,7 @@ internal class Program
 
         choice = int.Parse(Console.ReadLine()!);
         return choice;
-    }
+    } // main menu
     private static int taskMenu()
     {
         int choice;
@@ -200,7 +229,7 @@ internal class Program
             throw new ArgumentOutOfRangeException("choice must be between 1 and 6");
         return choice;
 
-    }
+    } // task menu
     private static int engineerMenu()
     {
         int choice;
@@ -215,13 +244,70 @@ internal class Program
         if (choice < 1 || choice > 6)
             throw new ArgumentOutOfRangeException("choice must be between 1 and 6");
         return choice;
-    }
+    } // engineer menu
+
+
+
+    // create schedule functions
     private static void createSchedule()
     {
+        Console.WriteLine("How would you like to create the schedule? manualy or aoutomatily? (m/a)");
+        string choice = Console.ReadLine()!;
+        if (choice == "m")
+        {
+            createScheduleManually();
+        }
+        else if (choice == "a")
+        {
+            createScheduleAutomatically();
+        }
+        else
+        {
+            throw new Exception("Wrong input");
+        }
+    } // create schedule
+    private static void createScheduleManually()
+    {
+        Console.WriteLine("Enter the date you want to start the schedule (dd/mm/yyyy): ");
+        DateTime startDate = DateTime.Parse(Console.ReadLine()!);
 
-    }
+        foreach (var item in s_bl.Task.GetTasksList(null))
+        {
+            Console.WriteLine("Enter the scheduale date for task: " + item.Description + " (dd/mm/yyyy): ");
+            DateTime updatedSchedualeDate = DateTime.Parse(Console.ReadLine()!);
+            s_bl.Task.AddOrUpdateSchedualeDateTine(item.Id, updatedSchedualeDate, startDate);
+        }
+    } // create schedule manually
+
+    private static void createScheduleAutomatically()
+    {
+        Console.WriteLine("Enter the date you want to start the schedule (dd/mm/yyyy): ");
+        DateTime startDate = DateTime.Parse(Console.ReadLine()!);
+        DateTime dateTime = startDate;
+        DateTime compareDate = startDate;
+        foreach (var item in s_bl.Task.GetTasksList(null))
+        {
+            if (item.Deoendencies is null)
+            {
+                dateTime = startDate;
+            }
+            else
+            {
+                foreach (var dependnce in item.Deoendencies)
+                {
+                    if(s_bl.Task.GetTask(int.Parse(dependnce.Id).DeadLineDate > compareDate)
+                    {
+                        compareDate = s_bl.Task.GetTask(dependnce.Id).DeadLineDate;
+                    }
+                }
+            }
 
 
+        }
+    } // create schedule automatically
+
+
+    // main functions
     private static int addTaskMain() // add task to the system
     {
         string? description;
@@ -436,7 +522,7 @@ internal class Program
         Console.WriteLine("Enter email: ");
         email = Console.ReadLine();
 
-        Console.WriteLine("Enter level: ");
+        Console.WriteLine("Enter level (0-4): ");
         level = (BO.EngineerExperience)Enum.Parse(typeof(BO.EngineerExperience), Console.ReadLine());
 
         Console.WriteLine("Enter cost: ");
@@ -536,20 +622,5 @@ internal class Program
         int id = int.Parse(Console.ReadLine()!);
         Console.WriteLine(s_bl.Engineer.GetEngineer(id));
     }
-    public static void reSetXmlData()  // clear data
-    {
-        List<DO.Engineer> engineersClear = new List<DO.Engineer>();
-        List<Dependence> dependenceClear = new List<Dependence>();
-        List<DO.Task> tasksClear = new List<DO.Task>();
-        XMLTools.SaveListToXMLSerializer<DO.Engineer>(engineersClear, s_engineers_xml);
-        XMLTools.SaveListToXMLSerializer<DO.Task>(tasksClear, s_tasks_xml);
-        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
-        // initialize data conigfile
-        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
-        configRestart.Element("NextTaskId")!.Value = "1";
-        configRestart.Element("NextDependenceId")!.Value = "1";
-        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
-    }
-
 
 }
