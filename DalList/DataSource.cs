@@ -33,6 +33,9 @@ internal static class DataSource
         /// Gets the next available dependence identifier.
         /// </summary>
         internal static int NextDependenceId { get => nextDependenceId++; }
+
+        internal static DateTime? ProjectStartDate { get; set; }
+        internal static DateTime? ProjectEndDate { get; set; }
     }
 
     /// <summary>

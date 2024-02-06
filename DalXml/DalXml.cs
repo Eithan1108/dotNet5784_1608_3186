@@ -57,7 +57,7 @@ sealed internal class DalXml : IDal
     public IEngineer Engineer => new EngineerImplementation();
 
     /// <summary>
-    /// Gets an instance of the <see cref="ITask"/> interface using the XML implementation.
+    /// Gets an instance of the <see cref="ILooz"/> interface using the XML implementation.
     /// </summary>
     public ITask Task => new TaskImplementation();
 
@@ -65,4 +65,6 @@ sealed internal class DalXml : IDal
     ///  Gets an instance of the <see cref="IDependence"/> interface using the XML implementation.
     /// </summary>
     public IDependence Dependence => new DependenceImplementation();
+
+    public ILooz looz => new LoozImplementation();
 }

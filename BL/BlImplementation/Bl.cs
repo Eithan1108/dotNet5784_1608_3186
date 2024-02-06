@@ -9,5 +9,7 @@ internal class Bl : IBl
 {
     public ITask Task =>  new TaskImplementation(); // create new TaskImplementation
     public IEngineer Engineer =>  new EngineerImplementation(); // create new EngineerImplementation
+
+    public ILooz Looz =>  new LoozImplementation(); // create new LoozImplementation
 }
 

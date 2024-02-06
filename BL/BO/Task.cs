@@ -12,11 +12,23 @@ public class Task // comments and bounos
     public DateTime CreatedAtDate { get; init; }
     public BO.Status? Status { get; set; }
     public IEnumerable<BO.TaskInList>? Dependencies { get; set; }
-    public BO.MilestoneInTask? Milestone { get; set; }
     public TimeSpan? RequiredEffortTime { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? ScheduledDate { get; set; }
-    public DateTime? ForecastDate { get; set; }
+    public DateTime? ForecastDate 
+    {
+        get
+        {
+            if (StartDate > ScheduledDate)
+            {
+                return StartDate + RequiredEffortTime;
+            }
+            else
+            {
+                return ScheduledDate + RequiredEffortTime;
+            }
+        }
+    }
     public DateTime? DeadLineDate { get; set; }
     public DateTime? CompleteDate { get; set; }
     public string? Deliverables { get; set; }

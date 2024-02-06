@@ -11,6 +11,7 @@ using DalApi;
 using System.Collections.Generic;
 using DalTest;
 using DO;
+using System.Threading.Tasks;
 
 internal class Program
 {
@@ -24,8 +25,18 @@ internal class Program
     {
 
         initializationDataOffer();
+        int mainChoices;
+        bool flagStarted = false;
+        if (s_bl.Looz.GetStartDate() < DateTime.Now)
+        {
+            mainChoices = 0;
+            flagStarted = true;
+        }
+        else
+        {
+            mainChoices = menu();
+        }
 
-        int mainChoices = menu();
         while (mainChoices != 0)
         {
             switch (mainChoices)
@@ -154,13 +165,26 @@ internal class Program
             }
             mainChoices = menu();
         }
+
+
+        if (!flagStarted) {
+            try
+            {
+                createSchedule();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         try
         {
-            createSchedule();
+            machingTasksAndEngineers();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine(ex.Message);
+
+            throw;
         }
     }
 
@@ -169,8 +193,7 @@ internal class Program
     /// </summary>
     private static void initializationDataOffer()
     {
-        try
-        {
+
             Console.Write("Would you like to create Initial data? (Y/N)");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y" || ans == "y")
@@ -181,13 +204,7 @@ internal class Program
                 // initialize data
                 Initialization.Do();
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-    } 
-
+    }
     /// <summary>
     /// // reset xml data
     /// </summary>
@@ -204,7 +221,7 @@ internal class Program
         configRestart.Element("NextTaskId")!.Value = "1";
         configRestart.Element("NextDependenceId")!.Value = "1";
         XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
-    } 
+    }
 
 
     /// <summary>
@@ -280,12 +297,26 @@ internal class Program
         Console.WriteLine("Enter the date you want to start the schedule (dd/mm/yyyy): ");
         DateTime startDate = DateTime.Parse(Console.ReadLine()!);
 
-        foreach (var item in s_bl.Task.GetTasksList(null))
+
+        while ((s_bl.Task.GetTasksList(t => t.ScheduledDate == DateTime.MinValue).Count()) > 0)
         {
-            Console.WriteLine("Enter the scheduale date for task: " + item.Description + " (dd/mm/yyyy): ");
-            DateTime updatedSchedualeDate = DateTime.Parse(Console.ReadLine()!);
-            s_bl.Task.AddOrUpdateSchedualeDateTine(item.Id, updatedSchedualeDate, startDate);
+            Console.WriteLine("Still got " + s_bl.Task.GetTasksList(t => t.ScheduledDate == DateTime.MinValue).Count() + " schedule dates to set.");
+            try
+            {
+                Console.WriteLine("Enter the task id you want to set scheduled date for: ");
+                int taskId = int.Parse(Console.ReadLine()!);
+                Console.WriteLine("Enter the schedule date for task: " + s_bl.Task.GetTask(taskId)!.Description + " (dd/mm/yyyy): ");
+                DateTime updatedScheduleDate = DateTime.Parse(Console.ReadLine()!);
+                s_bl.Task.AddOrUpdateSchedualeDateTine(taskId, updatedScheduleDate, startDate);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
+        s_bl.Looz.SetStartDate(startDate);
+
+
     } // create schedule manually
     private static void createScheduleAutomatically()
     {
@@ -303,7 +334,7 @@ internal class Program
             {
                 foreach (var dependnce in item.Dependencies)
                 {
-                    if(s_bl.Task.GetTask(dependnce.Id).ForecastDate > compareDate) //if the task has dependencies it will start after the last dependency
+                    if (s_bl.Task.GetTask(dependnce.Id).ForecastDate > compareDate) //if the task has dependencies it will start after the last dependency
                     {
                         compareDate = s_bl.Task.GetTask(dependnce.Id).DeadLineDate;
                     }
@@ -448,7 +479,7 @@ internal class Program
 
             while (dependId != -1)
             {
-                
+
                 BO.Task dependencTask = s_bl.Task.GetTask(dependId);
                 depend = new List<TaskInList>();
                 depend.Append(new TaskInList { Id = dependId, Alias = dependencTask.Alias, Description = dependencTask.Description });
@@ -634,6 +665,66 @@ internal class Program
         Console.WriteLine("Enter id: ");
         int id = int.Parse(Console.ReadLine()!);
         Console.WriteLine(s_bl.Engineer.GetEngineer(id));
+    }
+
+
+    /// Maching tasks and engineers
+    public static void machingTasksAndEngineers()
+    {
+        Console.WriteLine("Would you like to mach between tasks and engineers? (y/n)");
+        Console.WriteLine("Insert stop to stop maching");
+        string? ans = Console.ReadLine();
+        while (ans != "stop")
+        {
+            try
+            {
+                if (ans == "Y" || ans == "y")
+                {
+                    Console.WriteLine("Would ypi like to pair engineer to task or task to engineer? (0 - engineer for task, 1 - task for engineer)");
+                    string? ans2 = Console.ReadLine();
+                    if (ans2 == "0")
+                    {
+                        PairEngineerToTask();
+                    }
+                    else if (ans2 == "1")
+                    {
+                        PairTaskToEngineer();
+                    }
+                    else
+                    {
+                        throw new FormatException("Wrong input");
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            ans = Console.ReadLine();
+        }
+    }
+    public static void PairEngineerToTask()
+    {
+        Console.WriteLine("Enter the id of the task you want to pair with an engineer: ");
+        int taskId = int.Parse(Console.ReadLine()!);
+        Console.WriteLine("Enter the id of the engineer you want to pair with the task: ");
+        int engineerId = int.Parse(Console.ReadLine()!);
+        BO.Engineer engineer = s_bl.Engineer.GetEngineer(engineerId);
+        BO.Task task = s_bl.Task.GetTask(taskId);
+        task.Engineer = new EngineerInTask { Id = engineer.Id, Name = engineer.Name };
+        s_bl.Task.UpdateTask(task);
+    }
+    public static void PairTaskToEngineer()
+    {
+        Console.WriteLine("Enter the id of the engineer you want to pair with a task: ");
+        int engineerId = int.Parse(Console.ReadLine()!);
+        Console.WriteLine("Enter the id of the task you want to pair with the engineer: ");
+        int taskId = int.Parse(Console.ReadLine()!);
+        BO.Engineer engineer = s_bl.Engineer.GetEngineer(engineerId);
+        BO.Task task = s_bl.Task.GetTask(taskId);
+        task.Engineer = new EngineerInTask { Id = engineer.Id, Name = engineer.Name };
+        s_bl.Task.UpdateTask(task);
     }
 
 }

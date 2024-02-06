@@ -29,18 +29,22 @@ internal class TaskImplementation : BlApi.ITask
         DO.Task? doTask = _dal.Task.Read(id); // get task from the system
 
         if (doTask is null)
-            throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
+            throw new BO.BlDoesNotExistException($"Task with ID = {id} does not exsist");
+
+
 
         BO.Task boTask = DoBoAdapter(doTask); // create new BO.Task
 
-        if (boTask.Dependencies == null)
+        if (boTask.ScheduledDate != DateTime.MinValue)
+            throw new BO.BlBadDateException("The new ScheduledDate is before the ForecastDate");
+
+        if (boTask.Dependencies!.Count() == 0)
         {
             boTask.ScheduledDate = SchedualeProjectDate;
-            boTask.ForecastDate = GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate);
         }
         else
         {
-            foreach (var i in boTask.Dependencies)
+            foreach (var i in boTask.Dependencies!)
             {
                 IEnumerable<DO.Dependence?> doDependences = _dal.Dependence.ReadAll(d => d.DependentTask == i.Id); // get all dependencies from the system
                 foreach (var doDependence in doDependences)
@@ -51,15 +55,14 @@ internal class TaskImplementation : BlApi.ITask
                         if (task != null)
                         {
                             if (task.ScheduledDate == null)
-                                throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} does not have ScheduledDate");
-                            if (GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate) < dateTime)
-                                throw new BO.BlDoesNotExistException($"Task with ID= {task.Id} has ScheduledDate after the new ScheduledDate");
+                                throw new BO.BlDoesNotExistException($"Task with ID = {task.Id} does not have ScheduledDate");
+                            if (boTask.ForecastDate > dateTime)
+                                throw new BO.BlDoesNotExistException($"Task with ID = {task.Id} has ScheduledDate after the new ScheduledDate");
                         }
                     }
                 }
             }
             boTask.ScheduledDate = dateTime;
-            boTask.ForecastDate = GetForCastDate(boTask.RequiredEffortTime, boTask.StartDate, boTask.ScheduledDate);
         }
         try
         {
@@ -81,6 +84,21 @@ internal class TaskImplementation : BlApi.ITask
     public int AddTask(BO.Task task)
     {
 
+        //try
+        //{
+        //    int taskId = _dal.Task.Create(BoDoAdapter(task));
+        //    foreach (var d in task.Dependencies!)
+        //    {
+        //        _dal.Dependence.Create(new DO.Dependence { DependentTask = taskId, DependsOnTask = d.Id });
+        //    }
+        //  //  task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
+        //    return taskId;
+        //}
+
+        //catch (DO.DalAlreadyExistsException ex)
+        //{
+        //    throw new BO.BlAlreadyExistsException($"student with ID= {task.Id} does not exsist");
+        //}
 
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
@@ -88,18 +106,22 @@ internal class TaskImplementation : BlApi.ITask
         try
         {
             int taskId = _dal.Task.Create(BoDoAdapter(task));
-            foreach (var d in task.Dependencies!)
+
+
+            var dependencies = task.Dependencies ?? new List<BO.TaskInList>(); // Handle null reference
+            dependencies.Select(d =>
             {
                 _dal.Dependence.Create(new DO.Dependence { DependentTask = taskId, DependsOnTask = d.Id });
-            }
-          //  task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
+                return true; // Return value is irrelevant, just to satisfy LINQ syntax
+            }).ToList(); // Execute LINQ query by converting it to a list
+
             return taskId;
         }
-
         catch (DO.DalAlreadyExistsException ex)
         {
             throw new BO.BlAlreadyExistsException($"student with ID= {task.Id} does not exsist");
         }
+
     }
 
     /// <summary>
@@ -110,20 +132,34 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public void DeleteTask(int id)
     {
+        //if (_dal.Task.Read(id) == null)
+        //    throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
+
+        //var dependent = from d in _dal.Dependence.ReadAll()
+        //                where d.DependsOnTask == id
+        //                select d;
+        //if (dependent.FirstOrDefault() != null)
+        //    throw new BO.BlAlreadyExistsException($"Task with ID= {id} already has dependent task {dependent.FirstOrDefault()!.DependentTask}");
+
+        //foreach (var d in _dal.Dependence.ReadAll())
+        //{
+        //    if (d.DependentTask == id)
+        //        _dal.Dependence.Delete(d.Id);
+        //}
+
+        //_dal.Task.Delete(id); // delete task from the system
         if (_dal.Task.Read(id) == null)
-            throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
-
-        var dependent = from d in _dal.Dependence.ReadAll()
-                        where d.DependsOnTask == id
-                        select d;
-        if (dependent.FirstOrDefault() != null)
-            throw new BO.BlAlreadyExistsException($"Task with ID= {id} already has dependent task {dependent.FirstOrDefault()!.DependentTask}");
-
-        foreach (var d in _dal.Dependence.ReadAll())
         {
-            if (d.DependentTask == id)
-                _dal.Dependence.Delete(d.Id);
+            throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exist");
         }
+
+        var dependent = _dal.Dependence.ReadAll().FirstOrDefault(d => d.DependsOnTask == id);
+        if (dependent != null)
+        {
+            throw new BO.BlAlreadyExistsException($"Task with ID= {id} already has dependent task {dependent.DependentTask}");
+        }
+
+        _dal.Dependence.ReadAll().Where(d => d.DependentTask == id).ToList().ForEach(d => _dal.Dependence.Delete(d.Id));
 
         _dal.Task.Delete(id); // delete task from the system
     }
@@ -175,6 +211,13 @@ internal class TaskImplementation : BlApi.ITask
     public void UpdateTask(BO.Task task)
     {
 
+
+        if(task.Engineer.Id != null && task.Complexity < (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
+            throw new BlBadLevelException("Complexity must be greater than the engineer level");
+        if (task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
+            throw new BO.BlBadIdException("Id must be not null");
+       
+
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
 
@@ -184,7 +227,7 @@ internal class TaskImplementation : BlApi.ITask
         }
         catch (BlBadIdException ex)
         {
-            throw new BO.BlBadIdException("student with ID= {id} does not exsist");
+            throw new BO.BlBadIdException("student with ID = {id} does not exsist");
         }
 
     }
@@ -290,35 +333,6 @@ internal class TaskImplementation : BlApi.ITask
         }
         boTask.Dependencies = dependencies;
         return boTask;
-    }
-
-    /// <summary>
-    /// // get forecast date
-    /// </summary>
-    /// <param name="requiredEffortTime"></param>
-    /// <param name="start"></param>
-    /// <param name="schedule"></param>
-    /// <returns></returns>
-    private DateTime? GetForCastDate(TimeSpan? requiredEffortTime, DateTime? start, DateTime? schedule)
-    {
-        DateTime forCastDate = DateTime.Now; //default value
-        if (start is null)
-        {
-            forCastDate = schedule!.Value.Add(requiredEffortTime!.Value);
-        }
-
-        else
-        {
-            if (start > schedule)
-            {
-                forCastDate = start!.Value.Add(requiredEffortTime!.Value);
-            }
-            else
-            {
-                forCastDate = schedule!.Value.Add(requiredEffortTime!.Value);
-            }
-        }
-        return forCastDate;
     }
 }
 

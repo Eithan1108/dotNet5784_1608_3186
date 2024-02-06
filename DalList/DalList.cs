@@ -50,7 +50,6 @@ namespace Dal
 
         public IDependence Dependence =>  new DependenceImplementation();
 
-   
-
+        public ILooz looz => throw new NotImplementedException();
     }
 }

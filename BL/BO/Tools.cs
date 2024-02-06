@@ -5,9 +5,9 @@ using System.Collections;
 
 namespace BO
 {
-/// <summary>
-/// // tools class
-/// </summary>
+    /// <summary>
+    /// // tools class
+    /// </summary>
     public static class Tools
     {
         /// <summary>
@@ -86,9 +86,9 @@ namespace BO
             }
         }
 
-    
 
 
 
-}
+
+    }
 }

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 
 /// <summary>
-/// Represents the implementation of the <see cref="ITask"/> interface using XML storage.
+/// Represents the implementation of the <see cref="ILooz"/> interface using XML storage.
 /// </summary>
 internal class TaskImplementation : ITask
 {
