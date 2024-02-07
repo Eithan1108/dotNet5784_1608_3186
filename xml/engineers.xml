@@ -7,4 +7,144 @@
     <Level>AdvancedBeginner</Level>
     <Cost>4</Cost>
   </Engineer>
+  <Engineer>
+    <Id>104908001</Id>
+    <Name>Maximilian Müller</Name>
+    <Email>mmüller@gmail.com</Email>
+    <Level>Beginner</Level>
+    <Cost>46</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>374460608</Id>
+    <Name>Sophia Wagner</Name>
+    <Email>swagner@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>93</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>223566242</Id>
+    <Name>Leon Schmidt</Name>
+    <Email>lschmidt@gmail.com</Email>
+    <Level>Advanced</Level>
+    <Cost>405</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>306643650</Id>
+    <Name>Emma Becker</Name>
+    <Email>ebecker@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>523</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>191984192</Id>
+    <Name>Lukas Hoffmann</Name>
+    <Email>lhoffmann@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>434</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>347002556</Id>
+    <Name>Mia Schneider</Name>
+    <Email>mschneider@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>140</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>302080995</Id>
+    <Name>Paul Fischer</Name>
+    <Email>pfischer@gmail.com</Email>
+    <Level>Beginner</Level>
+    <Cost>55</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>310375796</Id>
+    <Name>Emily Weber</Name>
+    <Email>eweber@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>658</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>340798355</Id>
+    <Name>Jonas Richter</Name>
+    <Email>jrichter@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>181</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>336236456</Id>
+    <Name>Laura Keller</Name>
+    <Email>lkeller@gmail.com</Email>
+    <Level>Advanced</Level>
+    <Cost>386</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>248721260</Id>
+    <Name>Maximilian Müller</Name>
+    <Email>mmüller@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>163</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>209616937</Id>
+    <Name>Sophia Wagner</Name>
+    <Email>swagner@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>179</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>330259080</Id>
+    <Name>Leon Schmidt</Name>
+    <Email>lschmidt@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>138</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>143670586</Id>
+    <Name>Emma Becker</Name>
+    <Email>ebecker@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>528</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>273445010</Id>
+    <Name>Lukas Hoffmann</Name>
+    <Email>lhoffmann@gmail.com</Email>
+    <Level>Advanced</Level>
+    <Cost>370</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>254956421</Id>
+    <Name>Mia Schneider</Name>
+    <Email>mschneider@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>186</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>215790177</Id>
+    <Name>Paul Fischer</Name>
+    <Email>pfischer@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>144</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>326152542</Id>
+    <Name>Emily Weber</Name>
+    <Email>eweber@gmail.com</Email>
+    <Level>Intermediate</Level>
+    <Cost>198</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>277878887</Id>
+    <Name>Jonas Richter</Name>
+    <Email>jrichter@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>534</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>337525991</Id>
+    <Name>Laura Keller</Name>
+    <Email>lkeller@gmail.com</Email>
+    <Level>Advanced</Level>
+    <Cost>333</Cost>
+  </Engineer>
 </ArrayOfEngineer>
