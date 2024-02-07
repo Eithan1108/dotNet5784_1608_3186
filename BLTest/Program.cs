@@ -23,22 +23,35 @@ internal class Program
 
     static void Main(string[] args)
     {
+        resetDataOffer();
 
-        initializationDataOffer();
         int mainChoices;
         bool flagStarted = false;
-        if (s_bl.Looz.GetStartDate() < DateTime.Now)
+        bool flagScheduleExsist = false; // flag to check if the schedule exsist
+        if (s_bl.Looz.GetStartDate() != DateTime.MinValue)
+            flagScheduleExsist = true;
+        if (  s_bl.Looz.GetStartDate() < DateTime.Now)
         {
             mainChoices = 0;
             flagStarted = true;
         }
         else
         {
-            mainChoices = menu();
+            if(flagScheduleExsist)
+            {
+                Console.WriteLine("The project has already scheduled, you can only create the dates");
+                mainChoices = 0; // if the schedule exsist the user can only create the dates
+            }
+            else
+            {
+                mainChoices = menu();
+            }
+    
         }
 
         while (mainChoices != 0)
         {
+
             switch (mainChoices)
             {
                 case 1:
@@ -208,6 +221,18 @@ internal class Program
     /// <summary>
     /// // reset xml data
     /// </summary>
+    
+    private static void resetDataOffer()
+    {
+        Console.Write("Would you like to reset the data? (Y/N)");
+        string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+        if (ans == "Y" || ans == "y")
+        {
+            Console.WriteLine("Loading...");
+            reSetXmlData();
+        }
+            initializationDataOffer();
+    }
     public static void reSetXmlData()
     {
         List<DO.Engineer> engineersClear = new List<DO.Engineer>();
@@ -232,7 +257,7 @@ internal class Program
     private static int menu()
     {
         int choice;
-        Console.WriteLine("0. Exit (after exiting you will be pointed to create the schedule");
+        Console.WriteLine("0. Exit (after exiting you will be pointed to create the schedule)");
         Console.WriteLine("1. Engineer menu");
         Console.WriteLine("2. Task menu");
 

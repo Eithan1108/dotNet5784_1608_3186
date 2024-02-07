@@ -83,23 +83,6 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public int AddTask(BO.Task task)
     {
-
-        //try
-        //{
-        //    int taskId = _dal.Task.Create(BoDoAdapter(task));
-        //    foreach (var d in task.Dependencies!)
-        //    {
-        //        _dal.Dependence.Create(new DO.Dependence { DependentTask = taskId, DependsOnTask = d.Id });
-        //    }
-        //  //  task.Deoendencies!.Select(d => _dal.Dependence.Create(new DO.Dependence { DependentTask = d.Id, DependsOnTask = taskId })); // create all dependencies
-        //    return taskId;
-        //}
-
-        //catch (DO.DalAlreadyExistsException ex)
-        //{
-        //    throw new BO.BlAlreadyExistsException($"student with ID= {task.Id} does not exsist");
-        //}
-
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
 
@@ -212,7 +195,7 @@ internal class TaskImplementation : BlApi.ITask
     {
 
 
-        if(task.Engineer.Id != null && task.Complexity < (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
+        if(task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
         if (task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
             throw new BO.BlBadIdException("Id must be not null");
