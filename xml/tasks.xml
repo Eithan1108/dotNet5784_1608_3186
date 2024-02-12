@@ -1006,4 +1006,996 @@
     <CreateAtDate>2024-02-11T11:15:49.6965786+02:00</CreateAtDate>
     <Complexity>Intermediate</Complexity>
   </Task>
+  <Task>
+    <Id>126</Id>
+    <Alias>DRPS</Alias>
+    <Description>Design rocket propulsion system</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:41.897534+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>127</Id>
+    <Alias>CWTT</Alias>
+    <Description>Conduct wind tunnel testing</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:41.9266816+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>128</Id>
+    <Alias>OFE</Alias>
+    <Description>Optimize fuel efficiency</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:41.9505095+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>129</Id>
+    <Alias>DSCA</Alias>
+    <Description>Develop spacecraft control algorithms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:41.9820162+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>130</Id>
+    <Alias>TSNS</Alias>
+    <Description>Test spacecraft navigation systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.0188933+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>131</Id>
+    <Alias>IGNS</Alias>
+    <Description>Implement guidance and navigation software</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.0482343+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>132</Id>
+    <Alias>DSCS</Alias>
+    <Description>Design satellite communication systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.0751416+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>133</Id>
+    <Alias>ICA</Alias>
+    <Description>Integrate communication antennas</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.0984581+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>134</Id>
+    <Alias>TSCS</Alias>
+    <Description>Test satellite communication signals</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.1201045+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>135</Id>
+    <Alias>C3DM</Alias>
+    <Description>Create 3D models for space mission simulations</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.1432006+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>136</Id>
+    <Alias>SST</Alias>
+    <Description>Simulate spacecraft trajectories</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.1690642+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>137</Id>
+    <Alias>ASIC</Alias>
+    <Description>Analyze structural integrity of spacecraft</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.1997345+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>138</Id>
+    <Alias>DADS</Alias>
+    <Description>Develop automated docking systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.2273116+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>139</Id>
+    <Alias>TDPIM</Alias>
+    <Description>Test docking procedures in microgravity</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.2527459+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>140</Id>
+    <Alias>IANSP</Alias>
+    <Description>Implement autonomous navigation for space probes</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.2778531+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>141</Id>
+    <Alias>TAISN</Alias>
+    <Description>Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.3016174+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>142</Id>
+    <Alias>DDSP</Alias>
+    <Description>Design deployable solar panels</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.3232296+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>143</Id>
+    <Alias>TSPDM</Alias>
+    <Description>Test solar panel deployment mechanisms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.346974+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>144</Id>
+    <Alias>DTCS</Alias>
+    <Description>Develop thermal control systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.3680666+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>145</Id>
+    <Alias>TSTM</Alias>
+    <Description>Test spacecraft thermal management</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.3829017+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>146</Id>
+    <Alias>CCPFMF</Alias>
+    <Description>Create contingency plans for mission failures</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.4064751+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>147</Id>
+    <Alias>CRASM</Alias>
+    <Description>Conduct risk analysis for space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.436342+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>148</Id>
+    <Alias>IERP</Alias>
+    <Description>Implement emergency response protocols</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.4643556+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>149</Id>
+    <Alias>DSHS</Alias>
+    <Description>Design space habitat systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.5026459+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>150</Id>
+    <Alias>TLSSSSC</Alias>
+    <Description>Test life support systems in simulated space conditions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.5273233+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>151</Id>
+    <Alias>DREETE</Alias>
+    <Description>Develop robotics for extraterrestrial exploration</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.5548877+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>152</Id>
+    <Alias>TRSASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.5852612+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>153</Id>
+    <Alias>OPGDSM</Alias>
+    <Description>Optimize power generation for deep space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.6132717+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>154</Id>
+    <Alias>TAPC</Alias>
+    <Description>Test advanced propulsion concepts</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.6888628+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>155</Id>
+    <Alias>TAPSN</Alias>
+    <Description> Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.7160769+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>156</Id>
+    <Alias>TRSIASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:18:42.7422249+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>157</Id>
+    <Alias>DRPS</Alias>
+    <Description>Design rocket propulsion system</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.0384356+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>158</Id>
+    <Alias>CWTT</Alias>
+    <Description>Conduct wind tunnel testing</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.0664081+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>159</Id>
+    <Alias>OFE</Alias>
+    <Description>Optimize fuel efficiency</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.0820052+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>160</Id>
+    <Alias>DSCA</Alias>
+    <Description>Develop spacecraft control algorithms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.1015213+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>161</Id>
+    <Alias>TSNS</Alias>
+    <Description>Test spacecraft navigation systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.1255309+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>162</Id>
+    <Alias>IGNS</Alias>
+    <Description>Implement guidance and navigation software</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.1452213+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>163</Id>
+    <Alias>DSCS</Alias>
+    <Description>Design satellite communication systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.1678533+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>164</Id>
+    <Alias>ICA</Alias>
+    <Description>Integrate communication antennas</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.1873439+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>165</Id>
+    <Alias>TSCS</Alias>
+    <Description>Test satellite communication signals</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.2063629+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>166</Id>
+    <Alias>C3DM</Alias>
+    <Description>Create 3D models for space mission simulations</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.2293888+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>167</Id>
+    <Alias>SST</Alias>
+    <Description>Simulate spacecraft trajectories</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.2508849+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>168</Id>
+    <Alias>ASIC</Alias>
+    <Description>Analyze structural integrity of spacecraft</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.2697119+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>169</Id>
+    <Alias>DADS</Alias>
+    <Description>Develop automated docking systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.2884684+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>170</Id>
+    <Alias>TDPIM</Alias>
+    <Description>Test docking procedures in microgravity</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.3096178+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>171</Id>
+    <Alias>IANSP</Alias>
+    <Description>Implement autonomous navigation for space probes</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.3290763+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>172</Id>
+    <Alias>TAISN</Alias>
+    <Description>Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.3483667+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>173</Id>
+    <Alias>DDSP</Alias>
+    <Description>Design deployable solar panels</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.3713508+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>174</Id>
+    <Alias>TSPDM</Alias>
+    <Description>Test solar panel deployment mechanisms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.3967152+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>175</Id>
+    <Alias>DTCS</Alias>
+    <Description>Develop thermal control systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.4163312+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>176</Id>
+    <Alias>TSTM</Alias>
+    <Description>Test spacecraft thermal management</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.4340305+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>177</Id>
+    <Alias>CCPFMF</Alias>
+    <Description>Create contingency plans for mission failures</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.4518622+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>178</Id>
+    <Alias>CRASM</Alias>
+    <Description>Conduct risk analysis for space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.4700355+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>179</Id>
+    <Alias>IERP</Alias>
+    <Description>Implement emergency response protocols</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.4867787+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>180</Id>
+    <Alias>DSHS</Alias>
+    <Description>Design space habitat systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.5121584+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>181</Id>
+    <Alias>TLSSSSC</Alias>
+    <Description>Test life support systems in simulated space conditions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.5322643+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>182</Id>
+    <Alias>DREETE</Alias>
+    <Description>Develop robotics for extraterrestrial exploration</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.558555+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>183</Id>
+    <Alias>TRSASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.5778216+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>184</Id>
+    <Alias>OPGDSM</Alias>
+    <Description>Optimize power generation for deep space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.5997417+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>185</Id>
+    <Alias>TAPC</Alias>
+    <Description>Test advanced propulsion concepts</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.6193925+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>186</Id>
+    <Alias>TAPSN</Alias>
+    <Description> Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.6390599+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>187</Id>
+    <Alias>TRSIASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T20:19:21.6607247+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>188</Id>
+    <Alias>DRPS</Alias>
+    <Description>Design rocket propulsion system</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:35.9085016+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>189</Id>
+    <Alias>CWTT</Alias>
+    <Description>Conduct wind tunnel testing</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:35.9448092+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>190</Id>
+    <Alias>OFE</Alias>
+    <Description>Optimize fuel efficiency</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:35.9698734+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>191</Id>
+    <Alias>DSCA</Alias>
+    <Description>Develop spacecraft control algorithms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:35.9972279+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>192</Id>
+    <Alias>TSNS</Alias>
+    <Description>Test spacecraft navigation systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.0242295+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>193</Id>
+    <Alias>IGNS</Alias>
+    <Description>Implement guidance and navigation software</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.0482959+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>194</Id>
+    <Alias>DSCS</Alias>
+    <Description>Design satellite communication systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.073566+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>195</Id>
+    <Alias>ICA</Alias>
+    <Description>Integrate communication antennas</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.097582+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>196</Id>
+    <Alias>TSCS</Alias>
+    <Description>Test satellite communication signals</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.1184228+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>197</Id>
+    <Alias>C3DM</Alias>
+    <Description>Create 3D models for space mission simulations</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.1438685+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>198</Id>
+    <Alias>SST</Alias>
+    <Description>Simulate spacecraft trajectories</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.1654291+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>199</Id>
+    <Alias>ASIC</Alias>
+    <Description>Analyze structural integrity of spacecraft</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.1869245+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>200</Id>
+    <Alias>DADS</Alias>
+    <Description>Develop automated docking systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.2217938+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>201</Id>
+    <Alias>TDPIM</Alias>
+    <Description>Test docking procedures in microgravity</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.2478807+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>202</Id>
+    <Alias>IANSP</Alias>
+    <Description>Implement autonomous navigation for space probes</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.2685548+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>203</Id>
+    <Alias>TAISN</Alias>
+    <Description>Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.2940338+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>204</Id>
+    <Alias>DDSP</Alias>
+    <Description>Design deployable solar panels</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.3209048+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>205</Id>
+    <Alias>TSPDM</Alias>
+    <Description>Test solar panel deployment mechanisms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.3490217+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>206</Id>
+    <Alias>DTCS</Alias>
+    <Description>Develop thermal control systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.3746732+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>207</Id>
+    <Alias>TSTM</Alias>
+    <Description>Test spacecraft thermal management</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.3985032+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>208</Id>
+    <Alias>CCPFMF</Alias>
+    <Description>Create contingency plans for mission failures</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.4209349+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>209</Id>
+    <Alias>CRASM</Alias>
+    <Description>Conduct risk analysis for space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.4485632+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>210</Id>
+    <Alias>IERP</Alias>
+    <Description>Implement emergency response protocols</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.4727607+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>211</Id>
+    <Alias>DSHS</Alias>
+    <Description>Design space habitat systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.4975878+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>212</Id>
+    <Alias>TLSSSSC</Alias>
+    <Description>Test life support systems in simulated space conditions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.5174488+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>213</Id>
+    <Alias>DREETE</Alias>
+    <Description>Develop robotics for extraterrestrial exploration</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.5379911+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>214</Id>
+    <Alias>TRSASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.5618786+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>215</Id>
+    <Alias>OPGDSM</Alias>
+    <Description>Optimize power generation for deep space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.5860248+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>216</Id>
+    <Alias>TAPC</Alias>
+    <Description>Test advanced propulsion concepts</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.6127727+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>217</Id>
+    <Alias>TAPSN</Alias>
+    <Description> Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.6431034+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>218</Id>
+    <Alias>TRSIASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:33:36.6746817+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>219</Id>
+    <Alias>DRPS</Alias>
+    <Description>Design rocket propulsion system</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.086501+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>220</Id>
+    <Alias>CWTT</Alias>
+    <Description>Conduct wind tunnel testing</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.115066+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>221</Id>
+    <Alias>OFE</Alias>
+    <Description>Optimize fuel efficiency</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.1389727+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>222</Id>
+    <Alias>DSCA</Alias>
+    <Description>Develop spacecraft control algorithms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.1688276+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>223</Id>
+    <Alias>TSNS</Alias>
+    <Description>Test spacecraft navigation systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.1984581+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>224</Id>
+    <Alias>IGNS</Alias>
+    <Description>Implement guidance and navigation software</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.2228815+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>225</Id>
+    <Alias>DSCS</Alias>
+    <Description>Design satellite communication systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.2491+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>226</Id>
+    <Alias>ICA</Alias>
+    <Description>Integrate communication antennas</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.2813291+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>227</Id>
+    <Alias>TSCS</Alias>
+    <Description>Test satellite communication signals</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.3035019+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>228</Id>
+    <Alias>C3DM</Alias>
+    <Description>Create 3D models for space mission simulations</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.3248839+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>229</Id>
+    <Alias>SST</Alias>
+    <Description>Simulate spacecraft trajectories</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.344357+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>230</Id>
+    <Alias>ASIC</Alias>
+    <Description>Analyze structural integrity of spacecraft</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.3697803+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>231</Id>
+    <Alias>DADS</Alias>
+    <Description>Develop automated docking systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.3960893+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>232</Id>
+    <Alias>TDPIM</Alias>
+    <Description>Test docking procedures in microgravity</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.4147673+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>233</Id>
+    <Alias>IANSP</Alias>
+    <Description>Implement autonomous navigation for space probes</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.4362642+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>234</Id>
+    <Alias>TAISN</Alias>
+    <Description>Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.4655557+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>235</Id>
+    <Alias>DDSP</Alias>
+    <Description>Design deployable solar panels</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.488841+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>236</Id>
+    <Alias>TSPDM</Alias>
+    <Description>Test solar panel deployment mechanisms</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.5114203+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>237</Id>
+    <Alias>DTCS</Alias>
+    <Description>Develop thermal control systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.5326486+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>238</Id>
+    <Alias>TSTM</Alias>
+    <Description>Test spacecraft thermal management</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.5526795+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>239</Id>
+    <Alias>CCPFMF</Alias>
+    <Description>Create contingency plans for mission failures</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.5770101+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>240</Id>
+    <Alias>CRASM</Alias>
+    <Description>Conduct risk analysis for space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.601689+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>241</Id>
+    <Alias>IERP</Alias>
+    <Description>Implement emergency response protocols</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.6246868+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>242</Id>
+    <Alias>DSHS</Alias>
+    <Description>Design space habitat systems</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.6503651+02:00</CreateAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
+  </Task>
+  <Task>
+    <Id>243</Id>
+    <Alias>TLSSSSC</Alias>
+    <Description>Test life support systems in simulated space conditions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.6724102+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>244</Id>
+    <Alias>DREETE</Alias>
+    <Description>Develop robotics for extraterrestrial exploration</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.6967727+02:00</CreateAtDate>
+    <Complexity>Intermediate</Complexity>
+  </Task>
+  <Task>
+    <Id>245</Id>
+    <Alias>TRSASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.7196615+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>246</Id>
+    <Alias>OPGDSM</Alias>
+    <Description>Optimize power generation for deep space missions</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.7382798+02:00</CreateAtDate>
+    <Complexity>Expert</Complexity>
+  </Task>
+  <Task>
+    <Id>247</Id>
+    <Alias>TAPC</Alias>
+    <Description>Test advanced propulsion concepts</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.7617152+02:00</CreateAtDate>
+    <Complexity>Beginner</Complexity>
+  </Task>
+  <Task>
+    <Id>248</Id>
+    <Alias>TAPSN</Alias>
+    <Description> Test AI-powered spacecraft navigation</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.7795194+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
+  <Task>
+    <Id>249</Id>
+    <Alias>TRSIASE</Alias>
+    <Description>Test robotic systems in analog space environments</Description>
+    <IsMilestone>false</IsMilestone>
+    <CreateAtDate>2024-02-11T21:37:05.8040841+02:00</CreateAtDate>
+    <Complexity>Advanced</Complexity>
+  </Task>
 </ArrayOfTask>

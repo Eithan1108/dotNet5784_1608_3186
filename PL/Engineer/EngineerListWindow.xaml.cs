@@ -22,16 +22,17 @@ namespace PL.Engineer
     public partial class EngineerListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
-
+        public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.All; // get the experience of the engineer
         public EngineerListWindow()
         {
             InitializeComponent();
             EngineerList = s_bl.Engineer.GetEngineersList(null!); // get list of all engineers //check if null is ok
         }
 
-        private void btnEngineer_Click(object sender, RoutedEventArgs e)
+        private void AddEngineerWindow(object sender, RoutedEventArgs e)
         {
-            new EngineerListWindow().Show();
+            new EngineerWindow(0).ShowDialog(); // open the engineer window
+            RefreshList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) //check what is this button
@@ -48,12 +49,31 @@ namespace PL.Engineer
         {
             get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
             set { SetValue(EngineerListProperty, value); }
-
         }
+
         public static readonly DependencyProperty EngineerListProperty =
-    DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null)); 
+    DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
 
 
+
+        private void OnSelectExperience(object sender, SelectionChangedEventArgs e) // select experience of the engineer
+        {
+            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
+                    : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
+        }
+
+        private void SelectEngineerToUpdate(object sender, MouseButtonEventArgs e)
+        {
+            BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
+            int id = engineerInList!.Id!.Value; // convert from int? to int
+            new EngineerWindow(id).ShowDialog(); // open the engineer window
+            RefreshList();
+        }
+
+        private void RefreshList()
+        {
+            EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
+        }
     }
 }
 

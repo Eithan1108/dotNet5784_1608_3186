@@ -22,10 +22,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label  Grid.Column="0" />
-            <ComboBox  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" 
+                            Grid.ColumnSpan="2" Margin="292,455,292,-483" SelectedValue="{Binding Path=Experience, Mode=TwoWay}" SelectionChanged="OnSelectExperience" />
         </Grid>
-        <ListView Grid.Row="1" Margin ="5" ItemsSource="{Binding Path=EngineerList}" />
-        <Button Content ="Add" Grid.Row="2" HorizontalAlignment="Left" Height="50" Width="100" Margin="338,471,0,10" Click="btnEngineer_Click"/>
+        <ListView Grid.Row="1" Margin ="0,5,0,221" ItemsSource="{Binding Path=EngineerList}" Grid.RowSpan="2" MouseDoubleClick="SelectEngineerToUpdate" />
+        <Button Content ="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Margin="0,434,0,47" Click="AddEngineerWindow"/>
 
     </Grid>
 </Window>

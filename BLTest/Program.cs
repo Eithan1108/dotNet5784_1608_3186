@@ -28,7 +28,7 @@ internal class Program
         int mainChoices;
         bool flagStarted = false;
         bool flagScheduleExsist = false; // flag to check if the schedule exsist
-        if (s_bl.Looz.GetStartDate() != DateTime.MinValue)
+        if (s_bl.Looz.GetStartDate() != DateTime.MinValue&& s_bl.Looz.GetStartDate!=null)
             flagScheduleExsist = true;
         if (  s_bl.Looz.GetStartDate() < DateTime.Now)
         {
