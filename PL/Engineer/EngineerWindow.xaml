@@ -21,88 +21,121 @@
         <TextBox HorizontalAlignment="Left" Margin="132,55,0,0" TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}">
             <TextBox.Style>
-                <Style  TargetType="TextBox">
+                <!-- TextBox Style -->
+                <Style TargetType="TextBox">
 
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
                     <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
                     <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
                     <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
                     <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
                     <Setter Property="Padding" Value="4"/>
+
+                    <!-- Template to customize TextBox visuals -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TextBox">
+                                <!-- Border with rounded corners -->
                                 <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer for TextBox content -->
                                     <ScrollViewer x:Name="PART_ContentHost"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
 
+                    <!-- MouseOver Trigger -->
                     <Style.Triggers>
-
+                        <!-- Change border brush color on mouse-over -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="#8c8cf8"/>
                         </Trigger>
-
                     </Style.Triggers>
 
                 </Style>
             </TextBox.Style>
+
         </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="132,105,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
             <TextBox.Style>
+                <!-- TextBox Style -->
                 <Style TargetType="TextBox">
 
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
                     <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
                     <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
                     <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
                     <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
                     <Setter Property="Padding" Value="4"/>
+
+                    <!-- Template to customize TextBox visuals -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TextBox">
+                                <!-- Border with rounded corners -->
                                 <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer for TextBox content -->
                                     <ScrollViewer x:Name="PART_ContentHost"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
 
+                    <!-- MouseOver Trigger -->
                     <Style.Triggers>
-
+                        <!-- Change border brush color on mouse-over -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="#8c8cf8"/>
                         </Trigger>
-
                     </Style.Triggers>
 
                 </Style>
             </TextBox.Style>
+
         </TextBox>
         <TextBox HorizontalAlignment="Left" Margin="132,159,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
             <TextBox.Style>
+                <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">
 
+                    <!-- Set default properties for TextBox -->
                     <Setter Property="Background" Value="#f1f1f2"/>
                     <Setter Property="BorderBrush" Value="#6464f8"/>
                     <Setter Property="Foreground" Value="#6464f8"/>
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TextBox">
+                                <!-- Create a border with rounded corners -->
                                 <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- Use a ScrollViewer for TextBox content -->
                                     <ScrollViewer x:Name="PART_ContentHost"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
 
+                    <!-- Define triggers for the TextBox style -->
                     <Style.Triggers>
 
+                        <!-- Trigger for mouse-over effect -->
                         <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
                             <Setter Property="BorderBrush" Value="#8c8cf8"/>
                         </Trigger>
 
@@ -110,6 +143,7 @@
 
                 </Style>
             </TextBox.Style>
+
         </TextBox>
         <ComboBox HorizontalAlignment="Left" Margin="132,211,0,0" VerticalAlignment="Top" Width="154"
                     ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true,
@@ -117,26 +151,36 @@
         <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
             <TextBox.Style>
+                <!-- Define the style for TextBox -->
                 <Style TargetType="TextBox">
 
+                    <!-- Set default properties for TextBox -->
                     <Setter Property="Background" Value="#f1f1f2"/>
                     <Setter Property="BorderBrush" Value="#6464f8"/>
                     <Setter Property="Foreground" Value="#6464f8"/>
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
                     <Setter Property="Template">
                         <Setter.Value>
+                            <!-- Control template for TextBox -->
                             <ControlTemplate TargetType="TextBox">
+                                <!-- Border to provide visual representation -->
                                 <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer to provide scrolling capability -->
                                     <ScrollViewer x:Name="PART_ContentHost"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
 
+                    <!-- Define triggers for the TextBox style -->
                     <Style.Triggers>
 
+                        <!-- Trigger for mouse-over effect -->
                         <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
                             <Setter Property="BorderBrush" Value="#8c8cf8"/>
                         </Trigger>
 
@@ -144,6 +188,7 @@
 
                 </Style>
             </TextBox.Style>
+
         </TextBox>
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
             <Button.Style>

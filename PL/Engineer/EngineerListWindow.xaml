@@ -37,44 +37,68 @@
         </Grid>
         <ListView  Grid.Row="1" Margin ="0,48,0,86" ItemsSource="{Binding EngineerList}" Grid.RowSpan="2" MouseDoubleClick="SelectEngineerToUpdate" Background="{x:Null}">
             <ListView.View>
-                <GridView >
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}" >
-                        <GridViewColumn.CellTemplate >
+                <!-- Define the view for ListView -->
+                <GridView>
+                    <!-- Define columns for GridView -->
+
+                    <!-- Column for 'Id' -->
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}">
+                        <!-- Define cell template for 'Id' column -->
+                        <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!-- Display 'Id' value with TextBlock -->
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Id}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <!-- Column for 'Name' -->
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+                        <!-- Define cell template for 'Name' column -->
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!-- Display 'Name' value with TextBlock -->
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Name}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <!-- Column for 'Email' -->
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Path=Email}">
+                        <!-- Define cell template for 'Email' column -->
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!-- Display 'Email' value with TextBlock -->
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Email}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <!-- Column for 'Level' -->
                     <GridViewColumn Header="Level" DisplayMemberBinding="{Binding Path=Level}">
+                        <!-- Define cell template for 'Level' column -->
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!-- Display 'Level' value with TextBlock -->
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Level}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <!-- Column for 'Cost' -->
                     <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}">
+                        <!-- Define cell template for 'Cost' column -->
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!-- Display 'Cost' value with TextBlock -->
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Cost}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
                 </GridView>
             </ListView.View>
+
             <ListView.Resources>
 
 
