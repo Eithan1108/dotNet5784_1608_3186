@@ -26,7 +26,7 @@ namespace PL.Engineer
             InitializeComponent();
             if (id == 0)
             {
-                Engineer = new BO.Engineer { Id = 0, Name = "", Email = "", Level = BO.EngineerExperience.Beginner, Cost = 0 };
+                Engineer = new BO.Engineer { Id = 0, Name = null, Email = null, Level = BO.EngineerExperience.Beginner, Cost = 0 };
                 idIndicator = false;
             }
             else

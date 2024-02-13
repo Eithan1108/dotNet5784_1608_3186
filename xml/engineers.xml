@@ -539,4 +539,18 @@
     <Level>Advanced</Level>
     <Cost>865687</Cost>
   </Engineer>
+  <Engineer>
+    <Id>0</Id>
+    <Name>f</Name>
+    <Email>f</Email>
+    <Level>Beginner</Level>
+    <Cost>90</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>234</Id>
+    <Name />
+    <Email />
+    <Level>Beginner</Level>
+    <Cost>234</Cost>
+  </Engineer>
 </ArrayOfEngineer>

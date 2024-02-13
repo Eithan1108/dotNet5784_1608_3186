@@ -22,7 +22,7 @@ internal class EngineerImplementation : BlApi.IEngineer
     /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public int AddEngineer(BO.Engineer engineer) 
     {
-        if (engineer.Id < 0)
+        if (engineer.Id <= 0 && engineer.Id is int)
             throw new BO.BlBadIdException("id must be positive");
         if (engineer.Name == null)
             throw new BO.BlBadNameException("name must be not null");
