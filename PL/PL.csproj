@@ -15,8 +15,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\engineer-removebg-preview.png" />
+    <None Remove="Images\MainBackground.jpg" />
+    <None Remove="Images\restarticon.jpg" />
+    <None Remove="Images\secondChance-removebg-preview.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\DalTest\DalTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\engineer-removebg-preview.png" />
+    <Resource Include="Images\MainBackground.jpg" />
+    <Resource Include="Images\secondChance-removebg-preview.png" />
   </ItemGroup>
 
 </Project>

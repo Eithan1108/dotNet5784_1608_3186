@@ -5,11 +5,102 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="450" Width="800">
+    <!-- Main grid with a background image -->
     <Grid>
-        <Button Content="Handle engineers" HorizontalAlignment="Center" VerticalAlignment="Top" Height="38" Width="124" Click="btnHandleEngineers" Margin="0,296,0,0"/>
-        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="39,49,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="28" Width="96"/>
-        <!--the engineers button-->
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\MainBackground.jpg"/>
+        </Grid.Background>
 
+        <!-- Button for handling Engineers -->
+        <Button Content="Engineers" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleEngineers" Margin="35,339,0,0">
+            <!-- Button style definition -->
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="\Images\engineer-removebg-preview.png" Width="25" Height="25"/>
+                                    <TextBlock Text="Engineers" Margin="7 4 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background color on mouse-over -->
+                            <Setter Property="Background" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Button for initialization -->
+        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="180,349,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
+            <!-- Button style definition -->
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="C:\Users\eklin\Source\Repos\dotNet5784_1608_3186\PL\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <TextBlock Text="Initial Data" Margin="6 1 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#8484f8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>
