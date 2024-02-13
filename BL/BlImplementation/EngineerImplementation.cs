@@ -31,6 +31,8 @@ internal class EngineerImplementation : BlApi.IEngineer
             throw new BO.BlBadEmailException("email must be not null");
         if (engineer.Cost <= 0)
             throw new BO.BlBadCostException("cost must be positive");
+        if(_dal.Engineer.Read(en => en.Id == engineer.Id) != null)
+            throw new BlAlreadyExistsException($"engineer with ID= {engineer.Id} already exsist");
         
 
         try

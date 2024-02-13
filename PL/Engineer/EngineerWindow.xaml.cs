@@ -66,18 +66,19 @@ namespace PL.Engineer
                 {
                     s_bl.Engineer.AddEngineer(Engineer);
                     MessageBox.Show("Engineer with id " + Engineer.Id +  " successfuly added to the system");
-                    this.Close();
                 }
                 else
                 {
                     s_bl.Engineer.UpdateEngineer(Engineer);
                     MessageBox.Show("Engineer with id " + Engineer.Id + " successfuly updated in the system");
-                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
                 Close();
             }
         }

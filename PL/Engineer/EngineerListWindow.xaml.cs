@@ -35,16 +35,6 @@ namespace PL.Engineer
             RefreshList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) //check what is this button
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e) //check what is this button
-        {
-
-        }
-
         public IEnumerable<BO.Engineer> EngineerList // get list of all engineers
         {
             get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
@@ -72,7 +62,10 @@ namespace PL.Engineer
 
         private void RefreshList()
         {
-            EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
+            //    EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
+            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
+                       : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
+
         }
     }
 
