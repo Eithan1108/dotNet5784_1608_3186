@@ -15,8 +15,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add-user-removebg-preview.png" />
+    <None Remove="Images\AddUpdateEngineerWindowBG.png" />
+    <None Remove="Images\costIcon-removebg-preview.png" />
+    <None Remove="Images\emailicon-removebg-preview.png" />
     <None Remove="Images\engineer-removebg-preview.png" />
+    <None Remove="Images\EngineerListWindowLast.jpg" />
+    <None Remove="Images\EngineerWindowBG.jpg" />
+    <None Remove="Images\EngineerWindowBG.png" />
+    <None Remove="Images\IdIcon.png-removebg-preview.png" />
+    <None Remove="Images\levelIcon-removebg-preview.png" />
     <None Remove="Images\MainBackground.jpg" />
+    <None Remove="Images\nameIcon.png-removebg-preview.png" />
     <None Remove="Images\restarticon.jpg" />
     <None Remove="Images\secondChance-removebg-preview.png" />
   </ItemGroup>
@@ -27,8 +37,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\add-user-removebg-preview.png" />
+    <Resource Include="Images\AddUpdateEngineerWindowBG.png" />
+    <Resource Include="Images\costIcon-removebg-preview.png" />
+    <Resource Include="Images\emailicon-removebg-preview.png" />
     <Resource Include="Images\engineer-removebg-preview.png" />
+    <Resource Include="Images\EngineerListWindowLast.jpg" />
+    <Resource Include="Images\IdIcon.png-removebg-preview.png" />
+    <Resource Include="Images\levelIcon-removebg-preview.png" />
     <Resource Include="Images\MainBackground.jpg" />
+    <Resource Include="Images\nameIcon.png-removebg-preview.png" />
     <Resource Include="Images\secondChance-removebg-preview.png" />
   </ItemGroup>
 

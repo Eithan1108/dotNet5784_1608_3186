@@ -85,7 +85,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="C:\Users\eklin\Source\Repos\dotNet5784_1608_3186\PL\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <Image Source="\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
                                     <TextBlock Text="Initial Data" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>

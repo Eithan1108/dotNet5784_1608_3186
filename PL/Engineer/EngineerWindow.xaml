@@ -5,26 +5,184 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="EngineerWindow" Height="450" Width="800"
+        ResizeMode="NoResize"
+        Title="EngineerWindow" Height="496" Width="351"
         DataContext="{Binding Engineer ,RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
     <Grid>
-        <Label Content="Id:" HorizontalAlignment="Left" Margin="305,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.062,1.216"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="305,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="305,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
-        <Label Content="Level:" HorizontalAlignment="Left" Margin="305,250,0,0" VerticalAlignment="Top"/>
-        <Label Content="Cost:" HorizontalAlignment="Left" Margin="305,303,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="386,111,0,0" TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}"/>
-        <TextBox HorizontalAlignment="Left" Margin="386,159,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="386,204,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="386,252,0,0" VerticalAlignment="Top" Width="120"
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\AddUpdateEngineerWindowBG.png"/>
+        </Grid.Background>
+        <Label Content="Id:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.062,1.216"/>
+        <Label Content="Name:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,102,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
+        <Label Content="Level:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,206,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cost:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,253,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="132,55,0,0" TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}">
+            <TextBox.Style>
+                <Style  TargetType="TextBox">
+
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="132,105,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="132,159,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <ComboBox HorizontalAlignment="Left" Margin="132,211,0,0" VerticalAlignment="Top" Width="154"
                     ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true,
                         ValidatesOnExceptions=true}"/>
-        <TextBox HorizontalAlignment="Left" Margin="386,307,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Center" Margin="0,374,0,0" VerticalAlignment="Top" Height="26" Width="94" Click="OnSaveOrUpdateEngineer"/>
+        <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#b3b3fb"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="19">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,161,0,0" VerticalAlignment="Top" Width="36" Source="\Images\emailicon-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,55,0,0" VerticalAlignment="Top" Width="36" Source="\Images\IdIcon.png-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,105,0,0" VerticalAlignment="Top" Width="36" Source="\Images\nameIcon.png-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,209,0,0" VerticalAlignment="Top" Width="36" Source="\Images\levelIcon-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,256,0,0" VerticalAlignment="Top" Width="36" Source="\Images\costIcon-removebg-preview.png"/>
 
     </Grid>
 </Window>

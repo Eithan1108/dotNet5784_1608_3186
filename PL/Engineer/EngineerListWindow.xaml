@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="EngineerListWindow" Height="640" Width="800"
-        
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
     <!--//external window-->
     <Grid>
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -22,11 +27,126 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label  Grid.Column="0" />
-            <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" 
-                            Grid.ColumnSpan="2" Margin="292,455,292,-483" SelectedValue="{Binding Path=Experience, Mode=TwoWay}" SelectionChanged="OnSelectExperience" />
+
+
+
+            <ComboBox ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" Grid.Column="1" SelectedValue="{Binding Path=Experience, Mode=TwoWay}" SelectionChanged="OnSelectExperience" Margin="0,0,0,-41" >
+            </ComboBox>
+
+
         </Grid>
-        <ListView Grid.Row="1" Margin ="0,5,0,221" ItemsSource="{Binding Path=EngineerList}" Grid.RowSpan="2" MouseDoubleClick="SelectEngineerToUpdate" />
-        <Button Content ="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Margin="0,434,0,47" Click="AddEngineerWindow"/>
+        <ListView  Grid.Row="1" Margin ="0,48,0,86" ItemsSource="{Binding EngineerList}" Grid.RowSpan="2" MouseDoubleClick="SelectEngineerToUpdate" Background="{x:Null}">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}" >
+                        <GridViewColumn.CellTemplate >
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Id}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Name}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Path=Email}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Email}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Level" DisplayMemberBinding="{Binding Path=Level}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Level}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Cost}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+
+
+                <Style TargetType="GridViewColumnHeader" >
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+
+
+                <Style TargetType="ListViewItem" >
+
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderBrush" Value="#DCDCDC"/>
+                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="0,2,0,2" />
+
+                    <Style.Triggers >
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="#F5F5F5"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </ListView.Resources>
+        </ListView>
+
+        <Button Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="AddEngineerWindow">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="\Images\add-user-removebg-preview.png" Width="25" Height="25"/>
+                                    <TextBlock Text="Add Engineer" Margin="7 4 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Label Content="Engineers List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
 
     </Grid>
 </Window>
+    
+    

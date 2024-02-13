@@ -532,4 +532,11 @@
     <Level>Beginner</Level>
     <Cost>550</Cost>
   </Engineer>
+  <Engineer>
+    <Id>8098</Id>
+    <Name />
+    <Email>jhgfjhg</Email>
+    <Level>Advanced</Level>
+    <Cost>865687</Cost>
+  </Engineer>
 </ArrayOfEngineer>
