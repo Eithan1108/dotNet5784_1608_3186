@@ -65,7 +65,6 @@ namespace PL.Engineer
             //    EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
             EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
                        : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
-
         }
     }
 
