@@ -2,6 +2,8 @@
 namespace BlImplementation;
 using BO;
 using System.Linq;
+using System.Net.Mail;
+
 
 /// <summary>
 /// // engineer implementation
@@ -24,15 +26,17 @@ internal class EngineerImplementation : BlApi.IEngineer
     public int AddEngineer(BO.Engineer engineer) 
     {
         if (engineer.Id <= 0 && engineer.Id is int)
-            throw new BO.BlBadIdException("id must be positive");
+            throw new BO.BlBadIdException("Id must be positive");
         if (engineer.Name == null)
-            throw new BO.BlBadNameException("name must be not null");
+            throw new BO.BlBadNameException("Name must be not null");
         if (engineer.Email == null)
-            throw new BO.BlBadEmailException("email must be not null");
+            throw new BO.BlBadEmailException("Email must be not null");
+        if (!IsEmailValid(engineer.Email)) // check if email is valid
+            throw new BlBadEmailException("Email format is not valid");
         if (engineer.Cost <= 0)
-            throw new BO.BlBadCostException("cost must be positive");
+            throw new BO.BlBadCostException("Cost must be positive");
         if(_dal.Engineer.Read(en => en.Id == engineer.Id) != null)
-            throw new BlAlreadyExistsException($"engineer with ID= {engineer.Id} already exsist");
+            throw new BlAlreadyExistsException($"Engineer with ID= {engineer.Id} already exsist");
         
 
         try
@@ -42,7 +46,7 @@ internal class EngineerImplementation : BlApi.IEngineer
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"engineer with ID= {engineer.Id} already exsist");
+            throw new BO.BlAlreadyExistsException($"Engineer with ID= {engineer.Id} already exsist");
         }
     }
 
@@ -117,6 +121,8 @@ internal class EngineerImplementation : BlApi.IEngineer
             throw new BO.BlBadNameException("name must be not null");
         if (engineer.Email == null)
             throw new BO.BlBadEmailException("email must be not null");
+        if (!IsEmailValid(engineer.Email)) // check if email is valid
+            throw new BlBadEmailException("Email format is not valid");
         if (engineer.Cost < 0)
             throw new BO.BlBadCostException("cost must be positive");
         DO.Engineer doEngineer = BoDoAdapter(engineer); // create new DO.Engineer
@@ -213,5 +219,18 @@ internal class EngineerImplementation : BlApi.IEngineer
         BO.Engineer boEngineer = new BO.Engineer { Id = engineer.Id, Name = engineer.Name, Email = engineer.Email, Level = (BO.EngineerExperience)engineer.Level, Cost = engineer.Cost, Task = taskInEngineer }; // create new BO.Engineer
         return boEngineer;
     }
+
+    private static bool IsEmailValid(string email)
+    {
+        try
+        {
+            MailAddress mail = new MailAddress(email);
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    } // check if email is valid in format xxxx@xxxx.xxxx
 
 }

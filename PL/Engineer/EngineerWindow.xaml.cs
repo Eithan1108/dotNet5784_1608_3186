@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace PL.Engineer
 {
@@ -38,7 +39,7 @@ namespace PL.Engineer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Close();
                 }
             }
@@ -65,22 +66,28 @@ namespace PL.Engineer
                 if (!idIndicator)
                 {
                     s_bl.Engineer.AddEngineer(Engineer);
-                    MessageBox.Show("Engineer with id " + Engineer.Id +  " successfuly added to the system");
+                    MessageBox.Show("Engineer with id " + Engineer.Id +  " successfuly added to the system", "Successfuly Add Engineer ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
                     s_bl.Engineer.UpdateEngineer(Engineer);
-                    MessageBox.Show("Engineer with id " + Engineer.Id + " successfuly updated in the system");
+                    MessageBox.Show("Engineer with id " + Engineer.Id + " successfuly updated in the system", "Successfuly Update Engineer ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
                 Close();
             }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

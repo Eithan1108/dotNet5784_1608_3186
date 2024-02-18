@@ -18,8 +18,8 @@
         <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
         <Label Content="Level:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,206,0,0" VerticalAlignment="Top"/>
         <Label Content="Cost:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,253,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="132,55,0,0" TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}">
+        <TextBox HorizontalAlignment="Left" Margin="132,55,0,0"  TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}" PreviewTextInput="NumberValidationTextBox">
             <TextBox.Style>
                 <!-- TextBox Style -->
                 <Style TargetType="TextBox">
@@ -149,7 +149,7 @@
                     ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true,
                         ValidatesOnExceptions=true}"/>
         <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" PreviewTextInput="NumberValidationTextBox">
             <TextBox.Style>
                 <!-- Define the style for TextBox -->
                 <Style TargetType="TextBox">
