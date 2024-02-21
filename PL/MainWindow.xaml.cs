@@ -38,7 +38,7 @@ namespace PL
 
         private void btnInitialization(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show( GetWindow(this), "Are you sure you want to initialize the system?", "Initialization", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show( GetWindow(this), "Are you sure you want to initialize the system?", "Data Initialization", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 try
