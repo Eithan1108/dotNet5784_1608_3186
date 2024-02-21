@@ -31,8 +31,6 @@ internal class TaskImplementation : BlApi.ITask
         if (doTask is null)
             throw new BO.BlDoesNotExistException($"Task with ID = {id} does not exsist");
 
-
-
         BO.Task boTask = DoBoAdapter(doTask); // create new BO.Task
 
         if (boTask.ScheduledDate != DateTime.MinValue)
@@ -104,7 +102,6 @@ internal class TaskImplementation : BlApi.ITask
         {
             throw new BO.BlAlreadyExistsException($"student with ID= {task.Id} does not exsist");
         }
-
     }
 
     /// <summary>
@@ -115,22 +112,6 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public void DeleteTask(int id)
     {
-        //if (_dal.Task.Read(id) == null)
-        //    throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exsist");
-
-        //var dependent = from d in _dal.Dependence.ReadAll()
-        //                where d.DependsOnTask == id
-        //                select d;
-        //if (dependent.FirstOrDefault() != null)
-        //    throw new BO.BlAlreadyExistsException($"Task with ID= {id} already has dependent task {dependent.FirstOrDefault()!.DependentTask}");
-
-        //foreach (var d in _dal.Dependence.ReadAll())
-        //{
-        //    if (d.DependentTask == id)
-        //        _dal.Dependence.Delete(d.Id);
-        //}
-
-        //_dal.Task.Delete(id); // delete task from the system
         if (_dal.Task.Read(id) == null)
         {
             throw new BO.BlDoesNotExistException($"Task with ID= {id} does not exist");
@@ -174,14 +155,12 @@ internal class TaskImplementation : BlApi.ITask
         {
             return from item in _dal.Task.ReadAll()
                    select DoBoAdapter(item); // create new BO.Task
-
         }
         else
         {
             return from item in _dal.Task.ReadAll()
                    where filter(DoBoAdapter(item))
                    select DoBoAdapter(item); // create new BO.Task
-
         }
     }
 
@@ -193,8 +172,6 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlBadIdException"></exception>
     public void UpdateTask(BO.Task task)
     {
-
-
         if(task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
         if (task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
@@ -212,9 +189,7 @@ internal class TaskImplementation : BlApi.ITask
         {
             throw new BO.BlBadIdException("student with ID = {id} does not exsist");
         }
-
     }
-
     /// <summary>
     /// // adapter from BO to DO
     /// </summary>

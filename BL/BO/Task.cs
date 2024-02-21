@@ -7,12 +7,12 @@ namespace BO;
 public class Task // comments and bounos
 {
     public int Id { get; init; }
-    public string Description { get; set; }
-    public string Alias { get; set; }
+    public string Description { get; set; } //
+    public string Alias { get; set; } //
     public DateTime CreatedAtDate { get; init; }
     public BO.Status? Status { get; set; }
-    public IEnumerable<BO.TaskInList>? Dependencies { get; set; }
-    public TimeSpan? RequiredEffortTime { get; set; }
+    public IEnumerable<BO.TaskInList>? Dependencies { get; set; } //
+    public TimeSpan? RequiredEffortTime { get; set; } //
     public DateTime? StartDate { get; set; }
     public DateTime? ScheduledDate { get; set; }
     public DateTime? ForecastDate 

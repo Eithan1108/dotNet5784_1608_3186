@@ -60,7 +60,7 @@
         </Button>
 
         <!-- Button for initialization -->
-        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="180,349,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="180,349,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="Button">
@@ -87,7 +87,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
-                                    <TextBlock Text="Initial Data" Margin="6 1 0 0"/>
+                                    <TextBlock Text="Manager" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </Setter.Value>

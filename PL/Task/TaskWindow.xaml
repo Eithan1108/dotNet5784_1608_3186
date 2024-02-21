@@ -1,0 +1,334 @@
+﻿<Window x:Class="PL.Task.TaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Task"
+        mc:Ignorable="d"
+         ResizeMode="NoResize"
+        Title="TaskWindow" Height="700" Width="600"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="127*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\AddUpdateEngineerWindowBG.png"/>
+        </Grid.Background>
+        <Label Content="Id:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.062,1.216"/>
+        <Label Content="Name:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,102,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
+        <Label Content="Level:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,206,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cost:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,253,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="132,57,0,0"  TextWrapping="Wrap" Text= "{Binding Task.Id, Mode=TwoWay, NotifyOnValidationError=true,
+                ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" IsEnabled="False">
+            <TextBox.Style>
+                <!-- TextBox Style -->
+                <Style TargetType="TextBox">
+
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Template to customize TextBox visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <!-- Border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer for TextBox content -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- MouseOver Trigger -->
+                    <Style.Triggers>
+                        <!-- Change border brush color on mouse-over -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="132,105,0,0" TextWrapping="Wrap" Text="{Binding Task.Description, Mode=TwoWay, NotifyOnValidationError=true,
+                ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+            <TextBox.Style>
+                <!-- TextBox Style -->
+                <Style TargetType="TextBox">
+
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Template to customize TextBox visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <!-- Border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer for TextBox content -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- MouseOver Trigger -->
+                    <Style.Triggers>
+                        <!-- Change border brush color on mouse-over -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="132,156,0,0" TextWrapping="Wrap" Text="{Binding Task.Status, Mode=TwoWay, NotifyOnValidationError=true,
+                ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Top" Width="154" Height="26">
+            <TextBox.Style>
+                <!-- Define style for TextBox -->
+                <Style TargetType="TextBox">
+
+                    <!-- Set default properties for TextBox -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <!-- Create a border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- Use a ScrollViewer for TextBox content -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Define triggers for the TextBox style -->
+                    <Style.Triggers>
+
+                        <!-- Trigger for mouse-over effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+
+
+        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="132,206,0,0" VerticalAlignment="Top" Width="154"
+                ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"  Height="29">
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="0">
+                                    <Grid>
+                                        <ToggleButton
+                                Name="ToggleButton"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                Focusable="False"
+                                            
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press">
+                                            <Path Name="Arrow"
+                                      Fill="#6464f8"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" Stretch="Fill" Margin="125,12,14,8"/>
+                                        </ToggleButton>
+                                        <ContentPresenter Name="ContentSite"
+                                              Margin="6,0,0,0"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                                          
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              IsHitTestVisible="False"/>
+                                        <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                               
+                                   PopupAnimation="Slide">
+                                            <Grid Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                                  
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                <Border x:Name="DropDownBorder"
+                                            Background="#f1f1f2"
+                                            BorderThickness="1"
+                                            BorderBrush="#6464f8"/>
+                                                <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                                    <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </Popup>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="Arrow" Property="Fill" Value="#999999"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="BorderBrush" Value="#6464f8"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#D2E2F9"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+
+
+
+
+
+
+
+
+        <TextBox HorizontalAlignment="Left" Margin="132,253,0,0" TextWrapping="Wrap" Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true,
+                ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" >
+            <TextBox.Style>
+                <!-- Define the style for TextBox -->
+                <Style TargetType="TextBox">
+
+                    <!-- Set default properties for TextBox -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <!-- Control template for TextBox -->
+                            <ControlTemplate TargetType="TextBox">
+                                <!-- Border to provide visual representation -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer to provide scrolling capability -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Define triggers for the TextBox style -->
+                    <Style.Triggers>
+
+                        <!-- Trigger for mouse-over effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,61,0,0" VerticalAlignment="Top" Height="43" Width="106"  Grid.Row="1">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,161,0,0" VerticalAlignment="Top" Width="36" Source="\Images\emailicon-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,55,0,0" VerticalAlignment="Top" Width="36" Source="\Images\IdIcon.png-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,105,0,0" VerticalAlignment="Top" Width="36" Source="\Images\nameIcon.png-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,209,0,0" VerticalAlignment="Top" Width="36" Source="\Images\levelIcon-removebg-preview.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="33,256,0,0" VerticalAlignment="Top" Width="36" Source="\Images\costIcon-removebg-preview.png"/>
+        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="313,60,101,121" SelectionMode="Multiple" >
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate>
+                    <CheckBox Content="{Binding Alias}" Tag="{Binding Id}" Checked="CheckBox_Checked" ></CheckBox>
+                </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
