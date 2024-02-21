@@ -28,16 +28,17 @@ internal class Program
         int mainChoices;
         bool flagStarted = false;
         bool flagScheduleExsist = false; // flag to check if the schedule exsist
-        if (s_bl.Looz.GetStartDate() != DateTime.MinValue&& s_bl.Looz.GetStartDate!=null)
+        var x = s_bl.Looz.GetStartDate();
+        if (x != DateTime.MinValue && x != null)
             flagScheduleExsist = true;
-        if (  s_bl.Looz.GetStartDate() < DateTime.Now)
+        if (x != null && x < DateTime.Now)
         {
             mainChoices = 0;
             flagStarted = true;
         }
         else
         {
-            if(flagScheduleExsist)
+            if (flagScheduleExsist)
             {
                 Console.WriteLine("The project has already scheduled, you can only create the dates");
                 mainChoices = 0; // if the schedule exsist the user can only create the dates
@@ -46,7 +47,7 @@ internal class Program
             {
                 mainChoices = menu();
             }
-    
+
         }
 
         while (mainChoices != 0)
@@ -180,7 +181,8 @@ internal class Program
         }
 
 
-        if (!flagStarted) {
+        if (!flagStarted)
+        {
             try
             {
                 createSchedule();
@@ -207,21 +209,21 @@ internal class Program
     private static void initializationDataOffer()
     {
 
-            Console.Write("Would you like to create Initial data? (Y/N)");
-            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
-            if (ans == "Y" || ans == "y")
-            {
-                Console.WriteLine("Loading...");
-                // clear data
-                reSetXmlData();
-                // initialize data
-                Initialization.Do();
-            }
+        Console.Write("Would you like to create Initial data? (Y/N)");
+        string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+        if (ans == "Y" || ans == "y")
+        {
+            Console.WriteLine("Loading...");
+            // clear data
+            reSetXmlData();
+            // initialize data
+            Initialization.Do();
+        }
     }
     /// <summary>
     /// // reset xml data
     /// </summary>
-    
+
     private static void resetDataOffer()
     {
         Console.Write("Would you like to reset the data? (Y/N)");
@@ -231,7 +233,7 @@ internal class Program
             Console.WriteLine("Loading...");
             reSetXmlData();
         }
-            initializationDataOffer();
+        initializationDataOffer();
     }
     public static void reSetXmlData()
     {
@@ -320,8 +322,21 @@ internal class Program
     } // create schedule
     private static void createScheduleManually()
     {
+        bool dateFlag = true;
+        DateTime startDate;
         Console.WriteLine("Enter the date you want to start the schedule (dd/mm/yyyy): ");
-        DateTime startDate = DateTime.Parse(Console.ReadLine()!);
+        do
+        {
+            startDate = DateTime.Parse(Console.ReadLine()!);
+            if (startDate < DateTime.Now)
+            {
+                dateFlag = false;
+                Console.WriteLine("Cant schedule date before current date");
+            }
+        } while (!dateFlag);
+
+
+        s_bl.Looz.SetStartDate(startDate);
 
 
         while ((s_bl.Task.GetTasksList(t => t.ScheduledDate == DateTime.MinValue).Count()) > 0)
@@ -706,7 +721,7 @@ internal class Program
             {
                 if (ans == "Y" || ans == "y")
                 {
-                    Console.WriteLine("Would ypi like to pair engineer to task or task to engineer? (0 - engineer for task, 1 - task for engineer)");
+                    Console.WriteLine("Would you like to pair engineer to task or task to engineer? (0 - engineer for task, 1 - task for engineer)");
                     string? ans2 = Console.ReadLine();
                     if (ans2 == "0")
                     {
