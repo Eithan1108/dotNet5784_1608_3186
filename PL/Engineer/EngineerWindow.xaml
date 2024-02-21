@@ -104,8 +104,8 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="132,159,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+        <TextBox HorizontalAlignment="Left" Margin="132,161,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">
@@ -145,9 +145,103 @@
             </TextBox.Style>
 
         </TextBox>
-        <ComboBox HorizontalAlignment="Left" Margin="132,211,0,0" VerticalAlignment="Top" Width="154"
+
+
+
+
+
+        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="132,211,0,0" VerticalAlignment="Top" Width="154"
                     ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true,
-                        ValidatesOnExceptions=true}"/>
+                        ValidatesOnExceptions=true}" Height="29">
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="0">
+                                    <Grid>
+                                        <ToggleButton
+                                    Name="ToggleButton"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0"
+                                    Focusable="False"
+                                                
+                                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ClickMode="Press">
+                                            <Path Name="Arrow"
+                                          Fill="#6464f8"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" Stretch="Fill" Margin="125,12,14,8"/>
+                                        </ToggleButton>
+                                        <ContentPresenter Name="ContentSite"
+                                                  Margin="6,0,0,0"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                              
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                  IsHitTestVisible="False"/>
+                                        <Popup Name="Popup"
+                                       Placement="Bottom"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       AllowsTransparency="True"
+                                       Focusable="False"
+                                                   
+                                       PopupAnimation="Slide">
+                                            <Grid Name="DropDown"
+                                          SnapsToDevicePixels="True"
+                                                      
+                                          MinWidth="{TemplateBinding ActualWidth}"
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                <Border x:Name="DropDownBorder"
+                                                Background="#f1f1f2"
+                                                BorderThickness="1"
+                                                BorderBrush="#6464f8"/>
+                                                <ScrollViewer Margin="4,6,4,6"
+                                                      SnapsToDevicePixels="True">
+                                                    <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </Popup>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="Arrow" Property="Fill" Value="#999999"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="BorderBrush" Value="#6464f8"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#D2E2F9"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+
+
+
+
+
+
+
+
         <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" PreviewTextInput="NumberValidationTextBox">
             <TextBox.Style>
@@ -195,7 +289,7 @@
                 <Style TargetType="Button">
                     <!-- Default button appearance -->
                     <Setter Property="Background" Value="#6464f8"/>
-                    <Setter Property="BorderBrush" Value="#b3b3fb"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
                     <Setter Property="BorderThickness" Value="2"/>
                     <Setter Property="Padding" Value="4"/>
                     <Setter Property="Foreground" Value="White"/>
@@ -205,7 +299,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
                                 <!-- Border with rounded corners -->
-                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="19">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
                                     <!-- ContentPresenter for button content -->
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
