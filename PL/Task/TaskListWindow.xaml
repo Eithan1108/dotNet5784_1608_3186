@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Task"
         mc:Ignorable="d"
          ResizeMode="NoResize"
-        Title="EngineerListWindow" Height="640" Width="800"
+        Title="TaskListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
      <!--//external window-->
  <Grid>
@@ -114,7 +114,7 @@
          </ListView>
      </Border>
 
-     <Button Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
+     <Button Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
          <Button.Style>
              <Style TargetType="Button">
                  <!-- Default button appearance -->
@@ -140,7 +140,7 @@
                          <DataTemplate>
                              <StackPanel Orientation="Horizontal">
                                  <Image Source="\Images\add-user-removebg-preview.png" Width="25" Height="25"/>
-                                 <TextBlock Text="Add Engineer" Margin="7 4 0 0"/>
+                                 <TextBlock Text="Add Task" Margin="7 4 0 0"/>
                              </StackPanel>
                          </DataTemplate>
                      </Setter.Value>
