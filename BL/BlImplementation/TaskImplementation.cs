@@ -81,8 +81,21 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public int AddTask(BO.Task task)
     {
-        if (task.Alias == null)
+        if (task.Description == "")
+            throw new BO.BlBadTaskDescreptionException("Description must contain words");
+
+        if (task.Alias == "")
             throw new BO.BlBadAliasException("alias must be not null");
+
+        if (task.RequiredEffortTime == null)
+            throw new BO.BlBadAliasException("Required Effort Time must be not null");
+
+        if (task.Deliverables == "")
+            throw new BO.BlBadAliasException("Deliverables must contain words");
+
+
+        if (task.Remarks == "")
+            throw new BO.BlBadRemarksException("Remarks must contain words");
 
         try
         {

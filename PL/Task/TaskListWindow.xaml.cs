@@ -39,11 +39,19 @@ namespace PL.Task
 
         private void btnAddUpdate(object sender, RoutedEventArgs e)
         {
-            new TaskWindow().Show();
+            new TaskWindow().ShowDialog();
+            RefreshList();
         }
         private IEnumerable<BO.TaskInList> TaskToTaskInListConverter(IEnumerable<BO.Task> tasks)
         {
             return tasks.Select(t => new BO.TaskInList { Id = t.Id, Description = t.Description, Alias = t.Alias, Status = t.Status });
+        }
+
+        private void RefreshList()
+        {
+            TaskList = TaskToTaskInListConverter(s_bl.Task.GetTasksList(null!)); // get list of all engineers
+            //EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
+            //           : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
         }
     }
     

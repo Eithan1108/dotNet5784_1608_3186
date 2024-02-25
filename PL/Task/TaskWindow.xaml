@@ -18,65 +18,18 @@
             <!-- Setting the background using an ImageBrush -->
             <ImageBrush ImageSource="\Images\AddUpdateEngineerWindowBG.png"/>
         </Grid.Background>
-        <Label Content="Id:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,22,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.062,1.216"/>
         <Label Content="Descreption:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top"/>
-        <Label Content="Status:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="116,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.891,5.212"/>
-        <Label Content="Dependencies:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="124,185,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Alias:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="116,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.397,0.491"/>
-        <Label Content="Required effort time::" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="55,191,0,0" VerticalAlignment="Top"/>
-        <Label Content="Start date:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="123,245,0,0" VerticalAlignment="Top"/>
-        <Label Content="Scheduale date:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,299,0,0" VerticalAlignment="Top"/>
-        <Label Content="DeadLine date:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="116,346,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label Content="Deliverebels:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="124,11,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Remarks:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="133,48,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Complexity:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="138,105,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Dependencies:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,106,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Alias:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.397,0.491"/>
+        <Label Content="Required effort time:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,191,0,0" VerticalAlignment="Top"/>
+        <Label Content="Deliverebels:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,265,0,0" VerticalAlignment="Top"/>
+        <Label Content="Remarks:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,331,0,0" VerticalAlignment="Top"/>
+        <Label Content="Complexity:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,32,0,0" VerticalAlignment="Top" Grid.Row="1"/>
 
 
 
-        <TextBox HorizontalAlignment="Left" Margin="255,22,0,0"  TextWrapping="Wrap" Text= "{Binding Task.Id, Mode=TwoWay, NotifyOnValidationError=true,
-                ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" IsEnabled="False">
-            <TextBox.Style>
-                <!-- TextBox Style -->
-                <Style TargetType="TextBox">
 
-                    <!-- Default TextBox properties -->
-                    <!-- Set background color -->
-                    <Setter Property="Background" Value="#f1f1f2"/>
-                    <!-- Set border brush color -->
-                    <Setter Property="BorderBrush" Value="#6464f8"/>
-                    <!-- Set foreground color -->
-                    <Setter Property="Foreground" Value="#6464f8"/>
-                    <!-- Set border thickness -->
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <!-- Set padding -->
-                    <Setter Property="Padding" Value="4"/>
-
-                    <!-- Template to customize TextBox visuals -->
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TextBox">
-                                <!-- Border with rounded corners -->
-                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                    <!-- ScrollViewer for TextBox content -->
-                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-
-                    <!-- MouseOver Trigger -->
-                    <Style.Triggers>
-                        <!-- Change border brush color on mouse-over -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
-                        </Trigger>
-                    </Style.Triggers>
-
-                </Style>
-            </TextBox.Style>
-
-        </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="255,58,0,0" TextWrapping="Wrap" Text="{Binding Task.Description, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="265,54,0,0" TextWrapping="Wrap" Text="{Binding Task.Description, Mode=TwoWay, NotifyOnValidationError=true,
                 ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
             <TextBox.Style>
                 <!-- TextBox Style -->
@@ -119,50 +72,10 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="255,150,0,0" TextWrapping="Wrap" Text="{Binding Task.Status, Mode=TwoWay, NotifyOnValidationError=true,
-                ValidatesOnExceptions=true}" IsReadOnly="True"  VerticalAlignment="Top" Width="154" Height="26">
-            <TextBox.Style>
-                <!-- Define style for TextBox -->
-                <Style TargetType="TextBox">
-
-                    <!-- Set default properties for TextBox -->
-                    <Setter Property="Background" Value="#f1f1f2"/>
-                    <Setter Property="BorderBrush" Value="#6464f8"/>
-                    <Setter Property="Foreground" Value="#6464f8"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="Padding" Value="4"/>
-
-                    <!-- Define the template for TextBox -->
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TextBox">
-                                <!-- Create a border with rounded corners -->
-                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                    <!-- Use a ScrollViewer for TextBox content -->
-                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-
-                    <!-- Define triggers for the TextBox style -->
-                    <Style.Triggers>
-
-                        <!-- Trigger for mouse-over effect -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <!-- Change border brush color on mouse-over -->
-                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
-                        </Trigger>
-
-                    </Style.Triggers>
-
-                </Style>
-            </TextBox.Style>
-
-        </TextBox>
 
 
-        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="255,105,0,0" VerticalAlignment="Top" Width="154"
+
+        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="259,34,0,0" VerticalAlignment="Top" Width="154"
                 ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"  Height="29" Grid.Row="1">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
@@ -246,7 +159,7 @@
             </ComboBox.Style>
         </ComboBox>
 
-        <TextBox HorizontalAlignment="Left" Margin="255,102,0,0" TextWrapping="Wrap" Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="265,120,0,0" TextWrapping="Wrap" Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true,
                 ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" >
             <TextBox.Style>
                 <!-- Define the style for TextBox -->
@@ -288,7 +201,8 @@
             </TextBox.Style>
 
         </TextBox>
-        <Button Content= "{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Center" Margin="0,369,0,0" VerticalAlignment="Top" Height="43" Width="106"  Grid.Row="1">
+
+        <Button Content="{Binding Idx, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="456,143,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateTask">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->
@@ -322,7 +236,7 @@
             </Button.Style>
         </Button>
 
-        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="251,146,108,166" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" >
+        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" >
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -340,8 +254,10 @@
 
 
 
-        <TextBox HorizontalAlignment="Left" Margin="255,196,0,0" TextWrapping="Wrap" Text="{Binding Task.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,
-         ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26" RenderTransformOrigin="0.751,0.591">
+
+
+        <TextBox HorizontalAlignment="Left" Margin="265,270,0,0" TextWrapping="Wrap" Text="{Binding Task.Deliverables, Mode=TwoWay, NotifyOnValidationError=true,
+            ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">
@@ -384,26 +300,8 @@
         </TextBox>
 
 
-
-        <DatePicker HorizontalAlignment="Left" Margin="255,254,0,0"  Text="{Binding Task.StartDate, Mode=TwoWay, NotifyOnValidationError=true,
-            ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
-
-
-
-        </DatePicker>
-
-        <DatePicker HorizontalAlignment="Left" Margin="255,302,0,0"  Text="{Binding Task.ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,
-            ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
-
-
-
-        </DatePicker>
-
-        <DatePicker HorizontalAlignment="Left" Margin="255,346,0,0"  Text="{Binding Task.DeadLineDate, Mode=TwoWay, NotifyOnValidationError=true,
-            ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26"/>
-
-        <TextBox HorizontalAlignment="Left" Margin="255,16,0,0" TextWrapping="Wrap" Text="{Binding Task.Deliverables, Mode=TwoWay, NotifyOnValidationError=true,
-            ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26" Grid.Row="1">
+        <TextBox HorizontalAlignment="Left" Margin="265,336,0,0" TextWrapping="Wrap" Text="{Binding Task.Remarks, Mode=TwoWay, NotifyOnValidationError=true,
+    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">
@@ -444,48 +342,46 @@
 
 
         </TextBox>
-
-
-        <TextBox HorizontalAlignment="Left" Margin="255,57,0,0" TextWrapping="Wrap" Text="{Binding Task.Remarks, Mode=TwoWay, NotifyOnValidationError=true,
-    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26" Grid.Row="1">
+        <TextBox HorizontalAlignment="Left" Margin="332,196,0,0" TextWrapping="Wrap" Text="{Binding Task.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="52" Height="26">
             <TextBox.Style>
-                <!-- Define style for TextBox -->
-                <Style TargetType="TextBox">
+                <!-- TextBox Style -->
+                <Style TargetType="{x:Type TextBox}">
 
-                    <!-- Set default properties for TextBox -->
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
                     <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
                     <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
                     <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
                     <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
                     <Setter Property="Padding" Value="4"/>
 
-                    <!-- Define the template for TextBox -->
+                    <!-- Template to customize TextBox visuals -->
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="TextBox">
-                                <!-- Create a border with rounded corners -->
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <!-- Border with rounded corners -->
                                 <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                    <!-- Use a ScrollViewer for TextBox content -->
+                                    <!-- ScrollViewer for TextBox content -->
                                     <ScrollViewer x:Name="PART_ContentHost"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
 
-                    <!-- Define triggers for the TextBox style -->
+                    <!-- MouseOver Trigger -->
                     <Style.Triggers>
-
-                        <!-- Trigger for mouse-over effect -->
+                        <!-- Change border brush color on mouse-over -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <!-- Change border brush color on mouse-over -->
                             <Setter Property="BorderBrush" Value="#8c8cf8"/>
                         </Trigger>
-
                     </Style.Triggers>
 
                 </Style>
             </TextBox.Style>
-
 
         </TextBox>
 

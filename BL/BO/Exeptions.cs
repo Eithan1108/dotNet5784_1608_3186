@@ -116,4 +116,32 @@
         /// <param name="message"></param>
         public BlBadLevelException(string? message) : base(message) { }
     }
+
+    [Serializable]
+    public class BlBadTaskDescreptionException : Exception
+    {
+        /// <summary>
+        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        ///               /// </summary>
+        ///                      /// <param name="message"></param>
+        ///                             public BlBadTaskIdException(string? message) : base(message) { }
+        ///                                }
+        public BlBadTaskDescreptionException(string? message) : base(message) { }
+    }
+
+    [Serializable]
+    public class BlBadRemarksException : Exception
+    {
+        /// <summary>
+        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        ///               /// </summary>
+        ///                      /// <param name="message"></param>
+        ///                             public BlBadTaskIdException(string? message) : base(message) { }
+   
+       
+        public BlBadRemarksException(string? message) : base(message) { }
+    }
+
+
+
 }
