@@ -76,7 +76,8 @@
 
 
         <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="259,34,0,0" VerticalAlignment="Top" Width="154"
-                ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"  Height="29" Grid.Row="1">
+                ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Task.Complexity, Mode=TwoWay, NotifyOnValidationError=true,
+                        ValidatesOnExceptions=true}" Height="29" Grid.Row="1">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
                     <Setter Property="Background" Value="#f1f1f2"/>
@@ -236,7 +237,7 @@
             </Button.Style>
         </Button>
 
-        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" >
+        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" SelectionChanged="ListBox_SelectionChanged" >
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -247,7 +248,7 @@
             </ListBox.RenderTransform>
             <ListBox.ItemTemplate>
                 <HierarchicalDataTemplate>
-                    <CheckBox Content="{Binding Alias}" Tag="{Binding Id}" Checked="CheckBox_Checked" ></CheckBox>
+                    <CheckBox Content="{Binding Id}" Tag="{Binding Id}" Checked="AddToDependency" Unchecked="RemoveFromDependencyList" ></CheckBox>
                 </HierarchicalDataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

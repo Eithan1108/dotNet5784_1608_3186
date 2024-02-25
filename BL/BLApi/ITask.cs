@@ -13,4 +13,5 @@ public interface ITask
     public void DeleteTask(int id); // delete task from the system
     public void UpdateTask(BO.Task task); // update task in the system
     public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate); // add or update scheduale date time
+    public IEnumerable<BO.TaskInList> TaskToTaskInListConverter(IEnumerable<BO.Task> tasks);
 }

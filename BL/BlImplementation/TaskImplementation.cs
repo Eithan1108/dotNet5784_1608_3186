@@ -177,6 +177,12 @@ internal class TaskImplementation : BlApi.ITask
         }
     }
 
+    public IEnumerable<BO.TaskInList> TaskToTaskInListConverter(IEnumerable<BO.Task> tasks) // convert from Task to TaskInList
+    {
+        return tasks.Select(t => new BO.TaskInList { Id = t.Id, Description = t.Description, Alias = t.Alias, Status = t.Status });
+    }
+
+
     /// <summary>
     /// // update task in the system
     /// </summary>
@@ -185,9 +191,9 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlBadIdException"></exception>
     public void UpdateTask(BO.Task task)
     {
-        if(task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
+        if(task.Engineer != null && task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
-        if (task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
+        if (task.Engineer != null && task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
             throw new BO.BlBadIdException("Id must be not null");
        
 
@@ -266,11 +272,11 @@ internal class TaskImplementation : BlApi.ITask
         }
 
 
-        if (boTask.ScheduledDate != null && task.StartDate == null)
+        if (boTask.ScheduledDate != DateTime.MinValue && boTask.ScheduledDate != null &&( boTask.StartDate == null || boTask.StartDate==DateTime.MinValue))
             boTask.Status = Status.Scheduled;
-        else if (boTask.StartDate != null && task.CompleteDate == null)
+        else if (boTask.StartDate != null && boTask.StartDate != DateTime.MinValue && (boTask.CompleteDate == null ||boTask.CompleteDate==DateTime.MinValue))
             boTask.Status = Status.OnTrack;
-        else if (boTask.CompleteDate != null)
+        else if (boTask.CompleteDate != null && boTask.CompleteDate!=DateTime.MinValue)
             boTask.Status = Status.Done;
         else
             boTask.Status = Status.Unsheduled;
@@ -305,5 +311,6 @@ internal class TaskImplementation : BlApi.ITask
         boTask.Dependencies = dependencies;
         return boTask;
     }
+
 }
 

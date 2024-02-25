@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace PL.Task
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
         private bool idIndicator;
+        private IEnumerable<BO.Task> dependenceList;
+
 
         public TaskWindow(int id = 0)
         {
@@ -28,7 +31,7 @@ namespace PL.Task
             InitializeComponent();
             if (id == 0)
             {
-                Task = new BO.Task { Id = 0, Description = "", Alias = "", Dependencies = null, RequiredEffortTime = null, Deliverables = "", Remarks = "", Complexity = BO.EngineerExperience.Beginner };
+                Task = new BO.Task { Id = 0, Description = "", Alias = "", Dependencies = s_bl.Task.TaskToTaskInListConverter(dependenceList!), RequiredEffortTime = null, Deliverables = "", Remarks = "", Complexity = BO.EngineerExperience.Beginner};
                 idIndicator = false;
                 try
                 {
@@ -84,10 +87,7 @@ namespace PL.Task
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.Task>), typeof(TaskWindow), new PropertyMetadata(null));
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         public DateTime SelectedDate
         {
@@ -121,6 +121,23 @@ namespace PL.Task
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void AddToDependency(object sender, RoutedEventArgs e)
+        {
+            // dependenceList.Append(s_bl.Task.GetTask(Tag));
+            
+            
+        }
+        
+        private void RemoveFromDependencyList(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

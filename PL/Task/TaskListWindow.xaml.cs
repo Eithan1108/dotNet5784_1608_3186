@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Engineer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace PL.Task
         public TaskListWindow()
         {
             InitializeComponent();
-            TaskList = TaskToTaskInListConverter(s_bl.Task.GetTasksList(null!)); // get list of all tasks //check if null is ok
+            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)); // get list of all tasks //check if null is ok
         }
 
         public IEnumerable<BO.TaskInList> TaskList // get list of all tasks
@@ -42,16 +43,21 @@ namespace PL.Task
             new TaskWindow().ShowDialog();
             RefreshList();
         }
-        private IEnumerable<BO.TaskInList> TaskToTaskInListConverter(IEnumerable<BO.Task> tasks)
-        {
-            return tasks.Select(t => new BO.TaskInList { Id = t.Id, Description = t.Description, Alias = t.Alias, Status = t.Status });
-        }
+        
 
         private void RefreshList()
         {
-            TaskList = TaskToTaskInListConverter(s_bl.Task.GetTasksList(null!)); // get list of all engineers
+            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null));
             //EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
             //           : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
+        }
+
+        private void SelectToUpdate(object sender, MouseButtonEventArgs e)
+        {
+            BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
+            //int id = task!.Id; // convert from int? to int
+            new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
+            RefreshList();
         }
     }
     
