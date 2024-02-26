@@ -237,7 +237,43 @@
             </Button.Style>
         </Button>
 
-        <ListBox ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" SelectionChanged="ListBox_SelectionChanged" >
+
+        <Button Content="Set Engineer" HorizontalAlignment="Left" Margin="456,225,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="SetEngineer">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        
+        <ListBox  ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" SelectionChanged="ListBox_SelectionChanged" >
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -248,7 +284,7 @@
             </ListBox.RenderTransform>
             <ListBox.ItemTemplate>
                 <HierarchicalDataTemplate>
-                    <CheckBox Content="{Binding Id}" Tag="{Binding Id}" Checked="AddToDependency" Unchecked="RemoveFromDependencyList" ></CheckBox>
+                    <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Id}" Tag="{Binding Id}" Checked="AddToDependency" Unchecked="RemoveFromDependencyList" ></CheckBox>
                 </HierarchicalDataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

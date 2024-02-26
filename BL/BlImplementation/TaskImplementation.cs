@@ -202,7 +202,24 @@ internal class TaskImplementation : BlApi.ITask
 
         try
         {
+           
+
+            foreach (var d in _dal.Dependence.ReadAll())
+            {
+                if (d.DependentTask == task.Id)
+                    _dal.Dependence.Delete(d.Id);
+            }
+
+
             _dal.Task.Update(BoDoAdapter(task)); // update task in the system
+
+            var dependencies = task.Dependencies ?? new List<BO.TaskInList>(); // Handle null reference
+            dependencies.Select(d =>
+            {
+                _dal.Dependence.Create(new DO.Dependence { DependentTask = task.Id, DependsOnTask = d.Id });
+                return true; // Return value is irrelevant, just to satisfy LINQ syntax
+            }).ToList(); // Execute LINQ query by converting it to a list
+
         }
         catch (BlBadIdException ex)
         {
