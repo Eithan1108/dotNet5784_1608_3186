@@ -143,5 +143,18 @@
     }
 
 
+    [Serializable]
+    public class BlNotExistsException : Exception
+    {
+        /// <summary>
+        ///        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        ///               ///               /// </summary>
+        ///                      ///                      /// <param name="message"></param>
+        ///                             ///                             public BlBadTaskIdException(string? message) : base(message) { }
+        ///                                    ///                                }
+        ///                                           public BlBadTaskIdException(string? message) : base(message) { }
+
+        public BlNotExistsException(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
+    }
 
 }

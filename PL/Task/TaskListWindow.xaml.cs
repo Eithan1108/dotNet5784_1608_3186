@@ -55,9 +55,12 @@ namespace PL.Task
         private void SelectToUpdate(object sender, MouseButtonEventArgs e)
         {
             BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
-            //int id = task!.Id; // convert from int? to int
-            new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
-            RefreshList();
+            if (task != null)
+            {
+                //int id = task!.Id; // convert from int? to int
+                new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
+                RefreshList();
+            }
         }
     }
     

@@ -19,12 +19,12 @@
             <ImageBrush ImageSource="\Images\AddUpdateEngineerWindowBG.png"/>
         </Grid.Background>
         <Label Content="Descreption:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,49,0,0" VerticalAlignment="Top"/>
-        <Label Content="Dependencies:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,106,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Alias:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.397,0.491"/>
-        <Label Content="Required effort time:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,191,0,0" VerticalAlignment="Top"/>
-        <Label Content="Deliverebels:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,265,0,0" VerticalAlignment="Top"/>
-        <Label Content="Remarks:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,331,0,0" VerticalAlignment="Top"/>
-        <Label Content="Complexity:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,32,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Dependencies:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,331,0,0" VerticalAlignment="Top"/>
+        <Label Content="Alias:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.397,0.491"/>
+        <Label Content="Required effort time:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,149,0,0" VerticalAlignment="Top"/>
+        <Label Content="Deliverebels:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="112,197,0,0" VerticalAlignment="Top"/>
+        <Label Content="Remarks:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,243,0,0" VerticalAlignment="Top"/>
+        <Label Content="Complexity:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="115,283,0,0" VerticalAlignment="Top"/>
 
 
 
@@ -75,9 +75,9 @@
 
 
 
-        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="259,34,0,0" VerticalAlignment="Top" Width="154"
+        <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="265,288,0,0" VerticalAlignment="Top" Width="154"
                 ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Task.Complexity, Mode=TwoWay, NotifyOnValidationError=true,
-                        ValidatesOnExceptions=true}" Height="29" Grid.Row="1">
+                        ValidatesOnExceptions=true}" Height="29">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
                     <Setter Property="Background" Value="#f1f1f2"/>
@@ -160,7 +160,7 @@
             </ComboBox.Style>
         </ComboBox>
 
-        <TextBox HorizontalAlignment="Left" Margin="265,120,0,0" TextWrapping="Wrap" Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="265,105,0,0" TextWrapping="Wrap" Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true,
                 ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" >
             <TextBox.Style>
                 <!-- Define the style for TextBox -->
@@ -203,7 +203,7 @@
 
         </TextBox>
 
-        <Button Content="{Binding Idx, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="456,143,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateTask">
+        <Button Content="{Binding Idx, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="460,65,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateTask">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->
@@ -238,7 +238,7 @@
         </Button>
 
 
-        <Button Content="Set Engineer" HorizontalAlignment="Left" Margin="456,225,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="SetEngineer">
+        <Button Content="Set Engineer" HorizontalAlignment="Left" Margin="460,149,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="SetEngineer">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->
@@ -271,9 +271,14 @@
                 </Style>
             </Button.Style>
         </Button>
-        
-        
-        <ListBox  ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="270,103,89,209" SelectionMode="Multiple" Grid.Row="1" RenderTransformOrigin="0.5,0.5" SelectionChanged="ListBox_SelectionChanged" >
+
+        <StackPanel Background="Yellow" Margin="452,213,34,81">
+            <TextBlock Text="Engineer:" />
+            <TextBlock Text="{Binding Path=Task.Engineer.Id}" />
+        </StackPanel>
+
+
+        <ListBox  ItemsSource="{Binding TaskList}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="264,346,95,339" SelectionMode="Multiple" RenderTransformOrigin="0.5,0.5" SelectionChanged="ListBox_SelectionChanged" Grid.RowSpan="2" >
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -293,7 +298,7 @@
 
 
 
-        <TextBox HorizontalAlignment="Left" Margin="265,270,0,0" TextWrapping="Wrap" Text="{Binding Task.Deliverables, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="265,200,0,0" TextWrapping="Wrap" Text="{Binding Task.Deliverables, Mode=TwoWay, NotifyOnValidationError=true,
             ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
@@ -337,7 +342,7 @@
         </TextBox>
 
 
-        <TextBox HorizontalAlignment="Left" Margin="265,336,0,0" TextWrapping="Wrap" Text="{Binding Task.Remarks, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="265,246,0,0" TextWrapping="Wrap" Text="{Binding Task.Remarks, Mode=TwoWay, NotifyOnValidationError=true,
     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
@@ -379,7 +384,7 @@
 
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="332,196,0,0" TextWrapping="Wrap" Text="{Binding Task.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="52" Height="26">
+        <TextBox HorizontalAlignment="Left" Margin="332,152,0,0" TextWrapping="Wrap" Text="{Binding Task.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="87" Height="26">
             <TextBox.Style>
                 <!-- TextBox Style -->
                 <Style TargetType="{x:Type TextBox}">
@@ -419,8 +424,8 @@
 
                 </Style>
             </TextBox.Style>
-
         </TextBox>
+        
 
     </Grid>
 </Window>

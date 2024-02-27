@@ -30,7 +30,7 @@ namespace PL
 
         private void btnHandleEngineers(object sender, RoutedEventArgs e)
         {
-            new EngineerListWindow().Show();    
+            new EngineerLogInWindow().Show();   
         }
 
         private void btnInitialization(object sender, RoutedEventArgs e)

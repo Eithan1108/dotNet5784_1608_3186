@@ -193,7 +193,7 @@ internal class TaskImplementation : BlApi.ITask
     {
         if(task.Engineer != null && task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
-        if (task.Engineer != null && task.Engineer.Id != null && _dal.Task.Read(engineer => engineer.EngineerId == task.Engineer!.Id) != null)
+        if (task.Engineer == null || task.Engineer.Id == null /*&& _dal.Task.Read(t => t.EngineerId == task.Engineer!.Id) != null*/)
             throw new BO.BlBadIdException("Id must be not null");
        
 
@@ -327,6 +327,20 @@ internal class TaskImplementation : BlApi.ITask
         }
         boTask.Dependencies = dependencies;
         return boTask;
+    }
+
+    public void StartTask(int id)
+    {
+        // TODO: Cheack if all dependencies are done
+        foreach (var d in _dal.Dependence.ReadAll())
+        {
+            if (d.DependentTask == id)
+            {
+                DO.Task? dependentTask = _dal.Task.Read(id => id.Id == d.DependsOnTask);
+                if (dependentTask != null && dependentTask.CompleteDate == null)
+                    throw new BO.BlNotExistsException($"Task with ID = {dependentTask.Id} is not done");
+            }
+        }
     }
 
 }

@@ -32,14 +32,25 @@ namespace PL.Engineer
             set { SetValue(EngineerListProperty, value); }
         }
 
+
+
+        public event EventHandler<EngineerSelectedEventArgs> EngineerSelected;
+
+
+
+
         public static readonly DependencyProperty EngineerListProperty =
     DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListForTask), new PropertyMetadata(null));
 
         private void SelectedEngineer(object sender, MouseButtonEventArgs e)
         {
             BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
-            int id = engineerInList!.Id!.Value; // convert from int? to int
-
+            if (engineerInList != null)
+            {
+                int id = engineerInList!.Id!.Value; // convert from int? to int
+                EngineerSelected?.Invoke(this, new EngineerSelectedEventArgs { SelectedEngineerId = id });
+                Close();
+            }
         }
     }
 }

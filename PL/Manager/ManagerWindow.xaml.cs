@@ -99,5 +99,10 @@ namespace PL.Manager
         {
             new TaskListWindow().Show();
         }
+
+        private void SchdualeProjetcBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BO;
 using DO;
+using PL.Engineer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,9 @@ namespace PL.Task
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
         private bool idIndicator;
         private IEnumerable<BO.TaskInList> dependenceList;
-
-
+        private int engineerId;
+        
+         
         public TaskWindow(int id = 0)
         {
             Idx = id;
@@ -63,6 +65,7 @@ namespace PL.Task
                 try
                 {
                     Task = s_bl!.Task.GetTask(id);
+                    // engineerId = Task.Engineer!.Id.Value;
                     dependenceList = Task.Dependencies!;
 
                     TaskList = TaskList.Select(task =>
@@ -120,16 +123,16 @@ namespace PL.Task
             DependencyProperty.Register("TaskList", typeof(IEnumerable<CheckBoxTask>), typeof(TaskWindow), new PropertyMetadata(null));
 
 
-
-        public DateTime SelectedDate
-        {
-            get; set;
-        }
-
-
         private void OnSaveOrUpdateTask(object sender, RoutedEventArgs e)
         {
             Task.Dependencies = dependenceList;
+
+            if (engineerId != 0)
+            {
+                BO.Engineer engineerToUpdae = s_bl.Engineer.GetEngineer(engineerId);
+                Task.Engineer = new EngineerInTask { Id = engineerId, Name = engineerToUpdae.Name };
+            }
+
             try
             {
                 if (!idIndicator)
@@ -139,6 +142,10 @@ namespace PL.Task
                 }
                 else
                 {
+                    if (Task.Engineer != null)
+                    {
+                        engineerId = Task.Engineer!.Id!.Value;
+                    }
                     s_bl.Task.UpdateTask(Task);
                     MessageBox.Show("Task with id " + Task.Id + " successfuly updated in the system", "Successfuly Update Task ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -196,8 +203,14 @@ namespace PL.Task
 
         private void SetEngineer(object sender, RoutedEventArgs e)
         {
+            var window = new EngineerListForTask(Task.Complexity);
+            window.EngineerSelected += EngineerSelectedHandler;
+            window.ShowDialog();
+        }
 
-            new Engineer.EngineerListForTask(Task.Complexity).ShowDialog();
+        private void EngineerSelectedHandler(object sender, EngineerSelectedEventArgs args)
+        {
+            engineerId = args.SelectedEngineerId;
         }
     }
 }
