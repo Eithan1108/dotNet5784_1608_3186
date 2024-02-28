@@ -56,7 +56,7 @@ namespace PL.Task
 
             if (id == 0)
             {
-                Task = new BO.Task { Id = 0, Description = "", Alias = "", Dependencies = dependenceList, RequiredEffortTime = null, Deliverables = "", Remarks = "", Complexity = BO.EngineerExperience.Beginner };
+                Task = new BO.Task { Id = 0, Description = "", Alias = "", Dependencies = dependenceList, RequiredEffortTime = null, Deliverables = "", Remarks = "", Complexity = BO.EngineerExperience.Beginner, CompleteDate = null, StartDate = null };
                 idIndicator = false;
             }
             else

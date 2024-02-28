@@ -175,7 +175,7 @@ internal class EngineerImplementation : BlApi.IEngineer
     private BO.TaskInEngineer? checkIfEngineerWorksOnTask(int id) 
     {
         var task = from item in _dal.Task.ReadAll()
-                   where item.EngineerId == id && item.StartDate != null && item.CompleteDate == null // get all tasks that the engineer works on
+                   where item.EngineerId == id && item.StartDate != null && item.CompleteDate != DateTime.MinValue // get all tasks that the engineer works on
                    select item;
         if (task.FirstOrDefault() is null)
             return null;

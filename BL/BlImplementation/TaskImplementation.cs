@@ -329,19 +329,46 @@ internal class TaskImplementation : BlApi.ITask
         return boTask;
     }
 
-    public void StartTask(int id)
+    public void StartTask(int id, int engid)
     {
         // TODO: Cheack if all dependencies are done
-        foreach (var d in _dal.Dependence.ReadAll())
+        //foreach (var d in _dal.Dependence.ReadAll())
+        //{
+        //    if (d.DependentTask == id)
+        //    {
+        //        DO.Task? dependentTask = _dal.Task.Read(id => id.Id == d.DependsOnTask);
+        //        if (dependentTask != null && dependentTask.CompleteDate == null)
+        //            throw new BO.BlNotExistsException($"Task with ID = {dependentTask.Id} is not done");
+
+        //        // todo: update the task with StartTime Date.Now
+        //        Task task = DoBoAdapter(_dal.Task.Read(id)!);
+        //        if (task != null)
+        //        {
+        //            task.StartDate = DateTime.Now;
+        //            _dal.Task.Update(BoDoAdapter(task));
+        //        }
+
+        //    }
+        //}
+
+        Task task = DoBoAdapter(_dal.Task.Read(id)!);
+        if (task != null)
         {
-            if (d.DependentTask == id)
-            {
-                DO.Task? dependentTask = _dal.Task.Read(id => id.Id == d.DependsOnTask);
-                if (dependentTask != null && dependentTask.CompleteDate == null)
-                    throw new BO.BlNotExistsException($"Task with ID = {dependentTask.Id} is not done");
-            }
+            task.Engineer = new EngineerInTask { Id = engid };
+            task.StartDate = DateTime.Now;
+            _dal.Task.Update(BoDoAdapter(task));
         }
+
     }
 
+    public void StopTask(int id) 
+    {
+       Task task =DoBoAdapter(_dal.Task.Read(id)!);
+        if (task != null)
+        {
+            task.CompleteDate = DateTime.Now;
+            _dal.Task.Update(BoDoAdapter(task));
+        }   
+    }
 }
 

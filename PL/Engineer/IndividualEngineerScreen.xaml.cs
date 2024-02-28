@@ -61,35 +61,75 @@ namespace PL.Engineer
             DependencyProperty.Register("WorkingTask", typeof(BO.Task), typeof(IndividualEngineerScreen), new PropertyMetadata(null));
 
 
-        private void StartEngineer(object sender, MouseButtonEventArgs e)
-        {
-            BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
-            if (task != null)
-            {
-                try
-                {
-                    s_bl.Task.StartTask(task.Id);
-                    // TODO: update the task with StartTime Date.Now
-
-                    // Refresh the engineer
-                    Engineer = s_bl.Engineer.GetEngineer(Engineer.Id!.Value);
+        //private void StartEngineer(object sender, MouseButtonEventArgs e)
+        //{
+        //    BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
+        //    if (task != null)
+        //    {
+        //        try
+        //        {
+        //            s_bl.Task.StartTask(task.Id); 
+        //            // TODO: update the task with StartTime Date.Now
 
 
-                    MessageBox.Show("Task started successfully");
-                }
-                catch (BO.BlNotExistsException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
+
+        //            // Refresh the engineer
+        //            Engineer = s_bl.Engineer.GetEngineer(Engineer.Id!.Value);
+
+
+        //            MessageBox.Show("Task started successfully");
+        //        }
+        //        catch (BO.BlNotExistsException ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //    }
+        //}
+
 
         private void CompleteTaskBtn(object sender, RoutedEventArgs e)
         {
             // TODO: update the task with CompleteDate Date.Now
 
+            if (Engineer.Task == null) return;
+
+                s_bl.Task.StopTask(Engineer.Task.Id!.Value); // stop the task
+            
+               
             // Refresh the engineer
             Engineer = s_bl.Engineer.GetEngineer(Engineer.Id!.Value);
+        }
+
+        private void StartEngineerBtn(object sender, MouseButtonEventArgs e)
+        {
+            //EngineerListForTask engineerListForTask = new EngineerListForTask(Engineer.Level);
+            //engineerListForTask.EngineerSelected += (sender, args) =>
+            //{
+            //    Engineer = s_bl.Engineer.GetEngineer(args.SelectedEngineerId);
+            //    TaskInEngineerList = s_bl.Task.GetTasksList(task => task.Engineer != null && task.Engineer.Id == Engineer.Id);
+            //    if (Engineer.Task != null)
+            //        WorkingTask = s_bl.Task.GetTask(Engineer.Task.Id!.Value);
+            //};
+
+            BO.Task? task = (sender as ListView)?.SelectedItem as BO.Task;
+
+            if (task == null)
+            {
+                return;
+            }
+
+
+
+
+            try
+            {
+                s_bl.Task.StartTask(task.Id, Engineer.Id!.Value); // start the task
+                MessageBox.Show("Task started successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
     }
 }

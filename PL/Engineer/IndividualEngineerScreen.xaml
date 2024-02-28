@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="IndividualEngineerScreen" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    
     <Grid>
         <Grid.Background>
             <!-- Setting the background using an ImageBrush -->
@@ -18,7 +19,7 @@
 
 
         <Border CornerRadius="13" Background="#f1f1f2" Margin="35,121,27,90" >
-            <ListView Grid.Row="1" ItemsSource="{Binding TaskInEngineerList}" Grid.RowSpan="2"  Background="Transparent" Margin="0,10,0,10" BorderBrush="{x:Null}">
+            <ListView Grid.Row="1" ItemsSource="{Binding TaskInEngineerList}" Grid.RowSpan="2"  Background="Transparent" Margin="0,10,0,10" BorderBrush="{x:Null}" MouseDoubleClick="StartEngineerBtn">
                 <ListView.View>
                     <!-- Define the view for ListView -->
                     <GridView >
@@ -97,9 +98,9 @@
             </ListView>
         </Border>
         <Label Content="Working on: " HorizontalAlignment="Left" Margin="24,375,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding WorkingTask.Description}" HorizontalAlignment="Left" Margin="24,375,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding WorkingTask.Id, Converter={StaticResource ConvertCompleteBtnToEnable}}" HorizontalAlignment="Left" Margin="107,388,0,0" VerticalAlignment="Top"/>
 
-        <Button Content="Complete Task" HorizontalAlignment="Left" Margin="587,375,0,0" VerticalAlignment="Top" Click="CompleteTaskBtn" Height="33" Width="124">
+        <Button Content="Complete Task" HorizontalAlignment="Left" Margin="587,375,0,0" VerticalAlignment="Top" Click="CompleteTaskBtn" Height="33" Width="124"  Visibility="{Binding WorkingTask, Converter={StaticResource ConvertCompleteBtnToEnable} , Mode=OneTime}">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

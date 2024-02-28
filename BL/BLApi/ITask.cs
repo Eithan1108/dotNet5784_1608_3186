@@ -15,5 +15,7 @@ public interface ITask
     public void AddOrUpdateSchedualeDateTine(int id, DateTime? dateTime, DateTime SchedualeProjectDate); // add or update scheduale date time
     public IEnumerable<BO.TaskInList> TaskToTaskInListConverter(IEnumerable<BO.Task> tasks);
 
-    public void StartTask(int id); // start task
+    public void StartTask(int id, int engid); // start task
+
+    public void StopTask(int id); // stop task
 }
