@@ -32,12 +32,24 @@ class  ConvertIdToEnable : IValueConverter
     }
 }
 
-class ConvertCompleteBtnToEnable : IValueConverter
+class ConvertTaskToVisible : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         return (BO.Task)value == null ? "Hidden" : "Visible";
+    }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+class ConvertTaskToEnable : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (BO.Task)value == null ? true : false;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -47,3 +59,16 @@ class ConvertCompleteBtnToEnable : IValueConverter
 }
 
 
+class ConvertTaskToVisibleNot : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (BO.Task)value == null ? "Visible" : "Hidden";
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+  

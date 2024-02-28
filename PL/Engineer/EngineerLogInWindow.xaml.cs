@@ -49,3 +49,5 @@ namespace PL.Engineer
         }
     }
 }
+
+// IsEnabled="{Binding WorkingTask, Converter={StaticResource ConvertTaskToEnable}}"

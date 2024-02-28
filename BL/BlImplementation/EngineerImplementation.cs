@@ -172,14 +172,18 @@ internal class EngineerImplementation : BlApi.IEngineer
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    private BO.TaskInEngineer? checkIfEngineerWorksOnTask(int id) 
+    private BO.TaskInEngineer? checkIfEngineerWorksOnTask(int id)
     {
+        
         var task = from item in _dal.Task.ReadAll()
-                   where item.EngineerId == id && item.StartDate != null && item.CompleteDate != DateTime.MinValue // get all tasks that the engineer works on
+                   where item.EngineerId == id && item.StartDate != default && item.CompleteDate == default
                    select item;
         if (task.FirstOrDefault() is null)
             return null;
-        return new TaskInEngineer { Id = task.FirstOrDefault()!.Id, Alias = task.FirstOrDefault()!.Alias };
+        var taskToGet = task.First();
+        return new TaskInEngineer { Id = taskToGet.Id, Alias = taskToGet.Alias };
+
+
     }
 
     /// <summary>

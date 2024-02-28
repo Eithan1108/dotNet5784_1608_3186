@@ -3,6 +3,7 @@
 
 namespace BlImplementation;
 using BO;
+using DO;
 using System.Data;
 using System.Security.Cryptography;
 
@@ -193,17 +194,32 @@ internal class TaskImplementation : BlApi.ITask
     {
         if(task.Engineer != null && task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
-        if (task.Engineer == null || task.Engineer.Id == null /*&& _dal.Task.Read(t => t.EngineerId == task.Engineer!.Id) != null*/)
-            throw new BO.BlBadIdException("Id must be not null");
+
+        //if (task.Engineer == null || task.Engineer.Id == null) // *&& _dal.Task.Read(t => t.EngineerId == task.Engineer!.Id) != null*/)
+        //    throw new BO.BlBadIdException("Id must be not null");
        
 
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
 
+
+        if (task.Dependencies != null)
+        {
+            var circularDeps = task.Dependencies
+                .Where(d => HasCircularDependency(task.Id, d.Id))
+                .ToList();
+
+            // Throw if any found
+            if (circularDeps.Any())
+            {
+                throw new BlBadLevelException("Found circular dependency");
+            }
+        }
+
+
+
         try
         {
-           
-
             foreach (var d in _dal.Dependence.ReadAll())
             {
                 if (d.DependentTask == task.Id)
@@ -249,8 +265,8 @@ internal class TaskImplementation : BlApi.ITask
             Complexity = (DO.EngineerExperience)task.Complexity,
             ScheduledDate = task.ScheduledDate,
             RequiredEffortTime = task.RequiredEffortTime,
-            StartDate = task.StartDate,
-            CompleteDate = task.CompleteDate,
+            StartDate = task.StartDate ?? null,
+            CompleteDate = task.CompleteDate ?? null,
             Deliverables = task.Deliverables,
             Remarks = task.Remarks,
             EngineerId = task.Engineer != null ? task.Engineer.Id : null
@@ -274,11 +290,10 @@ internal class TaskImplementation : BlApi.ITask
             Complexity = (BO.EngineerExperience)task.Complexity,
             ScheduledDate = task.ScheduledDate ?? default,
             RequiredEffortTime = task.RequiredEffortTime ?? default,
-            StartDate = task.StartDate ?? default,
-            CompleteDate = task.CompleteDate ?? default,
+            StartDate = task.StartDate ?? null,
+            CompleteDate = task.CompleteDate ?? null,
             Deliverables = task.Deliverables ?? "",
             Remarks = task.Remarks ?? "",
-
         };
 
         if (task.EngineerId != null)
@@ -331,27 +346,18 @@ internal class TaskImplementation : BlApi.ITask
 
     public void StartTask(int id, int engid)
     {
-        // TODO: Cheack if all dependencies are done
-        //foreach (var d in _dal.Dependence.ReadAll())
-        //{
-        //    if (d.DependentTask == id)
-        //    {
-        //        DO.Task? dependentTask = _dal.Task.Read(id => id.Id == d.DependsOnTask);
-        //        if (dependentTask != null && dependentTask.CompleteDate == null)
-        //            throw new BO.BlNotExistsException($"Task with ID = {dependentTask.Id} is not done");
 
-        //        // todo: update the task with StartTime Date.Now
-        //        Task task = DoBoAdapter(_dal.Task.Read(id)!);
-        //        if (task != null)
-        //        {
-        //            task.StartDate = DateTime.Now;
-        //            _dal.Task.Update(BoDoAdapter(task));
-        //        }
+        BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
 
-        //    }
-        //}
+        var lists = from item in _dal.Dependence.ReadAll()
+                    where item.DependentTask == id
+                    select DoBoAdapter(_dal.Task.Read(item.DependsOnTask)!).Status == Status.Done;
 
-        Task task = DoBoAdapter(_dal.Task.Read(id)!);
+        if (lists.Any())
+            throw new BlStartBeforeDependence("You want to start this task but she dependence on a task that have not done yet");
+
+
+
         if (task != null)
         {
             task.Engineer = new EngineerInTask { Id = engid };
@@ -363,12 +369,49 @@ internal class TaskImplementation : BlApi.ITask
 
     public void StopTask(int id) 
     {
-       Task task =DoBoAdapter(_dal.Task.Read(id)!);
+       BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
         if (task != null)
         {
             task.CompleteDate = DateTime.Now;
             _dal.Task.Update(BoDoAdapter(task));
         }   
     }
+
+    public bool HasCircularDependency(int taskId, int dependsOnId, HashSet<int> visited = null)
+    {
+        if (visited == null)
+        {
+            visited = new HashSet<int>();
+        }
+
+        if (visited.Contains(taskId))
+        {
+            return true; // Cycle detected
+        }
+
+        visited.Add(taskId);
+
+        // Check if the current task depends on the provided dependsOnId directly
+        if (taskId == dependsOnId)
+        {
+            return true; // Cycle detected - self-dependence
+        }
+
+
+            var dependencies = _dal.Dependence.ReadAll(d => d.DependsOnTask == dependsOnId).ToList();
+            foreach (var dependency in dependencies)
+            {
+                if (HasCircularDependency(dependency.DependentTask, dependsOnId, new HashSet<int>(visited)))
+                {
+                    return true; // Cycle detected in dependent tasks
+                }
+            }
+        
+
+        return false; // No cycle detected
+    }
+
+
+
 }
 
