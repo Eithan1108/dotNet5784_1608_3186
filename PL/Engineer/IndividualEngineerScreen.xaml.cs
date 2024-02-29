@@ -25,7 +25,7 @@ namespace PL.Engineer
         {
             InitializeComponent();
             Engineer = individualEngineer;
-            TaskInEngineerList = s_bl.Task.GetTasksList(task => task.Engineer!= null && task.Engineer.Id == Engineer.Id && task.StartDate == null);
+            TaskInEngineerList = s_bl.Task.GetTasksList(task => task.Engineer!= null && task.Engineer.Id == Engineer.Id && task.StartDate == null).OrderBy(task => task.Id);
             if(Engineer.Task != null)
                 WorkingTask = s_bl.Task.GetTask(Engineer.Task.Id!.Value);
         }

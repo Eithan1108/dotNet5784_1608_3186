@@ -27,7 +27,7 @@ namespace PL.Task
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
         private bool idIndicator;
         private IEnumerable<BO.TaskInList> dependenceList;
-        private int engineerId;
+        private int engineerId = 0;
         
          
         public TaskWindow(int id = 0)
@@ -138,7 +138,7 @@ namespace PL.Task
                 if (!idIndicator)
                 {
                     s_bl.Task.AddTask(Task);
-                    MessageBox.Show("Task successfuly added to the system.", "Successfuly Add Task ", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Task successfully added to the system.", "Successfully Add Task ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace PL.Task
                         engineerId = Task.Engineer!.Id!.Value;
                     }
                     s_bl.Task.UpdateTask(Task);
-                    MessageBox.Show("Task with id " + Task.Id + " successfuly updated in the system", "Successfuly Update Task ", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Task with id " + Task.Id + " successfully updated in the system", "Successfully Update Task ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 Close();
             }

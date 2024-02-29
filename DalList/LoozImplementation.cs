@@ -19,6 +19,11 @@ namespace Dal
             return DataSource.Config.ProjectStartDate;
         }
 
+        public DateTime? GetProjectDataScreen()
+        {
+            return DataSource.Config.ProjectDataScreen;
+        }
+
         public void SetEndDate(DateTime? endDate)
         {
             DataSource.Config.ProjectEndDate = endDate;
@@ -28,5 +33,11 @@ namespace Dal
         {
             DataSource.Config.ProjectStartDate = startDate;
         }
+
+        public void SetProjectDataScreen(DateTime? projectDataScreen)
+        {
+            DataSource.Config.ProjectDataScreen = projectDataScreen;
+        }
+        
     }
 }

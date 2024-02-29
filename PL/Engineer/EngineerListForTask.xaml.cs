@@ -23,7 +23,7 @@ namespace PL.Engineer
         public EngineerListForTask(BO.EngineerExperience? experience)
         {
             InitializeComponent();
-            EngineerList = s_bl?.Engineer.GetEngineersList(engineer => engineer.Level >= experience)!;
+            EngineerList = s_bl?.Engineer.GetEngineersList(engineer => engineer.Level >= experience).OrderBy(task => task.Id)!;
         }
 
         public IEnumerable<BO.Engineer> EngineerList // get list of all engineers

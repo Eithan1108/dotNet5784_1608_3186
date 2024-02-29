@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using BO;
+using BlApi;
+
 
 namespace PL
 {
@@ -23,10 +26,29 @@ namespace PL
 
     public partial class MainWindow : Window
     {
+
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get;
+
         public MainWindow()
         {
             InitializeComponent();
+            ScreenDate = s_bl.Clock;
+
+
         }
+
+
+        public DateTime ScreenDate // get list of all engineers
+        {
+            get { return (DateTime)GetValue(ScreenDateProperty); }
+            set { SetValue(ScreenDateProperty, value); }
+        }
+
+        public static readonly DependencyProperty ScreenDateProperty =
+            DependencyProperty.Register("ScreenDate", typeof(DateTime), typeof(MainWindow), new PropertyMetadata(null));
+
+
+
 
         private void btnHandleEngineers(object sender, RoutedEventArgs e)
         {
@@ -37,5 +59,17 @@ namespace PL
         {
             new ManagerWindow().Show();
         }
+
+        private void AddAnHour(object sender, RoutedEventArgs e)
+        {
+            s_bl.AddHourInPl(1);
+            ScreenDate = s_bl.Clock;
+        }
+        private void AddADay(object sender, RoutedEventArgs e)
+        {
+            s_bl.AddDaysInPl(1);
+            ScreenDate = s_bl.Clock;
+        }
+
     }
 }

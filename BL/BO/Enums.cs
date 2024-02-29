@@ -9,7 +9,8 @@ public enum Status // status of the task
     Scheduled,
     OnTrack,
     InJeopardy,
-    Done
+    Done,
+    All
 }
 
 public enum EngineerExperience // experience of the engineer

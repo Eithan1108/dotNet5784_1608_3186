@@ -26,7 +26,7 @@ namespace PL.Engineer
         public EngineerListWindow()
         {
             InitializeComponent();
-            EngineerList = s_bl.Engineer.GetEngineersList(null!); // get list of all engineers //check if null is ok
+            EngineerList = s_bl.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost); // get list of all engineers //check if null is ok
         }
 
         private void AddEngineerWindow(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace PL.Engineer
         private void OnSelectExperience(object sender, SelectionChangedEventArgs e) // select experience of the engineer
         {
             EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
-                    : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
+                    : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience).OrderBy(engineer => engineer.Cost)!;
         }
 
         private void SelectEngineerToUpdate(object sender, MouseButtonEventArgs e)
@@ -63,8 +63,8 @@ namespace PL.Engineer
         private void RefreshList()
         {
             //    EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
-            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
-                       : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
+            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost)!
+                       : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience).OrderBy(engineer => engineer.Cost)!;
         }
     }
 

@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 internal class TaskImplementation : BlApi.ITask
 {
     private DalApi.IDal _dal = Factory.Get;
+    private readonly Bl _bl;
+    internal TaskImplementation(Bl bl) => _bl = bl;
 
     /// <summary>
     /// // add or update scheduled date to the system
@@ -206,7 +208,7 @@ internal class TaskImplementation : BlApi.ITask
         if (task.Dependencies != null)
         {
             var circularDeps = task.Dependencies
-                .Where(d => HasCircularDependency(task.Id, d.Id))
+                .Where(d => CheckForCircles(task.Id, d.Id))
                 .ToList();
 
             // Throw if any found
@@ -215,6 +217,7 @@ internal class TaskImplementation : BlApi.ITask
                 throw new BlBadLevelException("Found circular dependency");
             }
         }
+
 
 
 
@@ -239,7 +242,7 @@ internal class TaskImplementation : BlApi.ITask
         }
         catch (BlBadIdException ex)
         {
-            throw new BO.BlBadIdException("student with ID = {id} does not exsist");
+            throw new BO.BlBadIdException("Student with id = {id} does not exist");
         }
     }
     /// <summary>
@@ -361,7 +364,7 @@ internal class TaskImplementation : BlApi.ITask
         if (task != null)
         {
             task.Engineer = new EngineerInTask { Id = engid };
-            task.StartDate = DateTime.Now;
+            task.StartDate = _bl.Clock;
             _dal.Task.Update(BoDoAdapter(task));
         }
 
@@ -372,41 +375,35 @@ internal class TaskImplementation : BlApi.ITask
        BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
         if (task != null)
         {
-            task.CompleteDate = DateTime.Now;
+            task.CompleteDate = _bl.Clock;
             _dal.Task.Update(BoDoAdapter(task));
         }   
     }
 
-    public bool HasCircularDependency(int taskId, int dependsOnId, HashSet<int> visited = null)
+
+    public DateTime? ForcastDateCalc(TimeSpan? req, DateTime? sched)
     {
-        if (visited == null)
+
+        return sched + req;
+    }
+
+    public bool CheckForCircles(int dependent, int dependOn)
+    {
+        // Check if there is a direct dependency from dependent to dependOn
+        if (_dal.Dependence.Read(t => (t.DependentTask == dependOn && t.DependsOnTask == dependent)) != null)
         {
-            visited = new HashSet<int>();
+            return true;
         }
 
-        if (visited.Contains(taskId))
+        // Check for indirect dependencies recursively
+        foreach (var item in _dal.Dependence.ReadAll().Where(t => t.DependentTask == dependOn))
         {
-            return true; // Cycle detected
-        }
-
-        visited.Add(taskId);
-
-        // Check if the current task depends on the provided dependsOnId directly
-        if (taskId == dependsOnId)
-        {
-            return true; // Cycle detected - self-dependence
-        }
-
-
-            var dependencies = _dal.Dependence.ReadAll(d => d.DependsOnTask == dependsOnId).ToList();
-            foreach (var dependency in dependencies)
+            // Check for cycles recursively
+            if (CheckForCircles(dependent, item.DependsOnTask))
             {
-                if (HasCircularDependency(dependency.DependentTask, dependsOnId, new HashSet<int>(visited)))
-                {
-                    return true; // Cycle detected in dependent tasks
-                }
+                return true; // Cycle detected
             }
-        
+        }
 
         return false; // No cycle detected
     }

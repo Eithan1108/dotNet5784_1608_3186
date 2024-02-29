@@ -157,6 +157,95 @@
          </Button.Style>
      </Button>
      <Label Content="Tasks List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
+        
+     <ComboBox 
+         Background="#f1f1f2"
+         ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
+         SelectedValue="{Binding Experience, Mode=TwoWay}"
+         SelectionChanged="OnSelectExperience"
+         Margin="400,0,10,38" Grid.Row="1"
+                >
+            <ComboBox.Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBox}">
+                                <Border Background="{TemplateBinding Background}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 CornerRadius="0">
+                                    <Grid>
+                                        <ToggleButton
+                                         x:Name="ToggleButton"
+                                         Background="{TemplateBinding Background}"
+                                         BorderBrush="{TemplateBinding BorderBrush}"
+                                         BorderThickness="0"
+                                         Focusable="False"
+                                                
+                                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                         ClickMode="Press">
+                                            <Path x:Name="Arrow"
+                                             Fill="#6464f8"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top"
+                                             Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" Stretch="Fill" Margin="345,19,15,15"/>
+                                        </ToggleButton>
+                                        <ContentPresenter x:Name="ContentSite"
+                                         Margin="6,0,0,0"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Center"
+                                                              
+                                         Content="{TemplateBinding SelectionBoxItem}"
+                                         ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                         ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                         IsHitTestVisible="False"/>
+                                        <Popup x:Name="Popup"
+                                         Placement="Bottom"
+                                         IsOpen="{TemplateBinding IsDropDownOpen}"
+                                         AllowsTransparency="True"
+                                         Focusable="False"
+                                                   
+                                         PopupAnimation="Slide">
+                                            <Grid x:Name="DropDown"
+                                             SnapsToDevicePixels="True"
+                                                      
+                                             MinWidth="{TemplateBinding ActualWidth}"
+                                             MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                <Border x:Name="DropDownBorder"
+                                                 Background="#f1f1f2"
+                                                 BorderThickness="1"
+                                                 BorderBrush="#6464f8"/>
+                                                <ScrollViewer Margin="4,6,4,6"
+                                                 SnapsToDevicePixels="True">
+                                                    <StackPanel IsItemsHost="True"
+                                                     KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </Popup>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="Arrow" Property="Fill" Value="#999999"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="BorderBrush" Value="#6464f8"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#D2E2F9"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
 
- </Grid>
+    </Grid>
 </Window>

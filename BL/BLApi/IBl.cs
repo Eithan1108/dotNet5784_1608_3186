@@ -10,4 +10,14 @@ public interface IBl
     public IEngineer Engineer { get; }
 
     public ILooz Looz { get; }
+
+    public DateTime Clock { get; }
+
+    public void AddHourInPl(int hour);
+
+    public void AddDaysInPl(int days);
+
+    public void InitialClock();
+    public void Reset();
+
 }

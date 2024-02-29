@@ -21,12 +21,14 @@ namespace PL.Task
     public partial class TaskListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
+        public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.All; // get the experience of the engineer
+        public BO.Status Status { get; set; } = BO.Status.All; // get the status of the task
 
 
         public TaskListWindow()
         {
             InitializeComponent();
-            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)); // get list of all tasks //check if null is ok
+            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)).OrderBy(task => task.Id); // get list of all tasks //check if null is ok
         }
 
         public IEnumerable<BO.TaskInList> TaskList // get list of all tasks
@@ -47,7 +49,7 @@ namespace PL.Task
 
         private void RefreshList()
         {
-            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null));
+            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)).OrderBy(task => task.Id);
             //EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
             //           : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience)!;
         }
@@ -61,6 +63,12 @@ namespace PL.Task
                 new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
                 RefreshList();
             }
+        }
+
+        private void OnSelectExperience(object sender, SelectionChangedEventArgs e)
+        {
+            TaskList = (Experience == BO.EngineerExperience.All) ? s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(null!).OrderBy(task => task.Id)!)
+        :               s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(task => task.Complexity == Experience)!)!;
         }
     }
     

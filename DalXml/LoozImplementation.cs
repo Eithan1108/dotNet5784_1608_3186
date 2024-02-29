@@ -1,10 +1,6 @@
 ﻿namespace Dal;
 using DalApi;
-using DO;
 using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using System.Xml.Linq;
 
 /// <summary>
@@ -19,6 +15,15 @@ internal class LoozImplementation : ILooz
         return (DateTime?)loozElement;
     }
 
+    public DateTime? GetProjectDataScreen()
+    {
+        XElement root = XMLTools.LoadListFromXMLElement("data-config");
+        XElement loozElement = root.Element("ProjectDataScreen")!;
+        if (loozElement.Value == "")
+            return null;
+        return DateTime.Parse(loozElement.Value);
+    }
+
     public DateTime? GetStartDate()
     {
         XElement root = XMLTools.LoadListFromXMLElement("data-config");
@@ -29,10 +34,19 @@ internal class LoozImplementation : ILooz
         return DateTime.Parse(loozElement.Value);
     }
 
+
+
     public void SetEndDate(DateTime? endDate)
     {
         XElement root = XMLTools.LoadListFromXMLElement("data-config");
         root.Element("ProjectEndDate")!.Value = endDate.ToString()!;
+        XMLTools.SaveListToXMLElement(root, "data-config");
+    }
+
+    public void SetProjectDataScreen(DateTime? projectDataScreen)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement("data-config");
+        root.Element("ProjectDataScreen")!.Value = projectDataScreen.ToString()!;
         XMLTools.SaveListToXMLElement(root, "data-config");
     }
 

@@ -58,7 +58,7 @@ public static class Initialization
             taskName = task[0];
             taskNickname = task[1];
 
-            DateTime startDate = DateTime.Now.AddDays(-1 * s_random.Next(1, 31));
+            DateTime CreateAtDate = DateTime.Now.AddDays(-1 * s_random.Next(1, 31));
             int experience = s_random.Next(0, 5);
 
             DO.EngineerExperience level;
@@ -81,7 +81,7 @@ public static class Initialization
                     level = EngineerExperience.Expert;
                     break;
             }
-            Task t = new Task(0, taskNickname, taskName, false, startDate,level);
+            Task t = new Task(0, taskNickname, taskName, false, CreateAtDate,level);
             s_dal!.Task.Create(t); ;
         }
     }
