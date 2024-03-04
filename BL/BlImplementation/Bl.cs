@@ -19,8 +19,6 @@ internal class Bl : IBl
     static readonly string s_config_xml = "data-config";
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get;
 
-
-
     public ITask Task =>  new TaskImplementation(this); // create new TaskImplementation
     public IEngineer Engineer =>  new EngineerImplementation(); // create new EngineerImplementation
 

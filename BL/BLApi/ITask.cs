@@ -1,5 +1,8 @@
 ﻿
 
+using BlImplementation;
+using DalApi;
+
 namespace BlApi;
 
 /// <summary>
@@ -18,4 +21,11 @@ public interface ITask
     public void StartTask(int id, int engid); // start task
 
     public void StopTask(int id); // stop task
+
+
+
+    public DateTime? ForcastDateCalc(TimeSpan? req, DateTime? sched);
+    public bool CheckForCircles(int dependent, int dependOn);
+    public void AutoScheduleSystem(DateTime? SchedualProjectDate);
+    public bool AutoScheduleDate(DO.Task task, DateTime? SchedualProjectDate);
 }

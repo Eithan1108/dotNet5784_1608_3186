@@ -380,13 +380,6 @@ internal class TaskImplementation : BlApi.ITask
         }   
     }
 
-
-    public DateTime? ForcastDateCalc(TimeSpan? req, DateTime? sched)
-    {
-
-        return sched + req;
-    }
-
     public bool CheckForCircles(int dependent, int dependOn)
     {
         // Check if there is a direct dependency from dependent to dependOn
@@ -409,6 +402,56 @@ internal class TaskImplementation : BlApi.ITask
     }
 
 
+    public DateTime? ForcastDateCalc(TimeSpan? req, DateTime? sched)
+    {
+
+        return sched + req;
+    }
+
+    public void AutoScheduleSystem(DateTime? ScheduleProjectDate)
+    {
+        if (ScheduleProjectDate == null || ScheduleProjectDate < _bl.Clock)
+            throw new BlStartProjectBeforeClock($"Schedule project start date cant be before date now ");
+
+
+        Queue<DO.Task> queue = new Queue<DO.Task>();
+        foreach (var item in _dal.Task.ReadAll())
+        {
+            queue.Enqueue(item);
+        }
+
+        while (queue.Count > 0)
+        {
+            DO.Task task = queue.Dequeue();
+            if (!AutoScheduleDate(task, ScheduleProjectDate))
+                queue.Enqueue(task);
+        }
+
+    }
+
+    public bool AutoScheduleDate(DO.Task task, DateTime? ScheduleProjectDate)
+    {
+        DateTime? date = ScheduleProjectDate;
+
+        foreach (DO.Dependence depend in _dal.Dependence.ReadAll())
+        {
+            if (depend.DependentTask == task.Id)
+            {
+                DO.Task temp = _dal.Task.Read(X => X.Id == depend.DependsOnTask)!;
+                if (temp.ScheduledDate == null)
+                {
+                    return false;
+                }
+                if (ForcastDateCalc(temp.RequiredEffortTime, temp.ScheduledDate) > date)
+                {
+                    date = ForcastDateCalc(temp.RequiredEffortTime, temp.ScheduledDate);
+                }
+            }
+        }
+
+        _dal.Task.Update(task with { ScheduledDate = date });
+        return true;
+    }
 
 }
 

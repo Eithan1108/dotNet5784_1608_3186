@@ -18,6 +18,7 @@ public interface IBl
     public void AddDaysInPl(int days);
 
     public void InitialClock();
+
     public void Reset();
 
 }
