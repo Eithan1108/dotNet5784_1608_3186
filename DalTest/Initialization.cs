@@ -58,8 +58,10 @@ public static class Initialization
             taskName = task[0];
             taskNickname = task[1];
 
-            DateTime CreateAtDate = DateTime.Now.AddDays(-1 * s_random.Next(1, 31));
+            DateTime CreateDate = DateTime.Now.AddDays(-1 * s_random.Next(1, 31));
             int experience = s_random.Next(0, 5);
+
+
 
             DO.EngineerExperience level;
             switch (experience)
@@ -81,7 +83,9 @@ public static class Initialization
                     level = EngineerExperience.Expert;
                     break;
             }
-            Task t = new Task(0, taskNickname, taskName, false, CreateAtDate,level);
+            //Task t = new Task(0, taskNickname, taskName, false, CreateAtDate,level);
+            Task t = new Task { Id = 0, Alias = taskNickname, Description = taskName, CreateAtDate=CreateDate,Complexity=level, RequiredEffortTime=GenerateRandomRequiredTime() };
+            
             s_dal!.Task.Create(t); ;
         }
     }
@@ -248,6 +252,19 @@ public static class Initialization
     /// <param name="dalEngineer">The engineer data access layer.</param>
     /// <param name="dalDependence">The dependence data access layer.</param>
     /// <param name="dalTask">The task data access layer.</param>
+
+
+    static TimeSpan GenerateRandomRequiredTime()
+    {
+        Random rnd = new Random();
+        int totalDays = rnd.Next(1, 12); // Random number of days between 1 and 11 (inclusive)
+
+        // Construct the TimeSpan with the random number of days
+        TimeSpan randomTimeSpan = TimeSpan.FromDays(totalDays);
+
+        return randomTimeSpan;
+    }
+
     public static void Do()
     {
          s_dal = Factory.Get; // ************************************* why not DalApi.Factory.Get

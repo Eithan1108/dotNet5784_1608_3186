@@ -61,5 +61,22 @@ internal class Bl : IBl
         configRestart.Element("ProjectStartDate")!.Value = "";
         XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
     }
+
+    public void setProjectStartDate(DateTime date)
+    { 
+        s_bl.Looz.SetStartDate(date);
+    }
+
+    public void setProjectEndDate(DateTime date)
+    {
+        s_bl.Looz.SetEndDate(date);
+
+    }
+
+    public bool projectStarted()
+    {
+        return s_bl.Looz.GetStartDate() != null;
+    }
+
 }
 

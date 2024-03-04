@@ -28,6 +28,7 @@ namespace PL.Manager
 
         public ManagerWindow()
         {
+            ProjectStarted = s_bl.projectStarted();
             InitializeComponent();
         }
 
@@ -76,6 +77,19 @@ namespace PL.Manager
             }
         }
 
+
+
+        public bool ProjectStarted // get list of all engineers
+        {
+            get { return (bool)GetValue(ProjectStartedProperty); }
+            set { SetValue(ProjectStartedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProjectStartedProperty =
+            DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(ManagerWindow), new PropertyMetadata(null));
+
+        
+        
         private void btnHandleTasks(object sender, RoutedEventArgs e)
         {
             new TaskListWindow().Show();
@@ -83,7 +97,8 @@ namespace PL.Manager
 
         private void SchdualeProjetcBtn(object sender, RoutedEventArgs e)
         {
-
+            new ScheduleProjectWindow().Show();
+            
         }
     }
 }

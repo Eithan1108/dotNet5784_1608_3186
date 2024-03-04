@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlApi;
+using PL.Task;
 namespace PL.Engineer
 {
     /// <summary>
@@ -25,6 +26,7 @@ namespace PL.Engineer
         public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.All; // get the experience of the engineer
         public EngineerListWindow()
         {
+            ProjectStarted = s_bl.projectStarted();
             InitializeComponent();
             EngineerList = s_bl.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost); // get list of all engineers //check if null is ok
         }
@@ -34,6 +36,16 @@ namespace PL.Engineer
             new EngineerWindow(0).ShowDialog(); // open the engineer window
             RefreshList();
         }
+
+
+        public bool ProjectStarted // get list of all engineers
+        {
+            get { return (bool)GetValue(ProjectStartedProperty); }
+            set { SetValue(ProjectStartedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProjectStartedProperty =
+            DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(EngineerListWindow), new PropertyMetadata(null));
 
         public IEnumerable<BO.Engineer> EngineerList // get list of all engineers
         {

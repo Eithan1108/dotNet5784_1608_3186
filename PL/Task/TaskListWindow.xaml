@@ -114,7 +114,7 @@
          </ListView>
      </Border>
 
-     <Button Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
+        <Button IsEnabled="{Binding ProjectStarted, Converter={StaticResource ConvertBoolToEnable}}" Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
          <Button.Style>
              <Style TargetType="Button">
                  <!-- Default button appearance -->

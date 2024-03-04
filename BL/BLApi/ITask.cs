@@ -28,4 +28,6 @@ public interface ITask
     public bool CheckForCircles(int dependent, int dependOn);
     public void AutoScheduleSystem(DateTime? SchedualProjectDate);
     public bool AutoScheduleDate(DO.Task task, DateTime? SchedualProjectDate);
+
+    public DateTime LastEndTask();
 }

@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PL.Task
 {
@@ -27,6 +29,7 @@ namespace PL.Task
 
         public TaskListWindow()
         {
+            ProjectStarted = s_bl.projectStarted();
             InitializeComponent();
             TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)).OrderBy(task => task.Id); // get list of all tasks //check if null is ok
         }
@@ -39,6 +42,21 @@ namespace PL.Task
 
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskListWindow), new PropertyMetadata(null));
+
+
+
+        public bool ProjectStarted // get list of all engineers
+        {
+            get { return (bool)GetValue(ProjectStartedProperty); }
+            set { SetValue(ProjectStartedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProjectStartedProperty =
+            DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(TaskListWindow), new PropertyMetadata(null));
+
+
+
+
 
         private void btnAddUpdate(object sender, RoutedEventArgs e)
         {

@@ -21,4 +21,10 @@ public interface IBl
 
     public void Reset();
 
+    public void setProjectStartDate(DateTime date);
+
+    public void setProjectEndDate(DateTime date);
+
+    public bool projectStarted();
+
 }

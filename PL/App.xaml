@@ -10,5 +10,9 @@
         <local:ConvertTaskToVisible x:Key="ConvertTaskToVisible"/>
         <local:ConvertTaskToEnable x:Key="ConvertTaskToEnable"/>
         <local:ConvertTaskToVisibleNot x:Key="ConvertTaskToVisibleNot"/>
+        <local:ConvertBoolToEnable x:Key="ConvertBoolToEnable"/>
+
+
+        
     </Application.Resources>
 </Application>

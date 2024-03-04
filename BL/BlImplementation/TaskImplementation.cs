@@ -5,6 +5,7 @@ namespace BlImplementation;
 using BO;
 using DO;
 using System.Data;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 
 /// <summary>
@@ -402,6 +403,7 @@ internal class TaskImplementation : BlApi.ITask
     }
 
 
+
     public DateTime? ForcastDateCalc(TimeSpan? req, DateTime? sched)
     {
 
@@ -410,7 +412,11 @@ internal class TaskImplementation : BlApi.ITask
 
     public void AutoScheduleSystem(DateTime? ScheduleProjectDate)
     {
-        if (ScheduleProjectDate == null || ScheduleProjectDate < _bl.Clock)
+        DateTime date = _bl.Clock;
+        DateTime roundedScheduleProjectDate = new DateTime(ScheduleProjectDate!.Value.Year, ScheduleProjectDate.Value.Month, ScheduleProjectDate.Value.Day, ScheduleProjectDate.Value.Hour, ScheduleProjectDate.Value.Minute, 0);
+
+
+        if (ScheduleProjectDate == null || roundedScheduleProjectDate < date.Date)
             throw new BlStartProjectBeforeClock($"Schedule project start date cant be before date now ");
 
 
@@ -426,6 +432,9 @@ internal class TaskImplementation : BlApi.ITask
             if (!AutoScheduleDate(task, ScheduleProjectDate))
                 queue.Enqueue(task);
         }
+        _bl.setProjectStartDate(ScheduleProjectDate.Value); // set the project start date
+        _bl.setProjectEndDate(LastEndTask());  // set the project end date
+
 
     }
 
@@ -453,5 +462,21 @@ internal class TaskImplementation : BlApi.ITask
         return true;
     }
 
+    public DateTime LastEndTask()
+    {
+        //return the task that end last
+        DateTime? date = DateTime.MinValue;
+        DateTime? temp = DateTime.MinValue;
+
+        foreach( var item in _dal.Task.ReadAll())
+        { 
+            temp= ForcastDateCalc(item!.RequiredEffortTime, item.ScheduledDate);
+
+            if (temp > date)
+                date = temp; 
+        }
+        return date.Value; // return the last end task
+
+    }
 }
 

@@ -219,7 +219,7 @@
             </ListView>
         </Border>
 
-        <Button Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="AddEngineerWindow">
+        <Button IsEnabled="{Binding ProjectStarted, Converter={StaticResource ConvertBoolToEnable}}" Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="AddEngineerWindow">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->

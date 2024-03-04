@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PL.Manager"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="ManagerWindow" Height="450" Width="800">
+        Title="ManagerWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!-- Main grid with a background image -->
     <Grid>
         <Grid.Background>
@@ -15,7 +16,7 @@
         </Grid.Background>
 
         <!-- Button for handling Engineers -->
-        <Button Content="Engineers" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleEngineers" Margin="35,339,0,0">
+        <Button Content="Engineers" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleEngineers" Margin="543,155,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="Button">
@@ -59,7 +60,7 @@
         </Button>
 
         <!-- Button for initialization -->
-        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="180,349,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
+        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="332,377,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="Button">
@@ -102,7 +103,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Reset Data" HorizontalAlignment="Left" Margin="180,288,0,0" VerticalAlignment="Top" Click="btnReset" Height="33" Width="108">
+        <Button Content="Reset Data" HorizontalAlignment="Left" Margin="350,328,0,0" VerticalAlignment="Top" Click="btnReset" Height="32" Width="108">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -145,7 +146,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleTasks" Margin="35,278,0,0">
+        <Button Content="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleTasks" Margin="454,217,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -187,7 +188,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Schduale Projetc" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="137" Click="SchdualeProjetcBtn" Margin="311,313,0,0">
+        <Button IsEnabled="{Binding ProjectStarted, Converter={StaticResource ConvertBoolToEnable}}" Content="Schduale Projetc" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44" Width="136" Click="SchdualeProjetcBtn" Margin="386,273,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

@@ -167,7 +167,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Label Content="Engineers List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
+        <Label Content="Choose an Engineer" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.RowSpan="3" Height="53" Width="289"/>
 
     </Grid>
 </Window>

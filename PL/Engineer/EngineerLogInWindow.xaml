@@ -10,6 +10,10 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     
     <Grid>
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
+        </Grid.Background>
         <Button Content="Log In" HorizontalAlignment="Left" Margin="163,82,0,0" VerticalAlignment="Top" Click="Enter" />
         <Label Content="Id:" HorizontalAlignment="Left" Margin="97,25,0,0" VerticalAlignment="Top"/>
         <TextBox  HorizontalAlignment="Left" Margin="160,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  Text="{Binding EngineerID, Mode=TwoWay, NotifyOnValidationError=true,
