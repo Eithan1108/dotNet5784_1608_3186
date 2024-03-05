@@ -100,5 +100,10 @@ namespace PL.Manager
             new ScheduleProjectWindow().Show();
             
         }
+
+        private void GantWindowBtn(object sender, RoutedEventArgs e)
+        {
+            new GantWindow().Show();
+        }
     }
 }

@@ -11,8 +11,12 @@
         <local:ConvertTaskToEnable x:Key="ConvertTaskToEnable"/>
         <local:ConvertTaskToVisibleNot x:Key="ConvertTaskToVisibleNot"/>
         <local:ConvertBoolToEnable x:Key="ConvertBoolToEnable"/>
+        <local:DateToWidthConverter x:Key="DateToWidthConverter"/>
+        <local:DateToMarginConverter x:Key="DateToMarginConverter"/>
+        <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
 
 
-        
+
+
     </Application.Resources>
 </Application>

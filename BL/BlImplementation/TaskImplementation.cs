@@ -195,12 +195,12 @@ internal class TaskImplementation : BlApi.ITask
     /// <exception cref="BO.BlBadIdException"></exception>
     public void UpdateTask(BO.Task task)
     {
-        if(task.Engineer != null && task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
+        if (task.Engineer != null && task.Engineer.Id != null && task.Complexity > (BO.EngineerExperience)_dal.Engineer.Read(engineer => engineer.Id == task.Engineer!.Id)!.Level)
             throw new BlBadLevelException("Complexity must be greater than the engineer level");
 
         //if (task.Engineer == null || task.Engineer.Id == null) // *&& _dal.Task.Read(t => t.EngineerId == task.Engineer!.Id) != null*/)
         //    throw new BO.BlBadIdException("Id must be not null");
-       
+
 
         if (task.Alias == null)
             throw new BO.BlBadAliasException("alias must be not null");
@@ -307,15 +307,17 @@ internal class TaskImplementation : BlApi.ITask
                 boTask.Engineer = new BO.EngineerInTask { Id = engineer.Id, Name = engineer.Name };
         }
 
-
-        if (boTask.ScheduledDate != DateTime.MinValue && boTask.ScheduledDate != null &&( boTask.StartDate == null || boTask.StartDate==DateTime.MinValue))
+        boTask.Status = Status.Unsheduled;
+        if (boTask.ScheduledDate != DateTime.MinValue && boTask.ScheduledDate != null)
             boTask.Status = Status.Scheduled;
-        else if (boTask.StartDate != null && boTask.StartDate != DateTime.MinValue && (boTask.CompleteDate == null ||boTask.CompleteDate==DateTime.MinValue))
+        if (boTask.ScheduledDate != DateTime.MinValue && boTask.ScheduledDate != null && boTask.ScheduledDate < _bl.Clock)
+            boTask.Status = Status.InJeopardy;
+        if (boTask.StartDate != null && boTask.StartDate != DateTime.MinValue )
             boTask.Status = Status.OnTrack;
-        else if (boTask.CompleteDate != null && boTask.CompleteDate!=DateTime.MinValue)
+        if (boTask.CompleteDate != null && boTask.CompleteDate != DateTime.MinValue)
             boTask.Status = Status.Done;
-        else
-            boTask.Status = Status.Unsheduled;
+        
+         
 
 
         List<BO.TaskInList> dependencies = new List<BO.TaskInList>();
@@ -332,14 +334,16 @@ internal class TaskImplementation : BlApi.ITask
                         Description = dependentTask.Description,
                         Alias = dependentTask.Alias
                     };
-                    if (dependentTask.ScheduledDate != null && dependentTask.StartDate == null)
+                    taskInList.Status = Status.Unsheduled;
+                    if (dependentTask.ScheduledDate != null && dependentTask.ScheduledDate != DateTime.MinValue)
                         taskInList.Status = Status.Scheduled;
-                    else if (dependentTask.StartDate != null && dependentTask.CompleteDate == null)
+                    if (dependentTask.ScheduledDate != null &&  boTask.ScheduledDate < _bl.Clock)
+                        taskInList.Status = Status.InJeopardy;
+                    if (dependentTask.StartDate != null && dependentTask.StartDate != DateTime.MinValue)
                         taskInList.Status = Status.OnTrack;
-                    else if (dependentTask.CompleteDate != null)
+                    if (dependentTask.CompleteDate != null && dependentTask.CompleteDate != DateTime.MinValue)
                         taskInList.Status = Status.Done;
-                    else
-                        taskInList.Status = Status.Unsheduled;
+
                     dependencies.Add(taskInList);
                 }
             }
@@ -371,14 +375,14 @@ internal class TaskImplementation : BlApi.ITask
 
     }
 
-    public void StopTask(int id) 
+    public void StopTask(int id)
     {
-       BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
+        BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
         if (task != null)
         {
             task.CompleteDate = _bl.Clock;
             _dal.Task.Update(BoDoAdapter(task));
-        }   
+        }
     }
 
     public bool CheckForCircles(int dependent, int dependOn)
@@ -468,12 +472,12 @@ internal class TaskImplementation : BlApi.ITask
         DateTime? date = DateTime.MinValue;
         DateTime? temp = DateTime.MinValue;
 
-        foreach( var item in _dal.Task.ReadAll())
-        { 
-            temp= ForcastDateCalc(item!.RequiredEffortTime, item.ScheduledDate);
+        foreach (var item in _dal.Task.ReadAll())
+        {
+            temp = ForcastDateCalc(item!.RequiredEffortTime, item.ScheduledDate);
 
             if (temp > date)
-                date = temp; 
+                date = temp;
         }
         return date.Value; // return the last end task
 

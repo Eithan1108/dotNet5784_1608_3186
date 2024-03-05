@@ -12,7 +12,9 @@ internal class LoozImplementation : ILooz
     {
         XElement root = XMLTools.LoadListFromXMLElement("data-config");
         XElement loozElement = root.Element("ProjectEndDate")!;
-        return (DateTime?)loozElement;
+        if (loozElement.Value == "")
+            return null;
+        return DateTime.Parse(loozElement.Value);
     }
 
     public DateTime? GetProjectDataScreen()

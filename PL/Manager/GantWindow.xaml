@@ -1,0 +1,83 @@
+﻿<Window x:Class="PL.Manager.GantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Manager"
+        mc:Ignorable="d"
+        Title="GantWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    
+    <Grid>
+
+        <Grid>
+            <ListBox ItemsSource="{Binding TaskList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Task ID -->
+                            <TextBlock Text="{Binding Id}" Width="20" Margin="0,0,5,0" VerticalAlignment="Center" />
+
+                            <!-- Task duration represented by Border -->
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"
+                            Width="{Binding Converter={StaticResource DateToWidthConverter}}"
+                            Margin="{Binding Converter={StaticResource DateToMarginConverter}}"
+                            Height="25">
+                                <Grid>
+                                    <Rectangle Fill="{Binding Converter={StaticResource StatusToColorConverter}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                    <TextBlock Text="{Binding Task}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Grid>
+                                <ToolTipService.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="Task Id: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Id}"/>
+                                        <TextBlock Text="Task Alias: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Alias}"/>
+                                        <TextBlock Text="Task Description: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Description}"/>
+                                        <TextBlock Text="Task Complexity: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Complexity}"/>
+                                        <TextBlock Text="Task Deliverables: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Deliverables}"/>
+                                        <TextBlock Text="ScheduledDate: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ScheduledDate}"/>
+                                        <TextBlock Text="Task ForecastDate: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ForecastDate}"/>
+                                        <TextBlock Text="Task RequiredEffortTime: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding RequiredEffortTime}"/>
+                                        <TextBlock Text="Task Status: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Status}"/>
+                                        <TextBlock Text="Task Remarks: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Remarks}"/>
+                                        <TextBlock Text="This Task belong to: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Engineer.Name}"/>
+                                        <TextBlock Text="Dependencies:" FontWeight="Bold"/>
+                                        <ItemsControl ItemsSource="{Binding Dependencies}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding Description}"/>
+                                                        <!-- Add more details as needed -->
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <!-- Add more details as needed -->
+                                    </StackPanel>
+                                </ToolTipService.ToolTip>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -137,8 +137,8 @@
         ///               /// </summary>
         ///                      /// <param name="message"></param>
         ///                             public BlBadTaskIdException(string? message) : base(message) { }
-   
-       
+
+
         public BlBadRemarksException(string? message) : base(message) { }
     }
 
@@ -172,6 +172,7 @@
         public BlStartBeforeDependence(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
 
+    [Serializable]
     public class BlStartProjectBeforeClock : Exception
     {
         /// <summary>
@@ -184,7 +185,6 @@
 
         public BlStartProjectBeforeClock(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
-
 }
 
 
