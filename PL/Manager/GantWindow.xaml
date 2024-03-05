@@ -45,7 +45,7 @@
                                         <TextBlock Text="Task Deliverables: " FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Deliverables}"/>
                                         <TextBlock Text="ScheduledDate: " FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding ScheduledDate}"/>
+                                        <TextBlock Text="{Binding  ScheduledDate}"/>
                                         <TextBlock Text="Task ForecastDate: " FontWeight="Bold"/>
                                         <TextBlock Text="{Binding ForecastDate}"/>
                                         <TextBlock Text="Task RequiredEffortTime: " FontWeight="Bold"/>
