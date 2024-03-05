@@ -109,7 +109,7 @@ class DateToWidthConverter : IValueConverter
 
             }
 
-            return (requiredEffortTime / allProjectDuration) * 800; //return the task width
+            return (requiredEffortTime / allProjectDuration) * 1000; //return the task width
         }
         return 0;
     }
@@ -148,7 +148,7 @@ class DateToMarginConverter : IValueConverter
 
             }
 
-            return new Thickness((((TimeSpan)(taskStartDate - startDate) / allProjectDuration) * 800), 0, 0, 0); //return the task margin
+            return new Thickness((((TimeSpan)(taskStartDate - startDate) / allProjectDuration) * 1000), 0, 0, 0); //return the task margin
         }
         return 0;
     }
