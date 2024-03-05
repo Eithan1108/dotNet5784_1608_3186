@@ -196,3 +196,18 @@ class StatusToColorConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+class GantbtnEnableConverter : IValueConverter
+{
+    //if we click on set schedule btn, enable this button
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (bool)value == true ? true : false;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+
+}

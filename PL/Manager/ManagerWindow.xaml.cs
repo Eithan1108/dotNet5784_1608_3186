@@ -88,8 +88,6 @@ namespace PL.Manager
         public static readonly DependencyProperty ProjectStartedProperty =
             DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(ManagerWindow), new PropertyMetadata(null));
 
-        
-        
         private void btnHandleTasks(object sender, RoutedEventArgs e)
         {
             new TaskListWindow().Show();

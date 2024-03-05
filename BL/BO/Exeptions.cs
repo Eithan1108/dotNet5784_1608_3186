@@ -121,11 +121,10 @@
     public class BlBadTaskDescreptionException : Exception
     {
         /// <summary>
-        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
-        ///               /// </summary>
-        ///                      /// <param name="message"></param>
-        ///                             public BlBadTaskIdException(string? message) : base(message) { }
-        ///                                }
+        ///Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// /// </summary>
+        ///<param name="message"></param>
+                                   
         public BlBadTaskDescreptionException(string? message) : base(message) { }
     }
 
@@ -133,10 +132,10 @@
     public class BlBadRemarksException : Exception
     {
         /// <summary>
-        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
-        ///               /// </summary>
-        ///                      /// <param name="message"></param>
-        ///                             public BlBadTaskIdException(string? message) : base(message) { }
+        /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        // /// <param name="message"></param>
+        /// public BlBadTaskIdException(string? message) : base(message) { }
 
 
         public BlBadRemarksException(string? message) : base(message) { }
@@ -147,12 +146,10 @@
     public class BlNotExistsException : Exception
     {
         /// <summary>
-        ///        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
-        ///               ///               /// </summary>
-        ///                      ///                      /// <param name="message"></param>
-        ///                             ///                             public BlBadTaskIdException(string? message) : base(message) { }
-        ///                                    ///                                }
-        ///                                           public BlBadTaskIdException(string? message) : base(message) { }
+        ///Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        ////// </summary>
+        ///<param name="message"></param>
+        
 
         public BlNotExistsException(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
@@ -162,12 +159,10 @@
     public class BlStartBeforeDependence : Exception
     {
         /// <summary>
-        ///        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
-        ///               ///               /// </summary>
-        ///                      ///                      /// <param name="message"></param>
-        ///                             ///                             public BlBadTaskIdException(string? message) : base(message) { }
-        ///                                    ///                                }
-        ///                                           public BlBadTaskIdException(string? message) : base(message) { }
+        ///  Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        ///<param name="message"></param>
+        ///public BlBadTaskIdException(string? message) : base(message) { }
 
         public BlStartBeforeDependence(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
@@ -176,14 +171,20 @@
     public class BlStartProjectBeforeClock : Exception
     {
         /// <summary>
-        ///        ///        /// /// Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
-        ///               ///               /// </summary>
-        ///                      ///                      /// <param name="message"></param>
-        ///                             ///                             public BlBadTaskIdException(string? message) : base(message) { }
-        ///                                    ///                                }
-        ///                                           public BlBadTaskIdException(string? message) : base(message) { }
-
+        ///Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        ///</summary>
+        ///<param name="message"></param>
         public BlStartProjectBeforeClock(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
+    }
+
+    [Serializable]
+    public class BlErrorSetScheduleException : Exception
+    {
+        /// <summary>
+        ///Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message"></param>
+        public BlErrorSetScheduleException(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
 }
 

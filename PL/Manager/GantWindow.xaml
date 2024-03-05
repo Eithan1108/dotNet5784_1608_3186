@@ -23,7 +23,8 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- Task ID -->
-                            <TextBlock Text="{Binding Id}" Width="20" Margin="0,0,5,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Id}" Width="20" Margin="0,0,25,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Alias}" Width="70" Margin="0,0,5,0" VerticalAlignment="Center" />
 
                             <!-- Task duration represented by Border -->
                             <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"

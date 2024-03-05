@@ -26,7 +26,7 @@ namespace PL.Manager
         {
             Date = s_bl.Clock;
             InitializeComponent();
-            
+
         }
 
         public DateTime Date // get list of all engineers
@@ -40,7 +40,18 @@ namespace PL.Manager
 
         private void SetScheduleProjectBtn(object sender, RoutedEventArgs e)
         {
-            s_bl.Task.AutoScheduleSystem(Date); // call the bl function to schedule the project
+            try
+            {
+                s_bl.Task.AutoScheduleSystem(Date); // call the bl function to schedule the project
+                MessageBox.Show("The project has been scheduled successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            Close();
+
         }
     }
 }
