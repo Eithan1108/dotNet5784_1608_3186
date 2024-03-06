@@ -48,6 +48,7 @@ namespace PL.Manager
                     {
                         s_bl.Reset();
                         DalTest.Initialization.Do();
+                        ProjectStarted = s_bl.projectStarted();
                         MessageBox.Show("System has been initialized", "Initialization", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
@@ -67,8 +68,9 @@ namespace PL.Manager
                 try
                 {
                     s_bl.Reset();
-
+                    ProjectStarted = s_bl.projectStarted();
                     MessageBox.Show("System has been restarted", "Restart", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -95,8 +97,19 @@ namespace PL.Manager
 
         private void SchdualeProjetcBtn(object sender, RoutedEventArgs e)
         {
-            new ScheduleProjectWindow().Show();
-            
+
+            ScheduleProjectWindow scheduleProjectWindow = new ScheduleProjectWindow();
+
+            // Subscribe to the Closed event of the window
+            scheduleProjectWindow.Closed += (windowSender, windowArgs) =>
+            {
+                // Update ProjectStarted after the window is closed
+                ProjectStarted = s_bl.projectStarted();
+            };
+
+            // Show the window
+            scheduleProjectWindow.Show();
+
         }
 
         private void GantWindowBtn(object sender, RoutedEventArgs e)

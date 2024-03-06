@@ -274,7 +274,9 @@
 
         <StackPanel Background="Yellow" Margin="452,213,34,81">
             <TextBlock Text="Engineer:" />
-            <TextBlock Text="{Binding Path=Task.Engineer.Id}" />
+            <TextBlock Text="{Binding EngineerWorking.Id, Mode=TwoWay}" />
+            <TextBlock Text="{Binding EngineerWorking.Name, Mode=TwoWay}" />
+            <TextBlock Text="{Binding EngineerWorking.Level, Mode=TwoWay}" />
         </StackPanel>
 
 

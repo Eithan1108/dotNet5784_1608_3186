@@ -33,7 +33,7 @@
 
             <ComboBox 
                       Background="#f1f1f2"
-                      ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
+                      ItemsSource="{Binding Source={StaticResource EngineerCollectionWithAll}}"
                       SelectedValue="{Binding Path=Experience, Mode=TwoWay}"
                       SelectionChanged="OnSelectExperience"
                       Margin="390,7,10,-48" Grid.ColumnSpan="2"
@@ -219,7 +219,7 @@
             </ListView>
         </Border>
 
-        <Button IsEnabled="{Binding ProjectStarted, Converter={StaticResource ConvertBoolToEnable}}" Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="AddEngineerWindow">
+        <Button Content ="Add Engineer" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="AddEngineerWindow">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->

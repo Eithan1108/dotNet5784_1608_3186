@@ -62,8 +62,7 @@
             </Button>
         </Grid>
 
-        <DatePicker  SelectedDate="{Binding Date, Mode=TwoWay}" HorizontalAlignment="Left" Margin="287,0,0,0"  Text="{Binding Task.StartDate, Mode=TwoWay, NotifyOnValidationError=true,
-            ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154" Height="26">
+        <DatePicker  SelectedDate="{Binding Date, Mode=TwoWay}" HorizontalAlignment="Left" Margin="287,0,0,0" VerticalAlignment="Center" Width="154" Height="26">
 
 
 

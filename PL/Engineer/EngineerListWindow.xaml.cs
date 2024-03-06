@@ -23,7 +23,7 @@ namespace PL.Engineer
     public partial class EngineerListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
-        public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.All; // get the experience of the engineer
+        public BO.EngineerExperienceWithAll Experience { get; set; } = BO.EngineerExperienceWithAll.All; // get the experience of the engineer
         public EngineerListWindow()
         {
             ProjectStarted = s_bl.projectStarted();
@@ -33,8 +33,13 @@ namespace PL.Engineer
 
         private void AddEngineerWindow(object sender, RoutedEventArgs e)
         {
-            new EngineerWindow(0).ShowDialog(); // open the engineer window
-            RefreshList();
+            if (ProjectStarted)
+                MessageBox.Show("Project already started", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                new EngineerWindow(0).ShowDialog(); // open the engineer window
+                RefreshList();
+            }
         }
 
 
@@ -60,23 +65,29 @@ namespace PL.Engineer
 
         private void OnSelectExperience(object sender, SelectionChangedEventArgs e) // select experience of the engineer
         {
-            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!)!
-                    : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience).OrderBy(engineer => engineer.Cost)!;
+            EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!)!
+                    : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Cost)!;
         }
 
         private void SelectEngineerToUpdate(object sender, MouseButtonEventArgs e)
         {
-            BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
-            int id = engineerInList!.Id!.Value; // convert from int? to int
-            new EngineerWindow(id).ShowDialog(); // open the engineer window
-            RefreshList();
+            if (ProjectStarted)
+                MessageBox.Show("Project already started", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
+                int id = engineerInList!.Id!.Value; // convert from int? to int
+                new EngineerWindow(id).ShowDialog(); // open the engineer window
+                RefreshList();
+            }
+
         }
 
         private void RefreshList()
         {
             //    EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
-            EngineerList = (Experience == BO.EngineerExperience.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost)!
-                       : s_bl?.Engineer.GetEngineersList(engineer => engineer.Level == Experience).OrderBy(engineer => engineer.Cost)!;
+            EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost)!
+                       : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Cost)!;
         }
     }
 

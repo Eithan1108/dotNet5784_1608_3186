@@ -114,7 +114,7 @@
          </ListView>
      </Border>
 
-        <Button IsEnabled="{Binding ProjectStarted, Converter={StaticResource ConvertBoolToEnable}}" Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
+        <Button Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
          <Button.Style>
              <Style TargetType="Button">
                  <!-- Default button appearance -->
@@ -160,7 +160,7 @@
         
      <ComboBox 
          Background="#f1f1f2"
-         ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
+         ItemsSource="{Binding Source={StaticResource EngineerCollectionWithAll}}"
          SelectedValue="{Binding Experience, Mode=TwoWay}"
          SelectionChanged="OnSelectExperience"
          Margin="400,0,10,38" Grid.Row="1"

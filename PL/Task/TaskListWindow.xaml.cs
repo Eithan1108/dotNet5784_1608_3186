@@ -23,7 +23,7 @@ namespace PL.Task
     public partial class TaskListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
-        public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.All; // get the experience of the engineer
+        public BO.EngineerExperienceWithAll Experience { get; set; } = BO.EngineerExperienceWithAll.All; // get the experience of the engineer
         public BO.Status Status { get; set; } = BO.Status.All; // get the status of the task
 
 
@@ -60,8 +60,13 @@ namespace PL.Task
 
         private void btnAddUpdate(object sender, RoutedEventArgs e)
         {
-            new TaskWindow().ShowDialog();
-            RefreshList();
+            if (ProjectStarted)
+                MessageBox.Show("Project already started", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                new TaskWindow().ShowDialog();
+                RefreshList();
+            }
         }
         
 
@@ -74,19 +79,25 @@ namespace PL.Task
 
         private void SelectToUpdate(object sender, MouseButtonEventArgs e)
         {
-            BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
-            if (task != null)
+            if (ProjectStarted)
+                MessageBox.Show("Project already started", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
             {
-                //int id = task!.Id; // convert from int? to int
-                new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
-                RefreshList();
+                BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
+                if (task != null)
+                {
+                    //int id = task!.Id; // convert from int? to int
+                    new TaskWindow(task!.Id).ShowDialog(); // open the engineer window
+                    RefreshList();
+                }
             }
+
         }
 
         private void OnSelectExperience(object sender, SelectionChangedEventArgs e)
         {
-            TaskList = (Experience == BO.EngineerExperience.All) ? s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(null!).OrderBy(task => task.Id)!)
-        :               s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(task => task.Complexity == Experience)!)!;
+            TaskList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(null!).OrderBy(task => task.Id)!)
+        :               s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(task => (int)task.Complexity == (int)Experience)!)!;
         }
     }
     

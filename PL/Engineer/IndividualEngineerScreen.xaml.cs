@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,8 +60,7 @@ namespace PL.Engineer
 
         public static readonly DependencyProperty WorkingTaskProperty =
             DependencyProperty.Register("WorkingTask", typeof(BO.Task), typeof(IndividualEngineerScreen), new PropertyMetadata(null));
-
-
+        
         private void CompleteTaskBtn(object sender, RoutedEventArgs e)
         {
 
@@ -76,6 +76,11 @@ namespace PL.Engineer
               task.Engineer != null &&
               task.Engineer.Id == Engineer.Id &&
               task.StartDate == null);
+            this.Close();
+
+            // Create and show a new instance of the window
+            var newWindow = new IndividualEngineerScreen(Engineer);
+            newWindow.Show();
         }
 
         private void StartEngineerBtn(object sender, MouseButtonEventArgs e)
@@ -96,6 +101,11 @@ namespace PL.Engineer
                   task.Engineer != null &&
                   task.Engineer.Id == Engineer.Id &&
                   task.StartDate == null);
+                this.Close();
+
+                // Create and show a new instance of the window
+                var newWindow = new IndividualEngineerScreen(Engineer);
+                newWindow.Show();
             }
             catch (Exception ex)
             {

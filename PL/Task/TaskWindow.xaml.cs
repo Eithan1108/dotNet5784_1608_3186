@@ -46,7 +46,7 @@ namespace PL.Task
                     Status = task.Status,
                     IsChecked = false,
 
-                });
+                }).OrderBy(task => task.Id);
             }
             catch (Exception ex)
             {
@@ -67,6 +67,10 @@ namespace PL.Task
                     Task = s_bl!.Task.GetTask(id);
                     // engineerId = Task.Engineer!.Id.Value;
                     dependenceList = Task.Dependencies!;
+                    if (Task.Engineer != null)
+                    {
+                            EngineerWorking = s_bl.Engineer.GetEngineer(Task.Engineer.Id!.Value);
+                    }
 
                     TaskList = TaskList.Select(task =>
                      new CheckBoxTask
@@ -76,7 +80,7 @@ namespace PL.Task
                          Alias = task.Alias,
                          Status = task.Status,
                          IsChecked = dependenceList?.Any(dependency => dependency.Id == task.Id) ??false,
-                     });
+                     }).OrderBy(task => task.Id);
 
                    idIndicator = true;
 
@@ -112,6 +116,17 @@ namespace PL.Task
             get { return (IEnumerable<CheckBoxTask>)GetValue(TaskListProperty); }
             set { SetValue(TaskListProperty, value); }
         }
+
+        public BO.Engineer EngineerWorking // get list of all tasks
+        {
+            get { return (BO.Engineer)GetValue(EngineerWorkingProperty); }
+            set { SetValue(EngineerWorkingProperty, value); }
+        }
+
+        public static readonly DependencyProperty EngineerWorkingProperty =
+            DependencyProperty.Register("EngineerWorking", typeof(BO.Engineer), typeof(TaskWindow), new PropertyMetadata(null));
+
+
 
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("Task", typeof(BO.Task), typeof(TaskWindow), new PropertyMetadata(null));
@@ -211,6 +226,17 @@ namespace PL.Task
         private void EngineerSelectedHandler(object sender, EngineerSelectedEventArgs args)
         {
             engineerId = args.SelectedEngineerId;
+            try
+            {
+                EngineerWorking = s_bl.Engineer.GetEngineer(engineerId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
+
         }
     }
 }

@@ -19,6 +19,15 @@ public enum EngineerExperience // experience of the engineer
     AdvancedBeginner,
     Intermediate,
     Advanced,
+    Expert
+}
+
+public enum EngineerExperienceWithAll // experience of the engineer
+{
+    Beginner,
+    AdvancedBeginner,
+    Intermediate,
+    Advanced,
     Expert,
     All
 }

@@ -31,6 +31,16 @@ namespace PL.Manager
                     .ThenBy(task => task.Id)
                     .ToList();
 
+            try
+            {
+                DatesBetween = GetDateRange(s_bl.Looz.GetStartDate()!.Value, s_bl.Looz.GetEndDate()!.Value);
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open", "Fail", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+
         }
 
         public IEnumerable<BO.Task> TaskList // get list of all tasks
@@ -41,5 +51,33 @@ namespace PL.Manager
 
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.Task>), typeof(GantWindow), new PropertyMetadata(null));
+
+        public IEnumerable<DateTime> DatesBetween // get list of all dates
+        {
+            get { return (IEnumerable<DateTime>)GetValue(DatesBetweenProperty); }
+            set { SetValue(DatesBetweenProperty, value); }
+        }
+
+        public static readonly DependencyProperty DatesBetweenProperty =
+            DependencyProperty.Register("DatesBetween", typeof(IEnumerable<DateTime>), typeof(GantWindow), new PropertyMetadata(null));
+
+        
+        
+        public static IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate)
+        {
+            List<DateTime> dateRange = new List<DateTime>();
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                dateRange.Add(date);
+            }
+
+            return dateRange;
+        }
+
+
     }
+
+
+
 }
