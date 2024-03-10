@@ -19,13 +19,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-
-
-
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="100" />
                             </Grid.ColumnDefinitions>
 
                             <!-- Task ID -->
@@ -78,7 +74,6 @@
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
 
-                                        <!-- Add more details as needed -->
                                     </StackPanel>
                                 </ToolTipService.ToolTip>
                             </Border>
