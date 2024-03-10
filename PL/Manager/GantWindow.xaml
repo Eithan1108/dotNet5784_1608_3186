@@ -35,7 +35,6 @@
                                 <Grid>
                                     <Rectangle Fill="{Binding Converter={StaticResource StatusToColorConverter}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                                     <TextBlock Text="{Binding Id}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-
                                 </Grid>
                                 <ToolTipService.ToolTip>
                                     <StackPanel>
@@ -86,18 +85,13 @@
         </Grid>
 
         <Grid>
-            <Rectangle Fill="White" Width="383" Height="19" Margin="0,0,535,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0.8"
+            <Rectangle Fill="White" Width="295" Height="19" Margin="0,0,552,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0.8"
                RadiusX="9" RadiusY="9">
             </Rectangle>
         </Grid>
 
 
-        <Grid>
-            <!-- Black circle -->
 
-            <!-- Colored circle -->
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,839,12" Fill="#cfbc79"/>
-        </Grid>
         <Grid>
             <!-- Black circle -->
 
@@ -114,20 +108,19 @@
             <!-- Black circle -->
 
             <!-- Colored circle -->
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,612,12" Fill="#e16d70"/>
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,626,12" Fill="#e16d70"/>
         </Grid>
         <Grid>
             <!-- Black circle -->
 
             <!-- Colored circle -->
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,552,12" Fill="#bcc771"/>
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,570,12" Fill="#bcc771"/>
         </Grid>
 
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,846,10" FontSize="10" FontWeight="SemiBold" TextWrapping="Wrap" Text="Unscheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,766,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,691,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,615,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In jeopardy" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,528,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,764,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,685,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,620,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In Danger" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,543,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Bottom" Height="15" Width="66"/>
     </Grid>
 
 
