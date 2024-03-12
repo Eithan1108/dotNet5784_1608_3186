@@ -8,62 +8,62 @@
          ResizeMode="NoResize"
         Title="TaskListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-     <!--//external window-->
- <Grid>
-     <Grid.Background>
-         <!-- Setting the background using an ImageBrush -->
-         <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
-     </Grid.Background>
-     <Grid.RowDefinitions>
-         <RowDefinition Height="40*"/>
-         <RowDefinition Height="500*"/>
-         <RowDefinition Height="Auto"/>
-     </Grid.RowDefinitions>
-     <!--Internal, Upper Grid-->
-     <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-         <Grid.ColumnDefinitions>
-             <ColumnDefinition Width="*"/>
-             <ColumnDefinition Width="*"/>
-         </Grid.ColumnDefinitions>
-         <Label  Grid.Column="0" />
+    <!--//external window-->
+    <Grid>
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Internal, Upper Grid-->
+        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label  Grid.Column="0" />
 
 
 
         </Grid>
 
-     <Border CornerRadius="13" Background="#f1f1f2" Margin="31,86,31,125" Grid.RowSpan="2" Grid.Row="1" >
-         <ListView Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.RowSpan="2" Background="Transparent" Margin="0,10,0,10" BorderBrush="{x:Null}" MouseDoubleClick="SelectToUpdate">
-             <ListView.View>
-                 <!-- Define the view for ListView -->
-                 <GridView >
-                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}">
-                         <GridViewColumn.CellTemplate>
-                             <DataTemplate>
-                                 <Border 
+        <Border CornerRadius="13" Background="#f1f1f2" Margin="31,86,31,125" Grid.RowSpan="2" Grid.Row="1" >
+            <ListView Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.RowSpan="2" Background="Transparent" Margin="0,10,0,10" BorderBrush="{x:Null}" MouseDoubleClick="SelectToUpdate">
+                <ListView.View>
+                    <!-- Define the view for ListView -->
+                    <GridView >
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border 
                                 Background="#f1f1f2"
                                 CornerRadius="5"
                                 Margin="2"
                                 BorderBrush="#f1f1f2"
                                 BorderThickness="1">
-                                     <TextBlock Text="{Binding Path=Id}"/>
-                                 </Border>
-                             </DataTemplate>
-                         </GridViewColumn.CellTemplate>
-                     </GridViewColumn>
-                     <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Path=Description}">
-                         <GridViewColumn.CellTemplate>
-                             <DataTemplate>
-                                 <Border 
+                                        <TextBlock Text="{Binding Path=Id}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Path=Description}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border 
                                 Background="#f1f1f2"
                                 CornerRadius="5"
                                 Margin="2"
                                 BorderBrush="#f1f1f2"
                                 BorderThickness="1">
-                                     <TextBlock Text="{Binding Path=Description}"/>
-                                 </Border>
-                             </DataTemplate>
-                         </GridViewColumn.CellTemplate>
-                     </GridViewColumn>
+                                        <TextBlock Text="{Binding Path=Description}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Alias" DisplayMemberBinding="{Binding Path=Alias}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -79,9 +79,9 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}">
-                         <GridViewColumn.CellTemplate>
-                             <DataTemplate>
-                                 <Border 
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border 
                                 Background="#f1f1f2"
                                 CornerRadius="5"
                                 Margin="2"
@@ -89,81 +89,81 @@
                                 BorderThickness="1">
                                         <TextBlock Text="{Binding Path=Status}"/>
 
-                                 </Border>
-                             </DataTemplate>
-                         </GridViewColumn.CellTemplate>
-                     </GridViewColumn>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
 
                     </GridView>
-             </ListView.View>
+                </ListView.View>
 
-             <ListView.Resources>
+                <ListView.Resources>
 
-                 <Style TargetType="GridViewColumnHeader">
-                     <Setter Property="Background" Value="Transparent" />
-                 </Style>
-                 <Style TargetType="ListViewItem">
-                     <Setter Property="BorderBrush" Value="#f1f1f2"/>
-                     <Setter Property="BorderThickness" Value="1"/>
-                     <Setter Property="Margin" Value="2"/>
-                     <Setter Property="Height"  Value="30" />
-                 </Style>
-             </ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="BorderBrush" Value="#f1f1f2"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Height"  Value="30" />
+                    </Style>
+                </ListView.Resources>
 
-         </ListView>
-     </Border>
+            </ListView>
+        </Border>
 
         <Button Content ="Add task" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="146" Margin="0,460,0,21" Click="btnAddUpdate">
-         <Button.Style>
-             <Style TargetType="Button">
-                 <!-- Default button appearance -->
-                 <Setter Property="Background" Value="#6464f8"/>
-                 <Setter Property="BorderBrush" Value="#d9d9da"/>
-                 <Setter Property="BorderThickness" Value="2"/>
-                 <Setter Property="Padding" Value="4"/>
-                 <Setter Property="Foreground" Value="White"/>
-                 <!-- ControlTemplate to customize button visuals -->
-                 <Setter Property="Template">
-                     <Setter.Value>
-                         <ControlTemplate TargetType="Button">
-                             <!-- Border with rounded corners -->
-                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
-                                 <!-- ContentPresenter for button content -->
-                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                             </Border>
-                         </ControlTemplate>
-                     </Setter.Value>
-                 </Setter>
-                 <Setter Property="ContentTemplate">
-                     <Setter.Value>
-                         <DataTemplate>
-                             <StackPanel Orientation="Horizontal">
-                                 <Image Source="\Images\add-user-removebg-preview.png" Width="25" Height="25"/>
-                                 <TextBlock Text="Add Task" Margin="7 4 0 0"/>
-                             </StackPanel>
-                         </DataTemplate>
-                     </Setter.Value>
-                 </Setter>
-                 <!-- Trigger for mouse-over effect -->
-                 <Style.Triggers>
-                     <Trigger Property="IsMouseOver" Value="True">
-                         <!-- Change background and border color on mouse-over -->
-                         <Setter Property="Background" Value="#8484f8"/>
-                         <Setter Property="BorderBrush" Value="#d9d9da"/>
-                     </Trigger>
-                 </Style.Triggers>
-             </Style>
-         </Button.Style>
-     </Button>
-     <Label Content="Tasks List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
-        
-     <ComboBox 
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="\Images\add-user-removebg-preview.png" Width="25" Height="25"/>
+                                    <TextBlock Text="Add Task" Margin="7 4 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#d9d9da"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Label Content="Tasks List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
+
+        <ComboBox 
          Background="#f1f1f2"
          ItemsSource="{Binding Source={StaticResource EngineerCollectionWithAll}}"
          SelectedValue="{Binding Experience, Mode=TwoWay}"
          SelectionChanged="OnSelectExperience"
-         Margin="400,0,10,38" Grid.Row="1"
+         Margin="535,0,10,30" Grid.Row="1"
                 >
             <ComboBox.Style>
                 <Style TargetType="{x:Type ComboBox}">
@@ -246,6 +246,51 @@
                 </Style>
             </ComboBox.Style>
         </ComboBox>
+
+
+        <TextBox x:Name="TextChanged" HorizontalAlignment="Left" Margin="309,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="154" Height="26" Grid.Row="1" TextChanged="SearchForContext" >
+            <TextBox.Style>
+                <!-- Define style for TextBox -->
+                <Style TargetType="{x:Type TextBox}">
+
+                    <!-- Set default properties for TextBox -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <!-- Create a border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <ScrollViewer x:Name="PART_ContentHost" Margin="4,0,4,0" />
+                                        <TextBlock Text="Search Tasks..." Foreground="#8c8cf8" FontStyle="Oblique"  Margin="4,3,0,0" IsHitTestVisible="False" Visibility="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TextboxPlaceholderVisibilityConverter}}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Define triggers for the TextBox style -->
+                    <Style.Triggers>
+
+                        <!-- Trigger for mouse-over effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+
+        </TextBox>
 
     </Grid>
 </Window>

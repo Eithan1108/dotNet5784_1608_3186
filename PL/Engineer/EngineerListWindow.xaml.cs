@@ -85,9 +85,13 @@ namespace PL.Engineer
 
         private void RefreshList()
         {
-            //    EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Level == Experience); // get list of all engineers
             EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost)!
                        : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Cost)!;
+        }
+
+        private void SearchForContext(object sender, TextChangedEventArgs e)
+        {
+            EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Name.StartsWith(TextChanged.Text) || engineer.Name.ToLower().StartsWith(TextChanged.Text) || engineer.Email.StartsWith(TextChanged.Text) || engineer.Id.ToString()!.StartsWith(TextChanged.Text)).OrderBy(engineer => engineer.Id);
         }
     }
 

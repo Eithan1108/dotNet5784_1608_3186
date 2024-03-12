@@ -55,7 +55,14 @@ namespace PL.Task
             DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(TaskListWindow), new PropertyMetadata(null));
 
 
+        public string SearchFor // get list of all engineers
+        {
+            get { return (string)GetValue(SearchForProperty); }
+            set { SetValue(SearchForProperty, value); }
+        }
 
+        public static readonly DependencyProperty SearchForProperty =
+            DependencyProperty.Register("SearchFor", typeof(string), typeof(TaskListWindow), new PropertyMetadata(null));
 
 
         private void btnAddUpdate(object sender, RoutedEventArgs e)
@@ -99,6 +106,15 @@ namespace PL.Task
             TaskList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(null!).OrderBy(task => task.Id)!)
         :               s_bl.Task.TaskToTaskInListConverter(s_bl?.Task.GetTasksList(task => (int)task.Complexity == (int)Experience)!)!;
         }
+
+        private void SearchForContext(object sender, TextChangedEventArgs e)
+        {
+            // SearchFor = sender!.ToString()!;
+            TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(task => task.Description.StartsWith(TextChanged.Text) || task.Description.ToLower().StartsWith(TextChanged.Text) || task.Alias.StartsWith(TextChanged.Text) || task.Alias.ToLower().StartsWith(TextChanged.Text) || task.Id.ToString().StartsWith(TextChanged.Text))).OrderBy(task => task.Id);
+        }
+
+
+
     }
     
     

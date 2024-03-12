@@ -17,6 +17,10 @@
         <local:DateToMarginConverter x:Key="DateToMarginConverter"/>
         <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
         <local:GantbtnEnableConverter x:Key="GantbtnEnableConverter"/>
+        <local:TextboxPlaceholderVisibilityConverter x:Key="TextboxPlaceholderVisibilityConverter"/>
+        <local:ConvertValidToBorderBrush x:Key="ConvertValidToBorderBrush"/>
+
+        
 
 
 

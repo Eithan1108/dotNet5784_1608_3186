@@ -36,7 +36,7 @@
                       ItemsSource="{Binding Source={StaticResource EngineerCollectionWithAll}}"
                       SelectedValue="{Binding Path=Experience, Mode=TwoWay}"
                       SelectionChanged="OnSelectExperience"
-                      Margin="390,7,10,-48" Grid.ColumnSpan="2"
+                      Margin="100,7,10,-48" Grid.Column="1"
                 >
                 <ComboBox.Style>
                     <Style TargetType="ComboBox">
@@ -262,6 +262,49 @@
             </Button.Style>
         </Button>
         <Label Content="Engineers List" Foreground="#f1f1f2" FontWeight="Black"  FontSize="26" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="47" Width="194"/>
+        <TextBox x:Name="TextChanged" HorizontalAlignment="Left" Margin="293,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="154" Height="26" Grid.Row="1" TextChanged="SearchForContext" >
+            <TextBox.Style>
+                <!-- Define style for TextBox -->
+                <Style TargetType="{x:Type TextBox}">
+
+                    <!-- Set default properties for TextBox -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <!-- Create a border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <ScrollViewer x:Name="PART_ContentHost" Margin="4,0,4,0" />
+                                        <TextBlock Text="Search Engineers..." Foreground="#8c8cf8" FontStyle="Oblique"  Margin="4,3,0,0" IsHitTestVisible="False" Visibility="{Binding Text, Converter={StaticResource TextboxPlaceholderVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Define triggers for the TextBox style -->
+                    <Style.Triggers>
+
+                        <!-- Trigger for mouse-over effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+
+        </TextBox>
 
     </Grid>
 </Window>

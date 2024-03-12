@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="EngineerWindow" Height="496" Width="351"
-        DataContext="{Binding Engineer ,RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
+         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <Grid.Background>
             <!-- Setting the background using an ImageBrush -->
@@ -18,8 +18,8 @@
         <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
         <Label Content="Level:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,206,0,0" VerticalAlignment="Top"/>
         <Label Content="Cost:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="64,253,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="132,55,0,0"  TextWrapping="Wrap" Text= "{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}" PreviewTextInput="NumberValidationTextBox">
+        <TextBox HorizontalAlignment="Left" Margin="132,55,0,0"  TextWrapping="Wrap" Text= "{Binding Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,
+                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged" IsEnabled="{Binding Engineer.Id, Converter={StaticResource ConvertIdToEnable} , Mode=OneTime}" PreviewTextInput="NumberValidationTextBox">
             <TextBox.Style>
                 <!-- TextBox Style -->
                 <Style TargetType="TextBox">
@@ -61,7 +61,7 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="132,105,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="132,105,0,0" TextWrapping="Wrap" Text="{Binding Engineer.Name, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
             <TextBox.Style>
                 <!-- TextBox Style -->
@@ -104,15 +104,14 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="132,161,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,
-                    ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" Height="26">
+        <TextBox HorizontalAlignment="Left" Margin="132,161,0,0" TextWrapping="Wrap" Text="{Binding Engineer.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">
 
                     <!-- Set default properties for TextBox -->
                     <Setter Property="Background" Value="#f1f1f2"/>
-                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="{Binding IsValid, Mode=TwoWay, Converter={StaticResource ConvertValidToBorderBrush}}"/>
                     <Setter Property="Foreground" Value="#6464f8"/>
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Padding" Value="4"/>
@@ -151,7 +150,7 @@
 
 
         <ComboBox Background="#f1f1f2" HorizontalAlignment="Left" Margin="132,211,0,0" VerticalAlignment="Top" Width="154"
-                    ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true,
+                    ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Engineer.Level, Mode=TwoWay, NotifyOnValidationError=true,
                         ValidatesOnExceptions=true}" Height="29">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
@@ -242,7 +241,7 @@
 
 
 
-        <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,
+        <TextBox HorizontalAlignment="Left" Margin="132,256,0,0" TextWrapping="Wrap" Text="{Binding Engineer.Cost, Mode=TwoWay, NotifyOnValidationError=true,
                     ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" PreviewTextInput="NumberValidationTextBox">
             <TextBox.Style>
                 <!-- Define the style for TextBox -->
@@ -284,7 +283,7 @@
             </TextBox.Style>
 
         </TextBox>
-        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
+        <Button Content="{Binding Engineer.Id, Mode=TwoWay, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->
