@@ -186,6 +186,16 @@
         /// <param name="message"></param>
         public BlErrorSetScheduleException(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
     }
+
+    [Serializable]
+    public class BlBadPasswordException : Exception
+    {
+        /// <summary>
+        ///Initializes a new instance of the <see cref="DalBadCostException"/> class with a specified error message.
+        /// </summary>
+        /// <param name="message"></param>
+        public BlBadPasswordException(string? message) : base(message) { } //Exception thrown when a Data Access Layer (DAL) does not exist.
+    }
 }
 
 

@@ -9,5 +9,7 @@ namespace DalApi
         IDependence Dependence { get; }
 
         ILooz looz { get; }
+
+        IManager manager { get; }
     }
 }

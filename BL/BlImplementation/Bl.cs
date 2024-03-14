@@ -4,6 +4,10 @@ using BlApi;
 using DO;
 using System.Xml.Linq;
 using Dal;
+using System.Security.Cryptography;
+using System.Net.Mail;
+using BO;
+
 
 
 
@@ -23,6 +27,8 @@ internal class Bl : IBl
     public IEngineer Engineer =>  new EngineerImplementation(); // create new EngineerImplementation
 
     public ILooz Looz =>  new LoozImplementation(); // create new LoozImplementation
+
+    public IManager Manager =>  new ManagerImplementation(); // create new ManagerImplementation
 
     private static DateTime s_Clock = (DateTime)s_bl.Looz.GetProjectDataScreen();
     public DateTime Clock { get { return s_Clock; } private set { s_Clock = value; } }
@@ -78,5 +84,49 @@ internal class Bl : IBl
         return s_bl.Looz.GetStartDate() != null;
     }
 
+    public void SetManagerEmail(String managerEmail)
+    {
+        s_bl.Manager.SetManagerEmail(managerEmail);
+    }
+
+    public void SetManagerPassWord(String managerPassword)
+    {
+        if (managerPassword == null)
+            throw new BlBadPasswordException("Password is null");
+        s_bl.Manager.SetManagerPassWord(managerPassword);
+    }
+
+    public bool ManagerExist()
+    {
+        return s_bl.Manager.GetManagerEmail() != null && s_bl.Manager.GetManagerPassWord() != null;
+    }
+
+    public void CreateManager(string email, string password)
+    {
+        if (!IsEmailValid(email)) // check if email is valid
+            throw new BlBadEmailException("Email format is not valid");
+        s_bl.Manager.SetManagerEmail(email);
+        s_bl.Manager.SetManagerPassWord(password);
+    }
+
+    public bool ManagerLogIn(string password)
+    {
+        return s_bl.Manager.GetManagerPassWord() == password;
+    }
+
+
+
+    private static bool IsEmailValid(string email)
+    {
+        try
+        {
+            MailAddress mail = new MailAddress(email);
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    } // check if email is valid in format xxxx@xxxx.xxxx
 }
 

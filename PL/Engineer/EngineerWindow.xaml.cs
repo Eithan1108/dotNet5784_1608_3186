@@ -107,5 +107,12 @@ namespace PL.Engineer
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void IsValidOk(object sender, TextChangedEventArgs e)
+        {
+            IsValid = true;
+        }
+
+
     }
 }

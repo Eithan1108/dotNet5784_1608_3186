@@ -37,6 +37,9 @@ internal static class DataSource
         internal static DateTime? ProjectStartDate { get; set; }
         internal static DateTime? ProjectEndDate { get; set; }
         internal static DateTime? ProjectDataScreen { get; set; }
+
+        internal static string ManagerEmail { get; set; }
+        internal static string ManagerPassWord { get; set; }
     }
 
     /// <summary>

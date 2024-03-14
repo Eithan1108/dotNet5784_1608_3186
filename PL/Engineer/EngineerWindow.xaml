@@ -104,7 +104,7 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="132,161,0,0" TextWrapping="Wrap" Text="{Binding Engineer.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26">
+        <TextBox HorizontalAlignment="Left" Margin="132,161,0,0" TextWrapping="Wrap" Text="{Binding Engineer.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26" TextChanged="IsValidOk">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="TextBox">

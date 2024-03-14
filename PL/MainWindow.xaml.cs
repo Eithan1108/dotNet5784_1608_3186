@@ -33,8 +33,6 @@ namespace PL
         {
             InitializeComponent();
             ScreenDate = s_bl.Clock;
-
-
         }
 
 
@@ -57,7 +55,25 @@ namespace PL
 
         private void btnInitialization(object sender, RoutedEventArgs e)
         {
-            new ManagerWindow().Show();
+            bool flag;
+            try
+            {
+                flag = s_bl.ManagerExist();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (flag)
+            {
+                new ManagerLogin().Show();
+            }
+            else
+            {
+                new CreateAManager().Show();
+            }
+
         }
 
         private void AddAnHour(object sender, RoutedEventArgs e)

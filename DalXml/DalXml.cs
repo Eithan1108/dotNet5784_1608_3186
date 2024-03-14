@@ -67,4 +67,6 @@ sealed internal class DalXml : IDal
     public IDependence Dependence => new DependenceImplementation();
 
     public ILooz looz => new LoozImplementation();
+
+    public IManager manager => new ManagerImplementation();
 }

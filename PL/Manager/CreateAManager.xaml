@@ -1,0 +1,152 @@
+﻿<Window x:Class="PL.Manager.CreateAManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Manager"
+        mc:Ignorable="d"
+        Title="CreateAManager" Height="250" Width="400"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+    <Grid>
+        <Grid.Background>
+            <!-- Setting the background using an ImageBrush -->
+            <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
+        </Grid.Background>
+        <TextBox HorizontalAlignment="Left" Margin="159,34,0,0" TextChanged="IsValidOk" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26">
+            <TextBox.Style>
+                <!-- Define style for TextBox -->
+                <Style TargetType="{x:Type TextBox}">
+
+                    <!-- Set default properties for TextBox -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="{Binding IsValid, Converter={StaticResource ConvertValidToBorderBrush}, Mode=TwoWay}"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Define the template for TextBox -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <!-- Create a border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- Use a ScrollViewer for TextBox content -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Define triggers for the TextBox style -->
+                    <Style.Triggers>
+
+                        <!-- Trigger for mouse-over effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change border brush color on mouse-over -->
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="159,91,0,0" TextWrapping="Wrap" Text="{Binding PassWord, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+            <TextBox.Style>
+                <!-- TextBox Style -->
+                <Style TargetType="{x:Type TextBox}">
+
+                    <!-- Default TextBox properties -->
+                    <!-- Set background color -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <!-- Set border brush color -->
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <!-- Set foreground color -->
+                    <Setter Property="Foreground" Value="#6464f8"/>
+                    <!-- Set border thickness -->
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <!-- Set padding -->
+                    <Setter Property="Padding" Value="4"/>
+
+                    <!-- Template to customize TextBox visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <!-- Border with rounded corners -->
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <!-- ScrollViewer for TextBox content -->
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- MouseOver Trigger -->
+                    <Style.Triggers>
+                        <!-- Change border brush color on mouse-over -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#8c8cf8"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
+        <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="38,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
+        <Label Content="PassWord:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
+        <Button Content="Create" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Click="LoginBtn" Height="31" Width="121">
+            <!-- Button style definition -->
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#6464f8"/>
+                    <Setter Property="BorderBrush" Value="#d9d9da"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Images/secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <TextBlock Text="Create" Margin="6 1 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background and border color on mouse-over -->
+                            <Setter Property="Background" Value="#8484f8"/>
+                            <Setter Property="BorderBrush" Value="#8484f8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
+
+
+
+
+
+
+    </Grid>
+</Window>
