@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
-  <NextTaskId>1</NextTaskId>
-  <NextDependenceId>1</NextDependenceId>
+  <NextTaskId>32</NextTaskId>
+  <NextDependenceId>41</NextDependenceId>
   <ProjectStartDate></ProjectStartDate>
   <ProjectEndDate>04/04/2024 00:00:00</ProjectEndDate>
-  <ProjectDataScreen>14/03/2024 22:53:57</ProjectDataScreen>
+  <ProjectDataScreen>14/03/2024 23:35:56</ProjectDataScreen>
   <ManagerPassWord>123</ManagerPassWord>
-  <ManagerEmail>ekline@gmail.com</ManagerEmail>
+  <ManagerEmail>ekline1108@gmail.com</ManagerEmail>
 </config>

@@ -21,7 +21,7 @@ public interface IBl
 
     public void InitialClock();
 
-    public void Reset();
+    public void Reset(bool wothManager);
 
     public void setProjectStartDate(DateTime date);
 
@@ -38,6 +38,8 @@ public interface IBl
     public void CreateManager(string email, string password);
 
     public bool ManagerLogIn(string password);
+
+    public void ResetManager();
 
 
 

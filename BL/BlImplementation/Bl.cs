@@ -52,8 +52,12 @@ internal class Bl : IBl
         s_bl.Looz.SetProjectDataScreen(s_Clock);
     }
 
-    public void Reset()
+    public void Reset(bool wothManager)
     {
+        if(wothManager)
+        {
+            s_bl.ResetManager();
+        }
         s_bl.InitialClock();
         List<DO.Engineer> engineersClear = new List<DO.Engineer>();
         List<Dependence> dependenceClear = new List<Dependence>();
@@ -112,6 +116,12 @@ internal class Bl : IBl
     public bool ManagerLogIn(string password)
     {
         return s_bl.Manager.GetManagerPassWord() == password;
+    }
+
+    public void ResetManager()
+    {
+        s_bl.Manager.SetManagerEmail("");
+        s_bl.Manager.SetManagerPassWord("");
     }
 
 

@@ -46,7 +46,7 @@ namespace PL.Manager
                 {
                     try
                     {
-                        s_bl.Reset();
+                        s_bl.Reset(false);
                         DalTest.Initialization.Do();
                         ProjectStarted = s_bl.projectStarted();
                         MessageBox.Show("System has been initialized", "Initialization", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -67,9 +67,10 @@ namespace PL.Manager
             {
                 try
                 {
-                    s_bl.Reset();
+                    s_bl.Reset(true);
                     ProjectStarted = s_bl.projectStarted();
                     MessageBox.Show("System has been restarted", "Restart", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
                     
                 }
                 catch (Exception ex)
