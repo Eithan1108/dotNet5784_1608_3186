@@ -8,5 +8,7 @@
         void SetManagerEmail(String managerEmail);
         void SetManagerPassWord(String managerPassword);
 
+        void SendEmail(int randomNumber);
+
     }
 }

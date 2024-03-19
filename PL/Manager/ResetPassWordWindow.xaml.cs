@@ -24,12 +24,36 @@ namespace PL.Manager
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
         int randomConfirmNumber;
+        string managerEmail = "";
         public ResetPassWordWindow()
         {
             NotConfirmed = true;
             randomConfirmNumber = new Random().Next(1000, 9999);
+            try
+            {
+                managerEmail = s_bl.Manager.GetManagerEmail();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ManagerEmail = managerEmail;
+
+            s_bl.Manager.SendEmail(randomConfirmNumber);
+
+
             InitializeComponent();
         }
+
+        
+        public string ManagerEmail // get list of all engineers
+        {
+            get { return (string)GetValue(ManagerEmailProperty); }
+            set { SetValue(ManagerEmailProperty, value); }
+        }
+
+        public static readonly DependencyProperty ManagerEmailProperty =
+            DependencyProperty.Register("ManagerEmail", typeof(string), typeof(ResetPassWordWindow), new PropertyMetadata(null));
 
         public int VerificationCode // get list of all engineers
         {
