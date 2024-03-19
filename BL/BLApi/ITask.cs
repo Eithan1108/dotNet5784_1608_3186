@@ -30,4 +30,6 @@ public interface ITask
     public bool AutoScheduleDate(DO.Task task, DateTime? SchedualProjectDate);
 
     public DateTime LastEndTask();
+
+    public bool CheckIfDepInJopardy(BO.Task task);
 }

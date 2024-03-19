@@ -168,14 +168,9 @@ class StatusToColorConverter : IValueConverter
     {
         if (value is BO.Task task)
         {
-            if (task.Dependencies != null)
-            {
-                foreach (var item in task.Dependencies)
-                {
-                    if (task.Status == BO.Status.InJeopardy)
+            if(s_bl.Task.CheckIfDepInJopardy(task))  //if the task is in jeopardy           
                         return "#e16d70";
-                }
-            }
+            
             if (task.Status == BO.Status.InJeopardy)
                 return "#e16d70";
             if (task.Status == BO.Status.Done)

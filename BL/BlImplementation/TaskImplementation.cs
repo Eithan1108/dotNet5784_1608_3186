@@ -337,7 +337,7 @@ internal class TaskImplementation : BlApi.ITask
                     taskInList.Status = Status.Unsheduled;
                     if (dependentTask.ScheduledDate != null && dependentTask.ScheduledDate != DateTime.MinValue)
                         taskInList.Status = Status.Scheduled;
-                    if (dependentTask.ScheduledDate != null &&  boTask.ScheduledDate < _bl.Clock)
+                    if (dependentTask.ScheduledDate != null &&  dependentTask.ScheduledDate < _bl.Clock &&dependentTask.ScheduledDate!=DateTime.MinValue)
                         taskInList.Status = Status.InJeopardy;
                     if (dependentTask.StartDate != null && dependentTask.StartDate != DateTime.MinValue)
                         taskInList.Status = Status.OnTrack;
@@ -446,12 +446,14 @@ internal class TaskImplementation : BlApi.ITask
     {
         DateTime? date = ScheduleProjectDate;
 
+        if (task.Id == 26) { };
+
         foreach (DO.Dependence depend in _dal.Dependence.ReadAll())
         {
             if (depend.DependentTask == task.Id)
             {
                 DO.Task temp = _dal.Task.Read(X => X.Id == depend.DependsOnTask)!;
-                if (temp.ScheduledDate == null)
+                if (temp.ScheduledDate == DateTime.MinValue)
                 {
                     return false;
                 }
@@ -482,5 +484,31 @@ internal class TaskImplementation : BlApi.ITask
         return date.Value; // return the last end task
 
     }
+
+    public bool CheckIfDepInJopardy(BO.Task task)
+    {
+        if (task.Dependencies.Count() == 0)
+        {
+            return false;
+        }
+        else
+        {
+            foreach (var item in task.Dependencies)
+            {
+                if (item.Status == BO.Status.InJeopardy)
+                {
+                    return true;
+                }
+
+                // Recursively check if dependency is in jeopardy
+                if (CheckIfDepInJopardy(GetTask(item.Id)))
+                {
+                    return true; // If any dependency is in jeopardy, return true
+                }
+            }
+        }
+        return false;
+    }
+
 }
 
