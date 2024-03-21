@@ -15,20 +15,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add-removebg-preview.png" />
+    <None Remove="Images\add-task-removebg-preview.png" />
     <None Remove="Images\add-user-removebg-preview.png" />
     <None Remove="Images\AddUpdateEngineerWindowBG.png" />
+    <None Remove="Images\box-removebg-preview.png" />
+    <None Remove="Images\business-plan-removebg-preview.png" />
+    <None Remove="Images\calendar__1_-removebg-preview.png" />
+    <None Remove="Images\clock-removebg-preview.png" />
+    <None Remove="Images\clock__1_-removebg-preview.png" />
     <None Remove="Images\costIcon-removebg-preview.png" />
     <None Remove="Images\emailicon-removebg-preview.png" />
     <None Remove="Images\engineer-removebg-preview.png" />
     <None Remove="Images\EngineerListWindowLast.jpg" />
     <None Remove="Images\EngineerWindowBG.jpg" />
     <None Remove="Images\EngineerWindowBG.png" />
+    <None Remove="Images\gantt-chart-removebg-preview.png" />
+    <None Remove="Images\id-card-removebg-preview %281%29.png" />
     <None Remove="Images\IdIcon.png-removebg-preview.png" />
     <None Remove="Images\levelIcon-removebg-preview.png" />
+    <None Remove="Images\login-removebg-preview.png" />
     <None Remove="Images\MainBackground.jpg" />
+    <None Remove="Images\manager-removebg-preview.png" />
     <None Remove="Images\nameIcon.png-removebg-preview.png" />
+    <None Remove="Images\network-removebg-preview.png" />
+    <None Remove="Images\project-management-removebg-preview.png" />
     <None Remove="Images\restarticon.jpg" />
     <None Remove="Images\secondChance-removebg-preview.png" />
+    <None Remove="Images\sticky-notes-removebg-preview.png" />
+    <None Remove="Images\tasks-removebg-preview.png" />
+    <None Remove="Images\text-message-removebg-preview.png" />
+    <None Remove="Images\user-password-removebg-preview.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,17 +54,42 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\add-removebg-preview.png" />
+    <Resource Include="Images\add-task-removebg-preview.png" />
     <Resource Include="Images\add-user-removebg-preview.png" />
     <Resource Include="Images\AddUpdateEngineerWindowBG.png" />
+    <Resource Include="Images\box-removebg-preview.png" />
+    <Resource Include="Images\business-plan-removebg-preview.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\calendar__1_-removebg-preview.png" />
+    <Resource Include="Images\clock-removebg-preview.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\clock__1_-removebg-preview.png" />
     <Resource Include="Images\costIcon-removebg-preview.png" />
     <Resource Include="Images\emailicon-removebg-preview.png" />
     <Resource Include="Images\engineer-removebg-preview.png" />
     <Resource Include="Images\EngineerListWindowLast.jpg" />
+    <Resource Include="Images\gantt-chart-removebg-preview.png" />
+    <Resource Include="Images\id-card-removebg-preview (1).png" />
     <Resource Include="Images\IdIcon.png-removebg-preview.png" />
     <Resource Include="Images\levelIcon-removebg-preview.png" />
+    <Resource Include="Images\login-removebg-preview.png" />
     <Resource Include="Images\MainBackground.jpg" />
+    <Resource Include="Images\manager-removebg-preview.png" />
     <Resource Include="Images\nameIcon.png-removebg-preview.png" />
+    <Resource Include="Images\network-removebg-preview.png" />
+    <Resource Include="Images\project-management-removebg-preview.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\secondChance-removebg-preview.png" />
+    <Resource Include="Images\sticky-notes-removebg-preview.png" />
+    <Resource Include="Images\tasks-removebg-preview.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\text-message-removebg-preview.png" />
+    <Resource Include="Images\user-password-removebg-preview.png" />
   </ItemGroup>
 
 </Project>

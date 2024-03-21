@@ -1,4 +1,5 @@
 ﻿<Window x:Class="PL.Manager.ManagerLogin"
+          Icon="\Images\business-plan-removebg-preview.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -38,9 +39,9 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Images/secondChance-removebg-preview.png" Width="20" Height="20"/>
-                                    <TextBlock Text="LogIn" Margin="6 1 0 0"/>
+                                <StackPanel Orientation="Horizontal" Height="35" Width="60">
+                                    <Image Source="\Images\login-removebg-preview.png" Width="60" Height="20"/>
+
                                 </StackPanel>
                             </DataTemplate>
                         </Setter.Value>

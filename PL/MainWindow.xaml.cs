@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using BO;
 using BlApi;
+using System.Runtime.CompilerServices;
+using System.CodeDom;
 
 
 namespace PL
@@ -86,6 +88,6 @@ namespace PL
             s_bl.AddDaysInPl(1);
             ScreenDate = s_bl.Clock;
         }
-
+         
     }
 }

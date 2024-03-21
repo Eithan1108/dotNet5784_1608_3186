@@ -1,4 +1,5 @@
 ﻿<Window x:Class="PL.Task.TaskWindow"
+        Icon="\Images\business-plan-removebg-preview.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -427,7 +428,14 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        
+        <Image Margin="59,190,511,146" Source="/Images/box-removebg-preview.png" Stretch="Fill"/>
+        <Image Margin="53,52,505,283" Source="/Images/text-message-removebg-preview.png" Stretch="Fill"/>
+        <Image Margin="51,94,503,241" Source="/Images/id-card-removebg-preview (1).png" Stretch="Fill"/>
+        <Image Margin="55,143,507,192" Source="/Images/clock__1_-removebg-preview.png" Stretch="Fill"/>
+        <Image Margin="55,238,507,105" Source="/Images/sticky-notes-removebg-preview.png" Stretch="Fill"/>
+        <Image Margin="55,283,507,50" Source="/Images/levelIcon-removebg-preview.png" Stretch="Fill"/>
+        <Image Margin="52,331,504,0" Source="/Images/network-removebg-preview.png" Stretch="Fill"/>
+
 
     </Grid>
 </Window>

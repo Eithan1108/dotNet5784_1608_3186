@@ -1,4 +1,5 @@
 ﻿<Window x:Class="PL.Manager.ScheduleProjectWindow"
+          Icon="\Images\business-plan-removebg-preview.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -43,7 +44,7 @@
                             <Setter.Value>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Images/secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                        <Image Source="\Images\calendar__1_-removebg-preview.png" Width="20" Height="20"/>
                                         <TextBlock Text="Set schedule" Margin="6 1 0 0"/>
                                     </StackPanel>
                                 </DataTemplate>

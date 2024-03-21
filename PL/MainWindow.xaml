@@ -1,4 +1,5 @@
 ﻿<Window x:Class="PL.MainWindow"
+        Icon="\Images\business-plan-removebg-preview.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -89,7 +90,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <Image Source="\Images\manager-removebg-preview.png" Width="20" Height="20"/>
                                     <TextBlock Text="Manager" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -132,7 +133,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Images/engineer-removebg-preview.png" Width="25" Height="25"/>
+                                    <Image Source="\Images\add-removebg-preview.png" Width="25" Height="25"/>
                                     <TextBlock Text="Add Hour" Margin="7 4 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -174,7 +175,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Images/secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <Image Source="\Images\add-removebg-preview.png" Width="23" Height="21" RenderTransformOrigin="-0.272,0.502"/>
                                     <TextBlock Text="Add Day" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
