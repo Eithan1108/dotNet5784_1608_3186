@@ -17,7 +17,7 @@
         </Grid.Background>
 
         <!-- Button for handling Engineers -->
-        <Button Content="Engineers" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleEngineers" Margin="543,155,0,0">
+        <Button Content="Engineers" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleEngineers" Margin="507,96,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="Button">
@@ -61,7 +61,7 @@
         </Button>
 
         <!-- Button for initialization -->
-        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="332,377,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
+        <Button Content="Initial Data" HorizontalAlignment="Left" Margin="292,262,0,0" VerticalAlignment="Top" Click="btnInitialization" Height="33" Width="108">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="Button">
@@ -87,7 +87,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="\Images\secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <Image Source="\Images\race-flag-removebg-preview.png" Width="20" Height="20"/>
                                     <TextBlock Text="Initial Data" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -104,7 +104,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Reset Data" HorizontalAlignment="Left" Margin="350,328,0,0" VerticalAlignment="Top" Click="btnReset" Height="32" Width="108">
+        <Button Content="Reset Data" HorizontalAlignment="Left" Margin="430,263,0,0" VerticalAlignment="Top" Click="btnReset" Height="32" Width="108">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -130,7 +130,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Images/secondChance-removebg-preview.png" Width="20" Height="20"/>
+                                    <Image Source="\Images\restart-removebg-preview.png" Width="20" Height="20"/>
                                     <TextBlock Text="Reset Data" Margin="6 1 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -147,7 +147,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content=" Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleTasks" Margin="463,217,0,0">
+        <Button Content=" Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="btnHandleTasks" Margin="171,96,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -173,9 +173,8 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="\Images\clipboard.gif" Width="25" Height="25"/>
-                                    <TextBlock Text="Tasks" Margin="7 4 0 0"/>
-                                    <Image Height="501" Source="/tasks-removebg-preview.png" Stretch="Fill" Width="500"/>
+                                    <Image Source="\Images\tasks-removebg-preview.png" Width="25" Height="25"/>
+                                    <TextBlock Text="Tasks" Margin="17 4 0 0"/>
                                     <!--<Image Source="\Images\tasks-removebg-preview.png">-->
                                 </StackPanel>
                             </DataTemplate>
@@ -191,7 +190,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button IsEnabled="{Binding ProjectStarted, Mode=TwoWay, Converter={StaticResource ConvertBoolToEnable}}" Content="Schduale Projetc" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44" Width="136" Click="SchdualeProjetcBtn" Margin="386,273,0,0">
+        <Button IsEnabled="{Binding ProjectStarted, Mode=TwoWay, Converter={StaticResource ConvertBoolToEnable}}" Content="Schduale Projetc" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44" Width="136" Click="SchdualeProjetcBtn" Margin="341,96,0,0">
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -243,7 +242,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button IsEnabled="{Binding ProjectStarted, Mode=TwoWay, Converter={StaticResource GantbtnEnableConverter}}" Content="Gant" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="GantWindowBtn" Margin="661,96,0,0" >
+        <Button IsEnabled="{Binding ProjectStarted, Mode=TwoWay, Converter={StaticResource GantbtnEnableConverter}}" Content="Gant" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="129" Click="GantWindowBtn" Margin="246,174,0,0" >
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -273,6 +272,58 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="\Images\gantt-chart-removebg-preview.png" Width="25" Height="25"/>
                                     <TextBlock Text="Gant" Margin="7 4 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Trigger for mouse-over effect -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Change background color on mouse-over -->
+                            <Setter Property="Background" Value="#d9d9da"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <!-- Greyed-out and dimmed appearance when disabled -->
+                            <Setter Property="Background" Value="#F1F2F2"/>
+                            <Setter Property="BorderBrush" Value="#D3D3D3"/>
+                            <Setter Property="Foreground" Value="#A9A9A9"/>
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button  Content="Export To PDF" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="128" Click="ExportToPDF" Margin="420,174,0,0" >
+            <!-- Button style definition -->
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <!-- Default button appearance -->
+                    <Setter Property="Background" Value="#f1f1f2"/>
+                    <Setter Property="BorderBrush" Value="#6464f8"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="4"/>
+                    <Setter Property="Foreground" Value="#6464f8"/>
+
+                    <!-- ControlTemplate to customize button visuals -->
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <!-- Border with rounded corners -->
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                                    <!-- ContentPresenter for button content -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="\Images\pdf-removebg-preview.png" Width="25" Height="25"/>
+                                    <TextBlock Text="Export To PDF" Margin="7 4 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </Setter.Value>

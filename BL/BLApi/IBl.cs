@@ -41,6 +41,7 @@ public interface IBl
 
     public void ResetManager();
 
+    public void ExportToPdf();
 
 
 }

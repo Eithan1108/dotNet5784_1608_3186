@@ -39,13 +39,21 @@
     <None Remove="Images\manager-removebg-preview.png" />
     <None Remove="Images\nameIcon.png-removebg-preview.png" />
     <None Remove="Images\network-removebg-preview.png" />
+    <None Remove="Images\pdf-removebg-preview.png" />
     <None Remove="Images\project-management-removebg-preview.png" />
+    <None Remove="Images\race-flag-removebg-preview.png" />
+    <None Remove="Images\reset-removebg-preview.png" />
+    <None Remove="Images\restart-removebg-preview.png" />
     <None Remove="Images\restarticon.jpg" />
     <None Remove="Images\secondChance-removebg-preview.png" />
     <None Remove="Images\sticky-notes-removebg-preview.png" />
     <None Remove="Images\tasks-removebg-preview.png" />
     <None Remove="Images\text-message-removebg-preview.png" />
     <None Remove="Images\user-password-removebg-preview.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,9 +88,13 @@
     <Resource Include="Images\manager-removebg-preview.png" />
     <Resource Include="Images\nameIcon.png-removebg-preview.png" />
     <Resource Include="Images\network-removebg-preview.png" />
+    <Resource Include="Images\pdf-removebg-preview.png" />
     <Resource Include="Images\project-management-removebg-preview.png">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\race-flag-removebg-preview.png" />
+    <Resource Include="Images\reset-removebg-preview.png" />
+    <Resource Include="Images\restart-removebg-preview.png" />
     <Resource Include="Images\secondChance-removebg-preview.png" />
     <Resource Include="Images\sticky-notes-removebg-preview.png" />
     <Resource Include="Images\tasks-removebg-preview.png">
