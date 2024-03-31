@@ -123,12 +123,12 @@ namespace PL.Manager
             try
             {
                 s_bl.ExportToPdf();
+                MessageBox.Show("Export to PDF has been completed. You can find the PDF file in your documents under the name Project_Management.pdf", "Export to PDF", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Export to PDF", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            MessageBox.Show("Export to PDF has been completed. You can find the PDF file in your documents under the name Project_Management.pdf", "Export to PDF", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
