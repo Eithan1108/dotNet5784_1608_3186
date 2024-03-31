@@ -104,4 +104,8 @@
     <Resource Include="Images\user-password-removebg-preview.png" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(SolutionDir)\bin-extras\itextsharp.dll&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)\bin-extras\BouncyCastle.Crypto.dll&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
+
 </Project>

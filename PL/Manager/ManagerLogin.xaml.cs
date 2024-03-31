@@ -32,7 +32,7 @@ namespace PL.Manager
         {
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
-        }
+        } 
 
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(ManagerLogin), new PropertyMetadata(null));

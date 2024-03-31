@@ -18,7 +18,7 @@ namespace PL.Engineer
     /// <summary>
     /// Interaction logic for IndividualEngineerScreen.xaml
     /// </summary>
-    public partial class IndividualEngineerScreen : Window
+    public partial class IndividualEngineerScreen : Window 
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
 

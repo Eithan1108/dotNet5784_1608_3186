@@ -24,7 +24,7 @@ namespace PL.Manager
     /// </summary>
     public partial class ManagerWindow : Window
     {
-        static readonly BlApi.IBl s_bl = BlApi.Factory.Get;
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get; 
 
         public ManagerWindow()
         {
