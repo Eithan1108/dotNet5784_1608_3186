@@ -105,22 +105,17 @@
             </Button.Style>
         </Button>
         <Button Content="Reset Data" HorizontalAlignment="Left" Margin="430,263,0,0" VerticalAlignment="Top" Click="btnReset" Height="32" Width="108">
-            <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
-                    <!-- Default button appearance -->
                     <Setter Property="Background" Value="#6464f8"/>
                     <Setter Property="BorderBrush" Value="#d9d9da"/>
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Padding" Value="4"/>
                     <Setter Property="Foreground" Value="White"/>
-                    <!-- ControlTemplate to customize button visuals -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
-                                <!-- Border with rounded corners -->
                                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
-                                    <!-- ContentPresenter for button content -->
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -136,13 +131,23 @@
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
-                    <!-- Trigger for mouse-over effect -->
                     <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <!-- Change background and border color on mouse-over -->
-                            <Setter Property="Background" Value="#8484f8"/>
-                            <Setter Property="BorderBrush" Value="#8484f8"/>
-                        </Trigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="#8484f8" Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#8484f8" Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="#6464f8" Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#d9d9da" Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
@@ -331,6 +336,9 @@
 
                     <!-- Trigger for mouse-over effect -->
                     <Style.Triggers>
+                        <DataTrigger Binding="{Binding ProjectStarted, RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <!-- Change background color on mouse-over -->
                             <Setter Property="Background" Value="#d9d9da"/>

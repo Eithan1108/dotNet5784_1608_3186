@@ -36,7 +36,7 @@ sealed internal class DalXml : IDal
     //{
     //    get
     //    {
-    //        lock (padlock) // check if the theard have padlock (only one thread can have padlock at a time) if so, allowd to create the instance
+    //        lock (pxadlock) // check if the theard have padlock (only one thread can have padlock at a time) if so, allowd to create the instance
     //        {
     //            if (instance == null) // if the instance is null (not created yet) create the instance
     //            {

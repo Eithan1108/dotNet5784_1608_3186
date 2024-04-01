@@ -91,7 +91,8 @@ namespace PL.Engineer
 
         private void SearchForContext(object sender, TextChangedEventArgs e)
         {
-            EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Name.StartsWith(TextChanged.Text) || engineer.Name.ToLower().StartsWith(TextChanged.Text) || engineer.Email.StartsWith(TextChanged.Text) || engineer.Id.ToString()!.StartsWith(TextChanged.Text)).OrderBy(engineer => engineer.Id);
+            
+            EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Name.StartsWith(TextChanged.Text) || engineer.Name.ToLower().StartsWith(TextChanged.Text) || engineer.Email.StartsWith(TextChanged.Text) || engineer.Id.ToString()!.StartsWith(TextChanged.Text)).OrderBy(engineer => engineer.Id); // get list of all engineers that match the search text 
         }
     }
 
