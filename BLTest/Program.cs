@@ -584,11 +584,25 @@ internal class Program
             }
         }
     }
-    private static void readTaskMain() // get task from the system
+    private static void readTaskMain()
     {
+        
         Console.WriteLine("Enter id: ");
-        int id = int.Parse(Console.ReadLine()!);
-        Console.WriteLine(s_bl.Task.GetTask(id));
+
+        // read the user's input as a string
+        string input = Console.ReadLine();
+
+        // attempt to parse the input string to an integer
+        if (int.TryParse(input, out int id))
+        {
+            // if the parsing is successful, call the GetTask method with the parsed ID
+            Console.WriteLine(s_bl.Task.GetTask(id));
+        }
+        else
+        {
+            // if the parsing fails, print an error message
+            Console.WriteLine("Invalid input. Please enter a valid integer for the task ID.");
+        }
     }
     private static int addEngineerMain()
     {

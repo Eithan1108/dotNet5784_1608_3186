@@ -25,7 +25,6 @@ namespace PL.Engineer
         private bool idIndicator;
         public EngineerWindow(int id = 0)
         {
-            InitializeComponent();
             IsValid = true;
             if (id == 0)
             {
@@ -45,6 +44,7 @@ namespace PL.Engineer
                     Close();
                 }
             }
+            InitializeComponent();
         }
 
         public BO.Engineer Engineer // get list of all engineers

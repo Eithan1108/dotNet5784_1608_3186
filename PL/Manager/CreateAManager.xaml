@@ -9,12 +9,17 @@
         Title="CreateAManager" Height="250" Width="400"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
+    <Window.Resources>
+        <!-- Define the EmptyFieldsToEnableConverter -->
+    </Window.Resources>
+    
+    
     <Grid>
         <Grid.Background>
             <!-- Setting the background using an ImageBrush -->
             <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
         </Grid.Background>
-        <TextBox HorizontalAlignment="Left" Margin="159,34,0,0" TextChanged="IsValidOk" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26">
+        <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Margin="159,34,0,0" TextChanged="IsValidOk" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" VerticalAlignment="Top" Width="154" Height="26">
             <TextBox.Style>
                 <!-- Define style for TextBox -->
                 <Style TargetType="{x:Type TextBox}">
@@ -54,7 +59,7 @@
             </TextBox.Style>
 
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="159,91,0,0" TextWrapping="Wrap" Text="{Binding PassWord, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154">
+        <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="159,91,0,0" TextWrapping="Wrap" Text="{Binding PassWord, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="154" >
             <TextBox.Style>
                 <!-- TextBox Style -->
                 <Style TargetType="{x:Type TextBox}">
@@ -99,6 +104,15 @@
         <Label Content="Email:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="38,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
         <Label Content="PassWord:" Foreground="#f1f1f2" FontWeight="Black" FontSize="16" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.48,0.663"/>
         <Button Content="Create" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Click="LoginBtn" Height="31" Width="121">
+
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource EmptyFieldsToEnableConverter}">
+                    <Binding ElementName="EmailBox" Path="Text"/>
+                    <Binding ElementName="PasswordBox" Path="Text"/>
+                </MultiBinding>
+            </Button.IsEnabled>
+
+
             <!-- Button style definition -->
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -141,13 +155,5 @@
                 </Style>
             </Button.Style>
         </Button>
-
-
-
-
-
-
-
-
     </Grid>
 </Window>

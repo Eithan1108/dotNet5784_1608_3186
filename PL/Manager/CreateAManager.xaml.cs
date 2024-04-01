@@ -28,6 +28,8 @@ namespace PL.Manager
         {
             IsValid = true;
             InitializeComponent();
+            Email = "";
+            PassWord = "";
         }
 
         public string Email // get list of all engineers
@@ -61,8 +63,7 @@ namespace PL.Manager
 
         private void LoginBtn(object sender, RoutedEventArgs e)
         {
-
-            if(Email != null && PassWord != null)
+            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(PassWord))
             {
                 try
                 {
@@ -75,7 +76,6 @@ namespace PL.Manager
                 {
                     IsValid = false;
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 }
                 catch (Exception ex)
                 {
@@ -84,9 +84,11 @@ namespace PL.Manager
             }
         }
 
+
         private void IsValidOk(object sender, TextChangedEventArgs e)
         {
             IsValid = true;
+
         }
     }
 }

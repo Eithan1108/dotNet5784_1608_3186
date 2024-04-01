@@ -284,7 +284,7 @@
             </TextBox.Style>
 
         </TextBox>
-        <Button Content="{Binding Engineer.Id, Mode=TwoWay, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
+        <Button Content="{Binding Engineer.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Left" Margin="132,364,0,0" VerticalAlignment="Top" Height="43" Width="106" Click="OnSaveOrUpdateEngineer">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Default button appearance -->

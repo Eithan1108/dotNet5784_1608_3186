@@ -190,9 +190,21 @@ internal class Program
 
                         break;
                     case 3:
+                        // prompt user to enter an id
                         Console.WriteLine("Enter id: ");
-                        id = int.Parse(Console.ReadLine()!);
-                        printTask(s_dal.Task!.Read(task => id == task.Id)!);
+
+                        // try to parse user input into id variable                      
+                        if (!int.TryParse(Console.ReadLine(), out id))
+                        {
+                            // if parsing fails, print a message and exit the program or handle it accordingly
+                            Console.WriteLine("Invalid input. Please enter a valid integer id.");              
+                        }
+                        else
+                        {
+                            // call printTask function with the provided id
+                            printTask(s_dal.Task!.Read(task => id == task.Id)!);
+                        }
+
                         break;
                     case 4:
                         Console.WriteLine("Read All");

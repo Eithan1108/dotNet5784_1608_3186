@@ -241,3 +241,25 @@ class ConvertValidToBorderBrush : IValueConverter
     }
 }
 
+public class EmptyFieldsToEnableConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        // Check if both values are not null and not empty
+        if (values != null && values.Length == 2 && values[0] != null && values[1] != null)
+        {
+            string email = values[0].ToString();
+            string password = values[1].ToString();
+
+            return !string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password);
+        }
+
+        return false;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
+    }
+}
+
