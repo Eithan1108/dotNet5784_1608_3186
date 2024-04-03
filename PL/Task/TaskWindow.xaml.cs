@@ -216,10 +216,10 @@ namespace PL.Task
 
         }
 
-        private void SetEngineer(object sender, RoutedEventArgs e)
+        private void SetEngineer(object sender, RoutedEventArgs e) 
         {
             var window = new EngineerListForTask(Task.Complexity);
-            window.EngineerSelected += EngineerSelectedHandler;
+            window.EngineerSelected += EngineerSelectedHandler; 
             window.ShowDialog();
         }
 

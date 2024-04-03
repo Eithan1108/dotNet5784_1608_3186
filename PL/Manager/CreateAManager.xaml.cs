@@ -67,7 +67,7 @@ namespace PL.Manager
             {
                 try
                 {
-                    s_bl.CreateManager(Email, PassWord);
+                    s_bl.Manager.CreateManager(Email, PassWord);
                     MessageBox.Show("Manager Created");
                     this.Close();
                     new ManagerWindow().Show();

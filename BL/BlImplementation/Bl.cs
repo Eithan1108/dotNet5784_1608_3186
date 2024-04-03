@@ -14,6 +14,7 @@ using System.Globalization;
 
 
 
+
 /// <summary>
 /// // This class is the main class of the BL layer
 /// </summary>
@@ -26,16 +27,17 @@ internal class Bl : IBl
     static readonly string s_config_xml = "data-config";
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get;
 
-    public ITask Task =>  new TaskImplementation(this); // create new TaskImplementation
-    public IEngineer Engineer =>  new EngineerImplementation(); // create new EngineerImplementation
+    public ITask Task => new TaskImplementation(this); // create new TaskImplementation
+    public IEngineer Engineer => new EngineerImplementation(); // create new EngineerImplementation
 
-    public ILooz Looz =>  new LoozImplementation(); // create new LoozImplementation
+    public ILooz Looz => new LoozImplementation(); // create new LoozImplementation
 
-    public IManager Manager =>  new ManagerImplementation(); // create new ManagerImplementation
+    public IManager Manager => new ManagerImplementation(); // create new ManagerImplementation
 
     private static DateTime s_Clock = (DateTime)s_bl.Looz.GetProjectDataScreen();
     public DateTime Clock { get { return s_Clock; } private set { s_Clock = value; } }
 
+    // clock functions
     public void AddHourInPl(int hour)
     {
         s_Clock = s_Clock.AddHours(hour);
@@ -57,9 +59,9 @@ internal class Bl : IBl
 
     public void Reset(bool wothManager)
     {
-        if(wothManager)
+        if (wothManager)
         {
-            s_bl.ResetManager();
+            s_bl.Manager.ResetManager();
         }
         s_bl.InitialClock();
         List<DO.Engineer> engineersClear = new List<DO.Engineer>();
@@ -76,70 +78,19 @@ internal class Bl : IBl
     }
 
     public void setProjectStartDate(DateTime date)
-    { 
+    {
         s_bl.Looz.SetStartDate(date);
     }
 
     public void setProjectEndDate(DateTime date)
     {
         s_bl.Looz.SetEndDate(date);
-
     }
 
     public bool projectStarted()
     {
         return s_bl.Looz.GetStartDate() != null;
     }
-
-    public void SetManagerEmail(String managerEmail)
-    {
-        s_bl.Manager.SetManagerEmail(managerEmail);
-    }
-
-    public void SetManagerPassWord(String managerPassword)
-    {
-        if (managerPassword == null)
-            throw new BlBadPasswordException("Password is null");
-        s_bl.Manager.SetManagerPassWord(managerPassword);
-    }
-
-    public bool ManagerExist()
-    {
-        return s_bl.Manager.GetManagerEmail() != null && s_bl.Manager.GetManagerPassWord() != null;
-    }
-
-    public void CreateManager(string email, string password)
-    {
-        if (!IsEmailValid(email)) // check if email is valid
-            throw new BlBadEmailException("Email format is not valid");
-        s_bl.Manager.SetManagerEmail(email);
-        s_bl.Manager.SetManagerPassWord(password);
-    }
-
-    public bool ManagerLogIn(string password)
-    {
-        return s_bl.Manager.GetManagerPassWord() == password;
-    }
-
-    public void ResetManager()
-    {
-        s_bl.Manager.SetManagerEmail("");
-        s_bl.Manager.SetManagerPassWord("");
-    }
-
-    private static bool IsEmailValid(string email)
-    {
-        try
-        {
-            MailAddress mail = new MailAddress(email);
-            return true;
-        }
-        catch (FormatException)
-        {
-            return false;
-        }
-    } // check if email is valid in format xxxx@xxxx.xxxx
-
 
     public void ExportToPdf()
     {
@@ -187,7 +138,7 @@ internal class Bl : IBl
 
         Font headingFont = FontFactory.GetFont(FontFactory.COURIER, 10, Font.NORMAL);
         Paragraph heading = new Paragraph(s_bl.Looz.GetProjectDataScreen().Value.ToString("dd/M/yyyy"), headingFont);
-        heading.SpacingBefore = 0; 
+        heading.SpacingBefore = 0;
         heading.SpacingAfter = 10;
         document.Add(heading);
 
@@ -213,7 +164,7 @@ internal class Bl : IBl
         detailsTable.AddCell(new PdfPCell(new Phrase(projectManager, detailsFont)));
 
         detailsTable.AddCell(new PdfPCell(new Phrase("Start Date:", detailsFont)));
-        if(projectStartDate != DateTime.MinValue)
+        if (projectStartDate != DateTime.MinValue)
             detailsTable.AddCell(new PdfPCell(new Phrase(projectStartDate.ToShortDateString(), detailsFont)));
         else
             detailsTable.AddCell(new PdfPCell(new Phrase("Not set", detailsFont)));
@@ -388,7 +339,6 @@ internal class Bl : IBl
 
         document.Add(summary);
     }
-
 
 
 }

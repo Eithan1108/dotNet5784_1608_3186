@@ -13,6 +13,8 @@ public interface IBl
 
     public IManager Manager { get; }
 
+
+    // clock of the system 
     public DateTime Clock { get; }
 
     public void AddHourInPl(int hour);
@@ -28,18 +30,6 @@ public interface IBl
     public void setProjectEndDate(DateTime date);
 
     public bool projectStarted();
-
-    public void SetManagerEmail(String managerEmail);
-
-    public void SetManagerPassWord(String managerPassword);
-
-    public bool ManagerExist();
-
-    public void CreateManager(string email, string password);
-
-    public bool ManagerLogIn(string password);
-
-    public void ResetManager();
 
     public void ExportToPdf();
 

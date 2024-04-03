@@ -45,12 +45,12 @@ namespace PL.Engineer
 
         public bool ProjectStarted // get list of all engineers
         {
-            get { return (bool)GetValue(ProjectStartedProperty); }
-            set { SetValue(ProjectStartedProperty, value); }
+            get { return (bool)GetValue(ProjectStartedProperty); } 
+            set { SetValue(ProjectStartedProperty, value); } 
         }
 
         public static readonly DependencyProperty ProjectStartedProperty =
-            DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(EngineerListWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("ProjectStarted", typeof(bool), typeof(EngineerListWindow), new PropertyMetadata(null)); 
 
         public IEnumerable<BO.Engineer> EngineerList // get list of all engineers
         {
@@ -75,7 +75,7 @@ namespace PL.Engineer
                 MessageBox.Show("Project already started", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
+                BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer; 
                 int id = engineerInList!.Id!.Value; // convert from int? to int
                 new EngineerWindow(id).ShowDialog(); // open the engineer window
                 RefreshList();

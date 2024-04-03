@@ -50,7 +50,7 @@ namespace PL.Manager
         {
             try
             {
-                if(s_bl.ManagerLogIn(PassWord))
+                if(s_bl.Manager.ManagerLogIn(PassWord))
                 {
                     new ManagerWindow().Show();
                     this.Close();

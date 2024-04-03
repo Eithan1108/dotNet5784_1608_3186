@@ -218,10 +218,6 @@ internal class TaskImplementation : BlApi.ITask
                 throw new BlBadLevelException("Found circular dependency");
             }
         }
-
-
-
-
         try
         {
             foreach (var d in _dal.Dependence.ReadAll())
@@ -257,9 +253,6 @@ internal class TaskImplementation : BlApi.ITask
 
 
         if (task.Complexity == null) throw new BO.BlBadIdException("Complexity must be positive");
-        //DO.Task doTask = new DO.Task(0, task.Alias, task.Description, false, task.CreatedAtDate, (DO.EngineerExperience)task.Complexity,
-        //    task.ScheduledDate, task.RequiredEffortTime, task.StartDate, task.CompleteDate, task.DeadLineDate, task.Deliverables,
-        //    task.Remarks, task.Engineer != null ? task.Engineer.Id : null);
         DO.Task doTask = new DO.Task
         {
             Id = task.Id,
@@ -354,14 +347,16 @@ internal class TaskImplementation : BlApi.ITask
 
     public void StartTask(int id, int engid)
     {
+        if (!_bl.projectStarted()) // if the project hasn't started
+            throw new BlStartProjectBeforeClock("Project hasn't started");
 
         BO.Task task = DoBoAdapter(_dal.Task.Read(id)!);
 
         var lists = from item in _dal.Dependence.ReadAll()
                     where item.DependentTask == id
-                    select DoBoAdapter(_dal.Task.Read(item.DependsOnTask)!).Status == Status.Done;
+                    select DoBoAdapter(_dal.Task.Read(item.DependsOnTask)!).Status == Status.Done; // get all dependencies from the system that are done
 
-        if (lists.Any())
+        if (lists.Any()) // if there is a dependency that is not done
             throw new BlStartBeforeDependence("You want to start this task but she dependence on a task that have not done yet");
 
 
@@ -446,18 +441,16 @@ internal class TaskImplementation : BlApi.ITask
     {
         DateTime? date = ScheduleProjectDate;
 
-        if (task.Id == 26) { };
-
         foreach (DO.Dependence depend in _dal.Dependence.ReadAll())
         {
             if (depend.DependentTask == task.Id)
             {
-                DO.Task temp = _dal.Task.Read(X => X.Id == depend.DependsOnTask)!;
+                DO.Task temp = _dal.Task.Read(X => X.Id == depend.DependsOnTask)!; // get the task that we depend on
                 if (temp.ScheduledDate == DateTime.MinValue)
                 {
                     return false;
                 }
-                if (ForcastDateCalc(temp.RequiredEffortTime, temp.ScheduledDate) > date)
+                if (ForcastDateCalc(temp.RequiredEffortTime, temp.ScheduledDate) > date) // gets the latest date of the dependencies
                 {
                     date = ForcastDateCalc(temp.RequiredEffortTime, temp.ScheduledDate);
                 }

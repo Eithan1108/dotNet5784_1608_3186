@@ -47,6 +47,43 @@ internal class ManagerImplementation : BlApi.IManager
         }
     }
 
+    public bool ManagerExist()
+    {
+        return GetManagerEmail() != null && GetManagerPassWord() != null;
+    }
+
+    public void CreateManager(string email, string password)
+    {
+        if (!IsEmailValid(email)) // check if email is valid
+            throw new BlBadEmailException("Email format is not valid");
+        SetManagerEmail(email);
+        SetManagerPassWord(password);
+    }
+
+    public bool ManagerLogIn(string password)
+    {
+        return GetManagerPassWord() == password;
+    }
+
+    public void ResetManager()
+    {
+        SetManagerEmail("");
+        SetManagerPassWord("");
+    }
+
+    private static bool IsEmailValid(string email)
+    {
+        try
+        {
+            MailAddress mail = new MailAddress(email);
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    } // check if email is valid in format xxxx@xxxx.xxxx
+
 }
 
 

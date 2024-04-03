@@ -33,6 +33,8 @@ namespace PL
 
         public MainWindow()
         {
+           
+
             InitializeComponent();
             ScreenDate = s_bl.Clock;
         }
@@ -60,7 +62,7 @@ namespace PL
             bool flag;
             try
             {
-                flag = s_bl.ManagerExist();
+                flag = s_bl.Manager.ManagerExist();
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

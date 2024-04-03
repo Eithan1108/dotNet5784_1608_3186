@@ -28,7 +28,15 @@ namespace PL.Manager
 
         public ManagerWindow()
         {
-            ProjectStarted = s_bl.projectStarted();
+            try
+            {
+                ProjectStarted = s_bl.projectStarted();
+            }
+           catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+            }
             InitializeComponent();
         }
 

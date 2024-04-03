@@ -129,7 +129,7 @@ namespace PL.Manager
             {
                 try
                 {
-                    s_bl.SetManagerPassWord(NewPassWord);
+                    s_bl.Manager.SetManagerPassWord(NewPassWord);
                     MessageBox.Show("Password successfully changed", "Successfully Change Password", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
                 }
