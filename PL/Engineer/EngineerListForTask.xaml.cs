@@ -23,7 +23,14 @@ namespace PL.Engineer
         public EngineerListForTask(BO.EngineerExperience? experience)
         {
             InitializeComponent();
-            EngineerList = s_bl?.Engineer.GetEngineersList(engineer => engineer.Level >= experience).OrderBy(task => task.Id)!;
+            try
+            {
+                EngineerList = s_bl?.Engineer.GetEngineersList(engineer => engineer.Level >= experience).OrderBy(task => task.Id)!; // get list of all engineers
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public IEnumerable<BO.Engineer> EngineerList // get list of all engineers
@@ -37,10 +44,8 @@ namespace PL.Engineer
         public event EventHandler<EngineerSelectedEventArgs> EngineerSelected;
 
 
-
-
         public static readonly DependencyProperty EngineerListProperty =
-    DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListForTask), new PropertyMetadata(null));
+    DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListForTask), new PropertyMetadata(null)); 
 
         private void SelectedEngineer(object sender, MouseButtonEventArgs e)
         {

@@ -17,5 +17,7 @@
 
         public void ResetManager();
 
+        public void Reset(bool wothManager);
+
     }
 }

@@ -26,9 +26,17 @@ namespace PL.Engineer
         public BO.EngineerExperienceWithAll Experience { get; set; } = BO.EngineerExperienceWithAll.All; // get the experience of the engineer
         public EngineerListWindow()
         {
-            ProjectStarted = s_bl.projectStarted();
+            try
+            {
+                ProjectStarted = s_bl.projectStarted();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
             InitializeComponent();
-            EngineerList = s_bl.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost); // get list of all engineers //check if null is ok
+            EngineerList = s_bl.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Id); // get list of all engineers //check if null is ok
         }
 
         private void AddEngineerWindow(object sender, RoutedEventArgs e)
@@ -66,7 +74,7 @@ namespace PL.Engineer
         private void OnSelectExperience(object sender, SelectionChangedEventArgs e) // select experience of the engineer
         {
             EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!)!
-                    : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Cost)!;
+                    : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Id)!;
         }
 
         private void SelectEngineerToUpdate(object sender, MouseButtonEventArgs e)
@@ -82,14 +90,13 @@ namespace PL.Engineer
             }
 
         }
-
         private void RefreshList()
         {
-            EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Cost)!
-                       : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Cost)!;
+            EngineerList = (Experience == BO.EngineerExperienceWithAll.All) ? s_bl?.Engineer.GetEngineersList(null!).OrderBy(engineer => engineer.Id)!
+                       : s_bl?.Engineer.GetEngineersList(engineer => (int)engineer.Level == (int)Experience).OrderBy(engineer => engineer.Id)!;
         }
 
-        private void SearchForContext(object sender, TextChangedEventArgs e)
+        private void SearchForContext(object sender, TextChangedEventArgs e) //search bar
         {
             
             EngineerList = s_bl.Engineer.GetEngineersList(engineer => engineer.Name.StartsWith(TextChanged.Text) || engineer.Name.ToLower().StartsWith(TextChanged.Text) || engineer.Email.StartsWith(TextChanged.Text) || engineer.Id.ToString()!.StartsWith(TextChanged.Text)).OrderBy(engineer => engineer.Id); // get list of all engineers that match the search text 

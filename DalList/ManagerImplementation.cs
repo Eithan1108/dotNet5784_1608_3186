@@ -9,6 +9,8 @@ namespace Dal
 {
     internal class ManagerImplementation : IManager
     {
+        static readonly DalApi.IDal _dal = Factory.Get;
+
         public string GetManagerEmail()
         {
             return DataSource.Config.ManagerEmail;
@@ -27,6 +29,22 @@ namespace Dal
         public void SetManagerPassWord(string managerPassWord)
         {
             DataSource.Config.ManagerPassWord = managerPassWord;
+        }
+
+        public void Reset(bool wothManager)
+        {
+            if (wothManager)
+            {
+                DataSource.Config.ManagerEmail = "";
+                DataSource.Config.ManagerPassWord = "";
+            }
+            DataSource.Engineers.Clear();
+            DataSource.Tasks.Clear();
+            DataSource.Dependences.Clear();
+            DataSource.Config.ProjectDataScreen = DateTime.Now;
+            DataSource.Config.ProjectStartDate = null;
+
+
         }
     }
 }

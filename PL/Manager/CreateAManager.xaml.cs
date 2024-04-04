@@ -26,7 +26,7 @@ namespace PL.Manager
 
         public CreateAManager()
         {
-            IsValid = true;
+            IsValid = true; // for the red border
             InitializeComponent();
             Email = "";
             PassWord = "";
@@ -41,7 +41,7 @@ namespace PL.Manager
         public static readonly DependencyProperty EmailProperty =
             DependencyProperty.Register("Email", typeof(string), typeof(CreateAManager), new PropertyMetadata(null));
 
-        public string PassWord // get list of all engineers
+        public string PassWord // get password
         {
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
@@ -50,7 +50,7 @@ namespace PL.Manager
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(CreateAManager), new PropertyMetadata(null));
 
-        public bool IsValid // get list of all engineers
+        public bool IsValid // validiation informer
         {
             get { return (bool)GetValue(IsValidProperty); }
             set { SetValue(IsValidProperty, value); }
@@ -60,10 +60,9 @@ namespace PL.Manager
             DependencyProperty.Register("IsValid", typeof(bool), typeof(CreateAManager), new PropertyMetadata(null));
 
 
-
         private void LoginBtn(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(PassWord))
+            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(PassWord)) // if the fields are not empty
             {
                 try
                 {

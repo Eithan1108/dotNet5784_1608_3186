@@ -8,5 +8,7 @@
 
         void SetManagerPassWord(String managerPassWord);
         void SetManagerEmail(String managerEmail);
+
+        void Reset(bool wothManager);
     }
 }

@@ -26,7 +26,7 @@ namespace PL.Engineer
             InitializeComponent();
         }
 
-        public int EngineerID // get list of all engineers
+        public int EngineerID // the Engineer ID
         {
             get { return (int)GetValue(IdProperty); }
             set { SetValue(IdProperty, value); }

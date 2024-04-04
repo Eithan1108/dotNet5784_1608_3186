@@ -50,14 +50,12 @@ namespace PL
             DependencyProperty.Register("ScreenDate", typeof(DateTime), typeof(MainWindow), new PropertyMetadata(null));
 
 
-
-
         private void btnHandleEngineers(object sender, RoutedEventArgs e)
         {
             new EngineerLogInWindow().Show();   
         }
 
-        private void btnInitialization(object sender, RoutedEventArgs e)
+        private void btnInitialization(object sender, RoutedEventArgs e)  // create a manager
         {
             bool flag;
             try
@@ -69,7 +67,7 @@ namespace PL
                 return;
             }
 
-            if (flag)
+            if (flag) // if manager exist
             {
                 new ManagerLogin().Show();
             }

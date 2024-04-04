@@ -63,7 +63,7 @@ namespace PL.Manager
 
         
         
-        public static IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate)
+        public static IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate) //not used
         {
             List<DateTime> dateRange = new List<DateTime>();
 

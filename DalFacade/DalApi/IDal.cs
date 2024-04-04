@@ -8,8 +8,8 @@ namespace DalApi
         ITask Task { get; }
         IDependence Dependence { get; }
 
-        ILooz looz { get; }
+        ILooz Looz { get; }
 
-        IManager manager { get; }
+        IManager Manager { get; }
     }
 }

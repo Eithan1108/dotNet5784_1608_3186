@@ -28,7 +28,7 @@ namespace PL.Manager
         public ResetPassWordWindow()
         {
             NotConfirmed = true;
-            randomConfirmNumber = new Random().Next(1000, 9999);
+            randomConfirmNumber = new Random().Next(1000, 9999); // generate random number
             try
             {
                 managerEmail = s_bl.Manager.GetManagerEmail();
@@ -38,8 +38,14 @@ namespace PL.Manager
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ManagerEmail = managerEmail;
-
-            s_bl.Manager.SendEmail(randomConfirmNumber);
+            try
+            {
+                s_bl.Manager.SendEmail(randomConfirmNumber);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
 
             InitializeComponent();

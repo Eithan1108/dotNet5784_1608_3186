@@ -24,11 +24,11 @@ namespace PL.Manager
 
         public ManagerLogin()
         {
-            IsOk = true;
+            IsOk = true; // for red border
             InitializeComponent();
         }
 
-        public string PassWord // get list of all engineers
+        public string PassWord // password for manager
         {
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
@@ -37,7 +37,7 @@ namespace PL.Manager
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(ManagerLogin), new PropertyMetadata(null));
 
-        public bool IsOk // get list of all engineers
+        public bool IsOk // for red border
         {
             get { return (bool)GetValue(IsValidProperty); }
             set { SetValue(IsValidProperty, value); }
@@ -67,12 +67,12 @@ namespace PL.Manager
             }
         }
 
-        private void IsValidOk(object sender, TextChangedEventArgs e)
+        private void IsValidOk(object sender, TextChangedEventArgs e) // for red border
         {
             IsOk = true;
         }
 
-        private void ForgetPasswordBtn(object sender, RoutedEventArgs e)
+        private void ForgetPasswordBtn(object sender, RoutedEventArgs e) 
         {
             new ResetPassWordWindow().Show();
         }

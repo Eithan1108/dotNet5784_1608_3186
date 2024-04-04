@@ -50,8 +50,8 @@ namespace Dal
 
         public IDependence Dependence =>  new DependenceImplementation();
 
-        public ILooz looz => throw new NotImplementedException();
+        public ILooz Looz =>  new LoozImplementation();
 
-        public IManager manager => throw new NotImplementedException();
+        public IManager Manager => new ManagerImplementation();
     }
 }

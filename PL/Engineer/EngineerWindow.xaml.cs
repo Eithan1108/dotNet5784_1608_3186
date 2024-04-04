@@ -68,7 +68,7 @@ namespace PL.Engineer
 
 
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) // not in use
         {
 
         }
@@ -77,13 +77,13 @@ namespace PL.Engineer
         {
             try
             {
-                if (!idIndicator)
+                if (!idIndicator) // if we adding
                 {
                     s_bl.Engineer.AddEngineer(Engineer);
                     MessageBox.Show("Engineer with id " + Engineer.Id +  " successfuly added to the system", "Successfuly Add Engineer ", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
-                else
+                else // if we updating
                 {
                     s_bl.Engineer.UpdateEngineer(Engineer);
                     MessageBox.Show("Engineer with id " + Engineer.Id + " successfuly updated in the system", "Successfuly Update Engineer ", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -30,7 +30,7 @@ namespace PL.Manager
         {
             try
             {
-                ProjectStarted = s_bl.projectStarted();
+                ProjectStarted = s_bl.projectStarted(); 
             }
            catch (Exception ex)
             {
@@ -54,8 +54,8 @@ namespace PL.Manager
                 {
                     try
                     {
-                        s_bl.Reset(false);
-                        DalTest.Initialization.Do();
+                        s_bl.Manager.Reset(false);
+                        DalTest.Initialization.Do(); 
                         ProjectStarted = s_bl.projectStarted();
                         MessageBox.Show("System has been initialized", "Initialization", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -75,7 +75,7 @@ namespace PL.Manager
             {
                 try
                 {
-                    s_bl.Reset(true);
+                    s_bl.Manager.Reset(true);
                     ProjectStarted = s_bl.projectStarted();
                     MessageBox.Show("System has been restarted", "Restart", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
@@ -88,9 +88,7 @@ namespace PL.Manager
             }
         }
 
-
-
-        public bool ProjectStarted // get list of all engineers
+        public bool ProjectStarted // for the button to be enabled only if the project has started
         {
             get { return (bool)GetValue(ProjectStartedProperty); }
             set { SetValue(ProjectStartedProperty, value); }
@@ -109,15 +107,15 @@ namespace PL.Manager
 
             ScheduleProjectWindow scheduleProjectWindow = new ScheduleProjectWindow();
 
-            // Subscribe to the Closed event of the window
-            scheduleProjectWindow.Closed += (windowSender, windowArgs) =>
+           
+            scheduleProjectWindow.Closed += (windowSender, windowArgs) =>  // subscribe to the Closed event of the window
             {
-                // Update ProjectStarted after the window is closed
-                ProjectStarted = s_bl.projectStarted();
+                
+                ProjectStarted = s_bl.projectStarted(); // update ProjectStarted after the window is closed
             };
 
-            // Show the window
-            scheduleProjectWindow.Show();
+            
+            scheduleProjectWindow.Show(); // show the window
 
         }
 

@@ -21,6 +21,7 @@
         <local:ConvertValidToBorderBrush x:Key="ConvertValidToBorderBrush"/>
 
         <local:EmptyFieldsToEnableConverter x:Key="EmptyFieldsToEnableConverter"/>
+        <local:TimeGreetingConverter x:Key="TimeGreetingConverter"/>
 
     </Application.Resources>
 </Application>

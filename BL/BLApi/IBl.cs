@@ -23,8 +23,6 @@ public interface IBl
 
     public void InitialClock();
 
-    public void Reset(bool wothManager);
-
     public void setProjectStartDate(DateTime date);
 
     public void setProjectEndDate(DateTime date);

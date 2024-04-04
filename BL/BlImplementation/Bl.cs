@@ -1,7 +1,7 @@
 ﻿
 namespace BlImplementation;
 using BlApi;
-using DO;
+
 using System.Xml.Linq;
 using Dal;
 using System.Security.Cryptography;
@@ -27,6 +27,10 @@ internal class Bl : IBl
     static readonly string s_config_xml = "data-config";
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get;
 
+
+
+
+
     public ITask Task => new TaskImplementation(this); // create new TaskImplementation
     public IEngineer Engineer => new EngineerImplementation(); // create new EngineerImplementation
 
@@ -34,7 +38,7 @@ internal class Bl : IBl
 
     public IManager Manager => new ManagerImplementation(); // create new ManagerImplementation
 
-    private static DateTime s_Clock = (DateTime)s_bl.Looz.GetProjectDataScreen();
+    private static DateTime s_Clock = (DateTime)(s_bl.Looz.GetProjectDataScreen() ?? DateTime.Now);
     public DateTime Clock { get { return s_Clock; } private set { s_Clock = value; } }
 
     // clock functions
@@ -55,26 +59,6 @@ internal class Bl : IBl
     {
         s_Clock = DateTime.Now;
         s_bl.Looz.SetProjectDataScreen(s_Clock);
-    }
-
-    public void Reset(bool wothManager)
-    {
-        if (wothManager)
-        {
-            s_bl.Manager.ResetManager();
-        }
-        s_bl.InitialClock();
-        List<DO.Engineer> engineersClear = new List<DO.Engineer>();
-        List<Dependence> dependenceClear = new List<Dependence>();
-        List<DO.Task> tasksClear = new List<DO.Task>();
-        XMLTools.SaveListToXMLSerializer<DO.Engineer>(engineersClear, s_engineers_xml);
-        XMLTools.SaveListToXMLSerializer<DO.Task>(tasksClear, s_tasks_xml);
-        XMLTools.SaveListToXMLSerializer<Dependence>(dependenceClear, s_dependence_xml);
-        XElement configRestart = XMLTools.LoadListFromXMLElement(s_config_xml);
-        configRestart.Element("NextTaskId")!.Value = "1";
-        configRestart.Element("NextDependenceId")!.Value = "1";
-        configRestart.Element("ProjectStartDate")!.Value = "";
-        XMLTools.SaveListToXMLElement(configRestart, s_config_xml);
     }
 
     public void setProjectStartDate(DateTime date)

@@ -263,3 +263,30 @@ public class EmptyFieldsToEnableConverter : IMultiValueConverter
     }
 }
 
+ class TimeGreetingConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is DateTime dateTime)
+        {
+            int hour = dateTime.Hour;
+
+            if (hour >= 5 && hour < 12)
+                return "Good Morning,";
+            else if (hour >= 12 && hour < 17)
+                return "Good Afternoon,";
+            else
+                return "Good Evening,";
+        }
+        else
+        {
+            throw new ArgumentException("Input value must be a DateTime");
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+

@@ -29,7 +29,15 @@ namespace PL.Task
 
         public TaskListWindow()
         {
-            ProjectStarted = s_bl.projectStarted();
+            try
+            {
+                ProjectStarted = s_bl.projectStarted();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
             InitializeComponent();
             TaskList = s_bl.Task.TaskToTaskInListConverter(s_bl.Task.GetTasksList(null)).OrderBy(task => task.Id); // get list of all tasks //check if null is ok
         }

@@ -24,7 +24,14 @@ namespace PL.Manager
 
         public ScheduleProjectWindow()
         {
-            Date = s_bl.Clock;
+            try
+            {
+                Date = s_bl.Clock;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             InitializeComponent();
 
         }
