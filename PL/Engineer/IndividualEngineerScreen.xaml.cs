@@ -18,7 +18,7 @@ namespace PL.Engineer
     /// <summary>
     /// Interaction logic for IndividualEngineerScreen.xaml
     /// </summary>
-    public partial class IndividualEngineerScreen : Window 
+    public partial class IndividualEngineerScreen : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get; //get the Bl instance
 
@@ -26,30 +26,12 @@ namespace PL.Engineer
         {
             InitializeComponent();
             Engineer = individualEngineer;
-           TaskInEngineerList = s_bl.Task.GetTasksList(task => task.Engineer!= null && task.Engineer.Id == Engineer.Id && task.StartDate == null).OrderBy(task => task.Id); // get the list of tasks that the engineer can start
-
-            if(Engineer.Task != null)
-                WorkingTask = s_bl.Task.GetTask(Engineer.Task.Id!.Value); // get the task that the engineer is working on
-            try
-            { 
-                ScreenDate = s_bl.Clock;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Clock", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-        }
-        public DateTime ScreenDate 
-        {
-            get { return (DateTime)GetValue(ScreenDateProperty); }
-            set { SetValue(ScreenDateProperty, value); }
+            TaskInEngineerList = s_bl.Task.GetTasksList(task => task.Engineer != null && task.Engineer.Id == Engineer.Id && task.StartDate == null).OrderBy(task => task.Id);
+            if (Engineer.Task != null)
+                WorkingTask = s_bl.Task.GetTask(Engineer.Task.Id!.Value);
         }
 
-        public static readonly DependencyProperty ScreenDateProperty =
-            DependencyProperty.Register("ScreenDate", typeof(DateTime), typeof(IndividualEngineerScreen), new PropertyMetadata(null));
-
-        public BO.Engineer Engineer // get the engineer
+        public BO.Engineer Engineer // get list of all engineers
         {
             get { return (BO.Engineer)GetValue(EngineerProperty); }
             set { SetValue(EngineerProperty, value); }
@@ -59,7 +41,7 @@ namespace PL.Engineer
             DependencyProperty.Register("Engineer", typeof(BO.Engineer), typeof(IndividualEngineerScreen), new PropertyMetadata(null));
 
 
-        public IEnumerable<BO.Task> TaskInEngineerList // get list of all tasks
+        public IEnumerable<BO.Task> TaskInEngineerList // get list of all engineers
         {
             get { return (IEnumerable<BO.Task>)GetValue(TaskInEngineerListProperty); }
             set { SetValue(TaskInEngineerListProperty, value); }
@@ -78,7 +60,7 @@ namespace PL.Engineer
 
         public static readonly DependencyProperty WorkingTaskProperty =
             DependencyProperty.Register("WorkingTask", typeof(BO.Task), typeof(IndividualEngineerScreen), new PropertyMetadata(null));
-        
+
         private void CompleteTaskBtn(object sender, RoutedEventArgs e)
         {
 
@@ -90,8 +72,6 @@ namespace PL.Engineer
 
             // Refresh the engineer
             Engineer = s_bl.Engineer.GetEngineer(Engineer.Id!.Value);
-
-            // Refresh the list of tasks
             TaskInEngineerList = s_bl.Task.GetTasksList(task =>
               task.Engineer != null &&
               task.Engineer.Id == Engineer.Id &&
@@ -116,11 +96,7 @@ namespace PL.Engineer
             {
                 s_bl.Task.StartTask(task.Id, Engineer.Id!.Value);
                 MessageBox.Show("Task started successfully");
-
-                // Refresh the engineer
                 Engineer = s_bl.Engineer.GetEngineer(Engineer.Id!.Value);
-
-                // Refresh the list of tasks
                 TaskInEngineerList = s_bl.Task.GetTasksList(task =>
                   task.Engineer != null &&
                   task.Engineer.Id == Engineer.Id &&

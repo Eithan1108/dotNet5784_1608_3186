@@ -14,7 +14,9 @@
             <!-- Setting the background using an ImageBrush -->
             <ImageBrush ImageSource="\Images\EngineerListWindowLast.jpg"/>
         </Grid.Background>
-
+        <StackPanel Background="Yellow" Margin="35,32,463,339">
+            <TextBlock Text="{Binding Path=Engineer.Name}" />
+        </StackPanel>
 
 
         <Border CornerRadius="13" Background="#f1f1f2" Margin="35,121,27,90">
@@ -97,19 +99,6 @@
             </ListView>
         </Border>
 
-
-        <Label Content="{Binding Engineer.Name}"
-  FontFamily="Segoe UI"
-  FontSize="16"
-  Foreground="#f1f1f2"
-  FontWeight="Bold"
-  Margin="135,10,0,10" 
-          VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <Label Content="{Binding ScreenDate, Converter={StaticResource TimeGreetingConverter}}"
-  FontSize="16"
-  Foreground="#f1f1f2"
-  FontWeight="Bold"
-  Margin="5,10,10,10" />
 
         <Label Visibility="{Binding WorkingTask, Converter={StaticResource ConvertTaskToVisible}}"  Content="Working on: " HorizontalAlignment="Left" Margin="24,375,0,0" VerticalAlignment="Top"/>
         <Label Visibility="{Binding WorkingTask, Converter={StaticResource ConvertTaskToVisible}}" Content="{Binding WorkingTask.Id}" HorizontalAlignment="Left" Margin="107,361,0,0" VerticalAlignment="Top"/>
