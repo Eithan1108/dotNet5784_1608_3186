@@ -78,13 +78,13 @@ internal class Bl : IBl
 
     public void ExportToPdf()
     {
-        string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Project_Management.pdf");
-        string projecManager = Manager.GetManagerEmail();
-        DateTime? projectStartDate = s_bl.Looz.GetStartDate();
-        if (projectStartDate == null)
+        string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Project_Management.pdf"); // Set the file path
+        string projecManager = Manager.GetManagerEmail(); // Get the project manager's email
+        DateTime? projectStartDate = s_bl.Looz.GetStartDate(); // Get the project start date
+        if (projectStartDate == null) // If the project start date is not set
             CreatePdfFile(filePath, "Project Managing", projecManager, DateTime.MinValue);
         else
-            CreatePdfFile(filePath, "Project Managing", projecManager, projectStartDate.Value);
+            CreatePdfFile(filePath, "Project Managing", projecManager, projectStartDate.Value); // Create the PDF file
     }
 
     public static void CreatePdfFile(string filePath, string projectName, string projectManager, DateTime projectStartDate)
@@ -98,7 +98,6 @@ internal class Bl : IBl
         // Open the document
         document.Open();
 
-        // Set background color
         document.Add(new Chunk("\n")); // Add a new line
 
 
@@ -311,11 +310,11 @@ internal class Bl : IBl
         Paragraph summary = new Paragraph();
         summary.SpacingBefore = 10;
 
-        var engineersByLevel = engineersListForPDF.GroupBy(e => e.Level)
-                                                   .OrderBy(g => g.Key)
-                                                   .Select(g => new { Level = g.Key, Count = g.Count() });
+        var engineersByLevel = engineersListForPDF.GroupBy(e => e.Level) // Group engineers by level
+                                                   .OrderBy(g => g.Key) // Order by level
+                                                   .Select(g => new { Level = g.Key, Count = g.Count() }); // Select level and count
 
-        foreach (var levelGroup in engineersByLevel)
+        foreach (var levelGroup in engineersByLevel) // Iterate over each level group
         {
             summary.Add(new Chunk($"{levelGroup.Count} engineer(s) are {levelGroup.Level}.", summaryFont));
             summary.Add(Chunk.NEWLINE);
